@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @Builder
 @Data
-public class publishingHouse {
+public class PublishingHouse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
