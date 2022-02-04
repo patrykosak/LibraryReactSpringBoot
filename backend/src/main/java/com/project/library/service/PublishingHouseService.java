@@ -10,4 +10,8 @@ public interface PublishingHouseService {
     public List<PublishingHouse> fetchPublishingHouseList();
 
     public PublishingHouse fetchPublishingHouseById(Long publishingHouseId);
+
+    public void deletePublishingHouseById(Long publishingHouseId);
+
+    public PublishingHouse updatePublishingHouse(Long publishingHouseId, PublishingHouse publishingHouse);
 }

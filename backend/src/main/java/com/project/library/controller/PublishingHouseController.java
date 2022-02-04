@@ -27,5 +27,14 @@ public class PublishingHouseController {
     public PublishingHouse fetchPublishingHouseById(@PathVariable("id") Long publishingHouseId){
         return publishingHouseService.fetchPublishingHouseById(publishingHouseId);
     }
+    @DeleteMapping("/publishinghouses/{id}")
+    public String deletePublishingHouseById(@PathVariable("id") Long publishingHouseId){
+        publishingHouseService.deletePublishingHouseById(publishingHouseId);
+        return "Publishing House deleted Succesfully!!";
+    }
 
+    @PutMapping("/publishinghouses/{id}")
+    public PublishingHouse updatePublishingHouse(@PathVariable("id") Long publishingHouseId, @RequestBody PublishingHouse publishingHouse){
+        return publishingHouseService.updatePublishingHouse(publishingHouseId,publishingHouse);
+    }
 }
