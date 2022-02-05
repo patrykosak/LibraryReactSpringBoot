@@ -19,7 +19,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long CategoryId;
+    public Long categoryId;
 
     @NotBlank
     @Length(max=50)
