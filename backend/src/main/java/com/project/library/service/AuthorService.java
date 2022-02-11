@@ -10,4 +10,8 @@ public interface AuthorService {
     public List<Author> fetchAuthorList();
 
     public Author fetchAuthorById(Long authorId);
+
+    public void deleteAuthorById(Long authorId);
+
+    public Author updateAuthor(Long authorId, Author author);
 }

@@ -27,4 +27,15 @@ public class AuthorController {
     public Author fetchAuthorById(@PathVariable("id") Long authorId){
         return authorService.fetchAuthorById(authorId);
     }
+
+    @DeleteMapping("/authors/{id}")
+    public String deleteAuthorById(@PathVariable("id") Long authorId){
+        authorService.deleteAuthorById(authorId);
+        return "Author deleted succesfully!!";
+    }
+
+    @PutMapping("/authors/{id}")
+    public Author updateAuthor(@PathVariable("id") Long authorId, @RequestBody Author author){
+        return authorService.updateAuthor(authorId,author);
+    }
 }
