@@ -7,8 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
@@ -25,7 +24,25 @@ public class Book {
     @Length(max=50)
     private String Title;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date RelaseDate;
+    private Date ReleaseDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date AcquisitionDate;
+
+    @ManyToOne
+    @JoinColumn(
+            referencedColumnName = "categoryId"
+    )
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(
+            referencedColumnName = "publishingHouseId"
+    )
+    private PublishingHouse publishingHouse;
+
+    @ManyToOne
+    @JoinColumn(
+            referencedColumnName = "authorId"
+    )
+    private Author author;
 }
