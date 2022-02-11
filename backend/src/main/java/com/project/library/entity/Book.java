@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -19,13 +20,14 @@ import java.util.Date;
 public class Book {
 
     @Id
+    @Length(min=13,max=13)
     private String ISBN;
     @NotBlank
     @Length(max=50)
     private String Title;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date ReleaseDate;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String ReleaseDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date AcquisitionDate;
 
     @ManyToOne
