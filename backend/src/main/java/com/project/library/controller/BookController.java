@@ -28,4 +28,14 @@ public class BookController {
         return bookService.fetchBookByISBN(ISBN);
     }
 
+    @DeleteMapping("/books/{isbn}")
+    public String deleteBookByISBN(@PathVariable("isbn") String ISBN){
+        bookService.deleteBookByISBN(ISBN);
+        return "Book deleted succesfully!!";
+    }
+
+    @PutMapping("/books/{isbn}")
+    public Book updateBook(@PathVariable("isbn") String ISBN, @RequestBody Book book){
+        return bookService.updateBook(ISBN, book);
+    }
 }

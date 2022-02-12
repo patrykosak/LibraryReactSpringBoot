@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BookServiceImpl implements BookService{
@@ -26,5 +27,39 @@ public class BookServiceImpl implements BookService{
     @Override
     public Book fetchBookByISBN(String isbn) {
         return bookRepository.findById(isbn).get();
+    }
+
+    @Override
+    public void deleteBookByISBN(String isbn) {
+        bookRepository.deleteById(isbn);
+    }
+
+    @Override
+    public Book updateBook(String isbn, Book book) {
+        Book bookDB = bookRepository.findById(isbn).get();
+
+        if(Objects.nonNull(book.getTitle())&& !"".equalsIgnoreCase(book.getTitle())){
+            bookDB.setTitle(book.getTitle());
+        }
+        if(Objects.nonNull(book.getUrl())&& !"".equalsIgnoreCase(book.getUrl())){
+            bookDB.setUrl(book.getUrl());
+        }
+        if(Objects.nonNull(book.getAmount())){
+            bookDB.setAmount(book.getAmount());
+        }
+        if(Objects.nonNull(book.getAcquisitionDate())){
+            bookDB.setAcquisitionDate(book.getAcquisitionDate());
+        }
+        if(Objects.nonNull(book.getAuthor())){
+            bookDB.setAuthor(book.getAuthor());
+        }
+        if(Objects.nonNull(book.getCategory())){
+            bookDB.setCategory(book.getCategory());
+        }
+        if(Objects.nonNull(book.getPublishingHouse())){
+            bookDB.setPublishingHouse(book.getPublishingHouse());
+        }
+
+        return bookRepository.save(bookDB);
     }
 }

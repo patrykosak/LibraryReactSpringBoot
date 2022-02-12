@@ -10,4 +10,8 @@ public interface BookService {
     public List<Book> fetchBookList();
 
     public Book fetchBookByISBN(String isbn);
+
+    public void deleteBookByISBN(String isbn);
+
+    public Book updateBook(String isbn, Book book);
 }
