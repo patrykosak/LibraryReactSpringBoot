@@ -24,11 +24,14 @@ public class Book {
     private String ISBN;
     @NotBlank
     @Length(max=50)
-    private String Title;
+    private String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String ReleaseDate;
+    private String releaseDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date AcquisitionDate;
+    private Date acquisitionDate;
+
+    private int amount;
+    private String url;
 
     @ManyToOne
     @JoinColumn(
