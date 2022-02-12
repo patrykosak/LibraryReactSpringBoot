@@ -53,7 +53,7 @@ class BookRepositoryTest {
                 .category(category)
                 .publishingHouse(publishingHouse)
                 .acquisitionDate(new Date())
-                .releaseDate(new Date())
+                .releaseYear(2014)
                 .url("https://s.lubimyczytac.pl/upload/books/4924000/4924576/809502-352x500.jpg")
                 .amount(10)
                 .build();

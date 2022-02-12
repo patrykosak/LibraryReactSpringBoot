@@ -25,8 +25,7 @@ public class Book {
     @NotBlank
     @Length(max=50)
     private String title;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date releaseDate;
+    private int releaseYear;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date acquisitionDate;
 
