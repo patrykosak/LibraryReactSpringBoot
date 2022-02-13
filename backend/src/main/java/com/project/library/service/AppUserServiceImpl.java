@@ -35,16 +35,18 @@ public class AppUserServiceImpl implements AppUserService{
 
     @Override
     public void addRoleToUser(String username, String roleName) {
-
+        AppUser appUser = appUserRepository.findByUsername(username);
+        Role role = roleRepository.findByName(roleName);
+        appUser.getRoles().add(role);
     }
 
     @Override
     public AppUser getAppUser(String username) {
-        return null;
+        return appUserRepository.findByUsername(username);
     }
 
     @Override
     public List<AppUser> getAppUsers() {
-        return null;
+        return appUserRepository.findAll();
     }
 }
