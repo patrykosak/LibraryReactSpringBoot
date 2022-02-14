@@ -34,7 +34,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         AppUser appUser = appUserRepository.findByUsername(username);
         if(appUser == null){
             log.error("User not found in the database");
-            throw new UsernameNotFoundException("User not found in the database")
+            throw new UsernameNotFoundException("User not found in the database");
         }
         else{
             log.info("User {} found in the database", username);
