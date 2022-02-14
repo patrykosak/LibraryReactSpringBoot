@@ -4,6 +4,7 @@ import com.project.library.entity.AppUser;
 import com.project.library.entity.Role;
 import com.project.library.repository.AppUserRepository;
 import com.project.library.repository.RoleRepository;
+import com.project.library.security.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -28,6 +30,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     private AppUserRepository appUserRepository;
     @Autowired
     private RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -49,6 +52,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     @Override
     public AppUser saveAppUser(AppUser appUser) {
         log.info("Saving new user {} to the database", appUser.getName());
+        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
         return appUserRepository.save(appUser);
     }
 
