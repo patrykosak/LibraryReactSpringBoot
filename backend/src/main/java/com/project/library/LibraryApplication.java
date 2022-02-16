@@ -13,9 +13,9 @@ public class LibraryApplication {
 		SpringApplication.run(LibraryApplication.class, args);
 	}
 
-	@Bean
-	BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+//	@Bean
+//	BCryptPasswordEncoder bCryptPasswordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
 
 }
