@@ -16,9 +16,9 @@ function Footer() {
                     <div className="col-md-4 mt-4">
                         <h6>Na skróty</h6>
                         <hr />
-                        {/* <div><Link to="/">Strona główna</Link></div>
+                        <div><Link to="/">Strona główna</Link></div>
                         <div><Link to="/about">O nas</Link></div>
-                        <div><Link to="/contact">Kontakt</Link></div> */}
+                        <div><Link to="/contact">Kontakt</Link></div>
                     </div>
                     <div className="col-md-4 mt-4">
                         <h6>Kontakt</h6>
