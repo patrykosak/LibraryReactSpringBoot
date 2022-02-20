@@ -10,7 +10,7 @@ const Books = () => {
     const [info,setInfo] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const fetchBooks = async() => {
-        await axios.get(`http://localhost:8090/books?pageNumber=${pageNumber}`).then((response)=>{
+        await axios.get(`http://localhost:8090/books?pageNumber=${pageNumber}&pageSize=2`).then((response)=>{
             setBooks(response.data.content)
             setInfo(response.data)
             console.log(response.data)
