@@ -3,6 +3,9 @@ package com.project.library.service;
 import com.project.library.entity.Book;
 import com.project.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,5 +64,11 @@ public class BookServiceImpl implements BookService{
         }
 
         return bookRepository.save(bookDB);
+    }
+
+    @Override
+    public Page<Book> fetchPaginatedBookList(int pageSize, int pageNumber) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return bookRepository.findAll(page);
     }
 }

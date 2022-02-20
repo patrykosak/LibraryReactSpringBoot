@@ -3,6 +3,7 @@ package com.project.library.controller;
 import com.project.library.entity.Book;
 import com.project.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,9 +20,14 @@ public class BookController {
         return bookService.saveBook(book);
     }
 
+//    @GetMapping("/books")
+//    public List<Book> fetchBookList(){
+//        return bookService.fetchBookList();
+//    }
+
     @GetMapping("/books")
-    public List<Book> fetchBookList(){
-        return bookService.fetchBookList();
+    public Page<Book> fetchPaginatedBookList(@RequestParam int pageSize, @RequestParam int pageNumber){
+        return bookService.fetchPaginatedBookList(pageSize, pageNumber);
     }
 
     @GetMapping("/books/{isbn}")

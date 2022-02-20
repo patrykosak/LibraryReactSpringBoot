@@ -1,6 +1,7 @@
 package com.project.library.service;
 
 import com.project.library.entity.Book;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface BookService {
     public void deleteBookByISBN(String isbn);
 
     public Book updateBook(String isbn, Book book);
+
+    public Page<Book> fetchPaginatedBookList(int pageSize, int pageNumber);
 }
