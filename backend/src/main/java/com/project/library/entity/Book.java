@@ -31,6 +31,7 @@ public class Book {
 
     private int amount;
     private String url;
+    private String description;
 
     @ManyToOne
     @JoinColumn(
