@@ -1,15 +1,15 @@
 import './App.css';
 import AppNavbar from './components/AppNavbar';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './components/Footer';
+import { Route, Routes } from 'react-router-dom';
+import Books from './pages/Books';
+
 
 function App() {
   return (
-    <div className="App">
-      <AppNavbar />
-
-      <Footer />
-    </div>
+      <Routes>
+        <Route path="/books" element={<Books />} />
+      </Routes>
   );
 }
 
