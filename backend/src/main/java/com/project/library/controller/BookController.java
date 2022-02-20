@@ -26,7 +26,7 @@ public class BookController {
 //    }
 
     @GetMapping("/books")
-    public Page<Book> fetchPaginatedBookList(@RequestParam int pageSize, @RequestParam int pageNumber){
+    public Page<Book> fetchPaginatedBookList(@RequestParam(required = false, defaultValue = "30") int pageSize, @RequestParam(required = false, defaultValue = "0") int pageNumber){
         return bookService.fetchPaginatedBookList(pageSize, pageNumber);
     }
 
