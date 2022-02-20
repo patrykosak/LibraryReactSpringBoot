@@ -25,7 +25,7 @@ const Books = () => {
         <Col xs={4}><Filters /></Col>
         <Col xs={8}><BookList books={books}/></Col>
     </Row>
-    <AppPagination info={info}/>
+    <AppPagination pageNumber={pageNumber} setPageNumber={setPageNumber} info={info}/>
     </>
   )
 }
