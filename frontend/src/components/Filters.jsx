@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Accordion } from 'react-bootstrap'
+import axios, { Axios } from 'axios'
+import FilterButton from './FilterButton';
 
 const Filters = () => {
+    const [categories, setCategories] = useState([]);
+    const fetchCategories = async () =>{
+        axios.get("http://localhost:8090/categories").then((response)=>{
+            setCategories(response.data)
+            console.log(categories)
+        })
+    }
+    useEffect(()=>{
+        fetchCategories();
+    },[])
   return (
     <>
         <Accordion defaultActiveKey="0" className='m-4'>
   <Accordion.Item eventKey="0">
     <Accordion.Header>Kategorie</Accordion.Header>
     <Accordion.Body>
+        {categories.map((category,index)=>{
+           return <FilterButton name={category.name} index={index} item={category.name}/>
+        })}
     </Accordion.Body>
   </Accordion.Item>
   <Accordion.Item eventKey="1">
