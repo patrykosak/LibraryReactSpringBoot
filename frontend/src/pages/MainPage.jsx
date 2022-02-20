@@ -1,8 +1,11 @@
 import React from 'react'
+import AppCarousel from '../components/AppCarousel'
 
 const MainPage = () => {
   return (
-    <div>MainPage</div>
+    <div>
+       <AppCarousel />
+    </div>
   )
 }
 
