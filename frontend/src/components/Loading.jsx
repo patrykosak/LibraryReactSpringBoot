@@ -1,6 +1,5 @@
 import React from "react";
 import { Oval } from "react-loader-spinner";
-import { Container } from "react-bootstrap";
 
 export const Loading = () => {
   return (

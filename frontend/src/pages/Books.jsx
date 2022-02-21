@@ -5,6 +5,7 @@ import { Row,Col } from 'react-bootstrap';
 import Filters from '../components/Filters';
 import AppPagination from '../components/AppPagination';
 import { Loading } from '../components/Loading';
+import SearchBar from '../components/SearchBar';
 
 const Books = () => {
     const [books,setBooks] = useState([]);
@@ -27,6 +28,7 @@ const Books = () => {
 
     return (
       <>
+      <SearchBar />
     <Row>
         <Col xs={4}><Filters /></Col>
         <Col xs={8}><BookList books={books}/></Col>
