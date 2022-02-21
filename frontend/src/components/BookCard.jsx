@@ -10,8 +10,7 @@ const BookCard = ({book}) => {
   <Card.Body>
     <Card.Title>{book.title}</Card.Title>
     <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
+      {book.description?.substr(0,200)}
     </Card.Text>
     <Button variant="primary">Go somewhere</Button>
   </Card.Body>
