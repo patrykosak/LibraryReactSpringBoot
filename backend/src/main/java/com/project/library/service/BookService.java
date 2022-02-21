@@ -16,5 +16,5 @@ public interface BookService {
 
     public Book updateBook(String isbn, Book book);
 
-    public Page<Book> fetchPaginatedBookList(int pageSize, int pageNumber);
+    public Page<Book> fetchPaginatedBookList(int pageSize, int pageNumber, String searchQuery);
 }

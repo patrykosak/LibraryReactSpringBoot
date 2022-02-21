@@ -67,8 +67,14 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public Page<Book> fetchPaginatedBookList(int pageSize, int pageNumber) {
+    public Page<Book> fetchPaginatedBookList(int pageSize, int pageNumber,String searchQuery) {
         Pageable page = PageRequest.of(pageNumber, pageSize);
-        return bookRepository.findAll(page);
+        if(searchQuery.equals(""))
+        {
+            return bookRepository.findAll(page);
+        }
+       else{
+           return bookRepository.findByTitleContaining(searchQuery, page);
+        }
     }
 }

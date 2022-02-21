@@ -11,9 +11,10 @@ const Books = () => {
     const [books,setBooks] = useState([]);
     const [info,setInfo] = useState([]);
     const [isLoading,setIsLoading] = useState(true);
+    const [searchQuery,setSearchQuery] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
     const fetchBooks = async() => {
-        await axios.get(`http://localhost:8090/books?pageNumber=${pageNumber}&pageSize=2`).then((response)=>{
+        await axios.get(`http://localhost:8090/books?pageNumber=${pageNumber}&pageSize=2&searchQuery=${searchQuery}`).then((response)=>{
             setBooks(response.data.content)
             setInfo(response.data)
             setIsLoading(false)
@@ -22,13 +23,13 @@ const Books = () => {
     }
     useEffect(()=>{
         fetchBooks()
-    },[pageNumber])
+    },[pageNumber, searchQuery])
 
     if(isLoading) return <Loading />
 
     return (
       <>
-      <SearchBar />
+      <SearchBar setSearchQuery={setSearchQuery} />
     <Row>
         <Col xs={4}><Filters /></Col>
         <Col xs={8}><BookList books={books}/></Col>
