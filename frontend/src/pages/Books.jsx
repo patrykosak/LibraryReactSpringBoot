@@ -15,11 +15,12 @@ const Books = () => {
     const [pageNumber, setPageNumber] = useState(0);
     const fetchBooks = async() => {
         await axios.get(`http://localhost:8090/books?pageNumber=${pageNumber}&pageSize=2&searchQuery=${searchQuery}`).then((response)=>{
+            setIsLoading(false)
             setBooks(response.data.content)
             setInfo(response.data)
-            setIsLoading(false)
             console.log(response.data)
         })
+
     }
     useEffect(()=>{
         fetchBooks()
