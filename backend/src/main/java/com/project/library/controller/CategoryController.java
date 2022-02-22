@@ -24,7 +24,6 @@ public class CategoryController {
         return categoryService.fetchCategoryList();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/categories/{id}")
     public String deleteCategoryById(@PathVariable("id") Long categoryId){
         categoryService.deleteCategoryById(categoryId);
