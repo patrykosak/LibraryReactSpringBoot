@@ -1,5 +1,6 @@
 import React from "react";
 import { Tab, Row, Col, Nav, Tabs } from "react-bootstrap";
+import AddCategory from "../components/adminPanelComponents/AddCategory";
 
 const AdminPanel = () => {
   return (
@@ -24,6 +25,7 @@ const AdminPanel = () => {
                 className="mb-3"
               >
                 <Tab eventKey="add" title="Dodaj kategorię">
+                    <AddCategory />
                 </Tab>
                 <Tab eventKey="edit" title="Edytuj kategorię">
                 </Tab>
