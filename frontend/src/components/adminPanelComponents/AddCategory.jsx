@@ -6,19 +6,20 @@ const AddCategory = () => {
     const [name, setName] = useState("")
 
     const addCategory = async (e) =>{
+        e.preventDefault()
 
         const newCategory =
         {
             name: name
         }
 
-        await axios.post("http://localhost:8090/categories", newCategory).then(()=>console.log(name))
+        await axios.post("http://localhost:8090/categories", newCategory).then((res)=>console.log(res))
 
     }
 
   return (
     <div className="m-3">
-    <Form onSubmit={()=> addCategory()}>
+    <Form onSubmit={(e)=> addCategory(e)}>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Nazwa kategorii">

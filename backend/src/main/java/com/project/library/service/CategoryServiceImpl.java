@@ -16,6 +16,10 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public Category saveCategory(Category category) {
+        Category categoryDB = categoryRepository.findByName(category.name);
+        if(Objects.nonNull(categoryDB)){
+            return categoryDB;
+        }
         return categoryRepository.save(category);
     }
 
