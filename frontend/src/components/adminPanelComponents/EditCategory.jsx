@@ -7,6 +7,7 @@ const EditCategory = () => {
     const [categories, setCategories] = useState([])    
     const [selectedCategory, setSelectedCategory] = useState(null)
     const [name,setName] = useState("")
+    const [feedback,setFeedback] = useState([])
 
     const fetchCategories = async () => {
         axios.get("http://localhost:8090/categories").then(res=>{
@@ -17,16 +18,38 @@ const EditCategory = () => {
         })
     }
 
-    const updateCategory = async (e)=>{
+    const updateCategory = async (e) =>{
         e.preventDefault()
 
-        const updatedCategory = {
+        const updatedCategory = 
+        {
             name: name
         }
 
-        axios.put(`http://localhost:8090/categories/${selectedCategory.value}`,updateCategory).then((res)=>{
 
-        })
+        axios.put(`http://localhost:8090/categories/${selectedCategory.value}`, updatedCategory).then((res)=>{
+
+        if (res.status === 200)
+        setFeedback(
+            <Alert variant="success">
+                Kategria została edytowana!
+            </Alert>
+        )
+    else
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się zedytować kategorii!
+            </Alert>
+        )
+}).catch((e) => {
+    console.log(e)
+    setFeedback(
+        <Alert variant="danger">
+            Nie udało się zedytować kategorii!
+        </Alert>
+    )
+})
+        
     }
 
     useEffect(()=>{
@@ -50,6 +73,7 @@ const EditCategory = () => {
                     <Row className="mb-3">
                         <h6>Kategoria</h6>
                         <hr />
+                        {feedback}
                     <Form.Group as={Col} xs={12} md={12} controlId="formGridName">
                         <FloatingLabel controlId="floatingPassword" label="Nazwa kategorii">
                             <Form.Control onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Nazwa kategorii" required />
