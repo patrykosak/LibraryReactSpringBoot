@@ -2,6 +2,7 @@ import React from "react";
 import { Tab, Row, Col, Nav, Tabs } from "react-bootstrap";
 import AddCategory from "../components/adminPanelComponents/AddCategory";
 import DeleteCategory from "../components/adminPanelComponents/DeleteCategory";
+import EditCategory from "../components/adminPanelComponents/EditCategory";
 
 const AdminPanel = () => {
   return (
@@ -29,6 +30,7 @@ const AdminPanel = () => {
                     <AddCategory />
                 </Tab>
                 <Tab eventKey="edit" title="Edytuj kategorię">
+                <EditCategory />
                 </Tab>
                 <Tab eventKey="delate" title="Usuń kategorię">
                     <DeleteCategory />
