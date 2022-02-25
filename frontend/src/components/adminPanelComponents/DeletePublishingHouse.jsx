@@ -28,7 +28,26 @@ const DeletePublishingHouse = () => {
         e.preventDefault()
 
         axios.delete(`http://localhost:8090/publishinghouses/${selectedPublishingHouse.value}`).then((res)=>{
-            
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Wydawnictwo zostało usunięte!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się usunąć wydawnictwa!
+                </Alert>
+            )
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                                    Istnieją książki tego wydawnictwa!
+                    Najpierw usuń te książki
+            </Alert>
+        )
         })
     }
 
