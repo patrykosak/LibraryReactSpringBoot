@@ -5,23 +5,36 @@ import Select from 'react-select';
 
 
 const EditPublishingHouse = () => {
-    const[selectedPublishingHouse, setSselectedPublishingHouse] = useState(null)
+    const[selectedPublishingHouse, setSelectedPublishingHouse] = useState(null)
     const[feedback, setFeedback] = useState([])
     const[publishinghouses, setPublishinghouses] = useState([])
     const[name, setName] = useState("")
     const[city, setCity] = useState("")
 
-    const updateCategory = async (e) =>{
+    const updatePublishingHouse = async (e) =>{
 
     }
 
-    const selectCategoryHandler = () =>{
+    const fetchData = async () => {
+        await axios.get("http://localhost:8090/publishinghouses").then((res)=>{
+            const options = res.data.map((p)=>{
+                return {value: p.publishingHouseId, label: p.name}
+            })
+            setPublishinghouses(options)
+        })
+    }
 
+    useEffect(()=>{
+        fetchData()
+    },[])
+
+    const selectCategoryHandler = (e) =>{
+        setSelectedPublishingHouse(e)
     }
 
   return (
     <div className="m-3">
-    <Form onSubmit={(e)=> updateCategory(e)}>
+    <Form onSubmit={(e)=> updatePublishingHouse(e)}>
         <Row className="mb-3">
         <Col xs={6} md={6}>
                         <Select onChange={(e) => selectCategoryHandler(e)} options={publishinghouses} placeholder="Wydawnictwo" />
