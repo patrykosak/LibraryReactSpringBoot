@@ -13,14 +13,34 @@ const EditPublishingHouse = () => {
     const[disabledButton, setDisabledButton] = useState(true)
 
     const updatePublishingHouse = async (e) =>{
-        
+        e.preventDefault()
+
         const updatedPublishingHouse = {
             name: name,
             city: city
         }
         
-        await axios.post(`http://localhost:8090/publishinghouses/${selectedPublishingHouse.value}`,updatedPublishingHouse).then((res)=>{
-            console.log(res)
+        await axios.put(`http://localhost:8090/publishinghouses/${selectedPublishingHouse.value}`,updatedPublishingHouse).then((res)=>{
+            
+        if (res.status === 200)
+        setFeedback(
+            <Alert variant="success">
+                Wydawnictwo zostało zedytowane!
+            </Alert>
+        )
+    else
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się zedytować wydawnictwa!
+            </Alert>
+        )
+}).catch((e) => {
+    console.log(e)
+    setFeedback(
+        <Alert variant="danger">
+            Nie udało się zedytować wydawnictwa!
+        </Alert>
+    )
         })
     }
 

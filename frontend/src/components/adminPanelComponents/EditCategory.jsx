@@ -32,7 +32,7 @@ const EditCategory = () => {
         if (res.status === 200)
         setFeedback(
             <Alert variant="success">
-                Kategria została edytowana!
+                Kategoria została edytowana!
             </Alert>
         )
     else
