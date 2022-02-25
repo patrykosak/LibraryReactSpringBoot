@@ -53,6 +53,7 @@ const DeleteAuthor = () => {
     const selectAuthorHandler = (e) => {
         setSelectedAuthor(e)
         setDisabledButton(false)
+        setFeedback(null)
     }
 
   return (

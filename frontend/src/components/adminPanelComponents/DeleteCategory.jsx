@@ -57,6 +57,7 @@ const DeleteCategory = () => {
         console.log(e)
         setSelectedCategory(e)
         setDisabledButton(false)
+        setFeedback(null)
     }
 
   return (

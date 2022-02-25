@@ -54,6 +54,7 @@ const DeletePublishingHouse = () => {
     const selectPublishingHouseHandler = (e) => {
         setSelectedPublishingHouse(e)
         setDisabledButton(false)
+        setFeedback(null)
     }
 
   return (
