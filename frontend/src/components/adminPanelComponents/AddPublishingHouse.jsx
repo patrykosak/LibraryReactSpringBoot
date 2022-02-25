@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Row, Form, FloatingLabel,Button,Col } from 'react-bootstrap'
+import { Row, Form, FloatingLabel,Button,Col,Alert } from 'react-bootstrap'
 import axios from 'axios'
 
 const AddPublishingHouse = () => {
     const [name, setName] = useState("")
     const [city, setCity] = useState("")
-
+    const[feedback,setFeedback] = useState([])
 
     const AddPublishingHouseHandler = async (e) => {
         e.preventDefault();
@@ -16,15 +16,34 @@ const AddPublishingHouse = () => {
         }
 
         axios.post("http://localhost:8090/publishinghouses", newPublishingHouse).then((res)=>{
-            console.log(res)
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Wydawnictwo zostało dodane!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się dodać wydawnictwa!
+                </Alert>
+            )
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się dodać wydawnictwa!
+            </Alert>
+        )
         
-        }).catch((e)=>{console.log(e)})
+        })
     }
 
   return (
     <div className="m-3">
     <Form onSubmit={(e)=> AddPublishingHouseHandler(e)}>
         <Row className="mb-3">
+        {feedback}
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Nazwa wydawnictwa">
                     <Form.Control onChange={(e) => setName(e.target.value)} type="text" placeholder="Nazwa wydawnictwa" required/>

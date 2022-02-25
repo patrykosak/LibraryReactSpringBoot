@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Row, Form, FloatingLabel,Button,Col } from 'react-bootstrap'
+import { Row, Form, FloatingLabel,Button,Col,Alert } from 'react-bootstrap'
 import axios from 'axios'
 
 
@@ -7,6 +7,7 @@ const AddAuthor = () => {
     const[name, setName] = useState("")
     const[surname, setSurname] = useState("")
     const[nationality, setNationality] = useState("")
+    const[feedback,setFeedback] = useState([])
 
     const addAuthorHandler = async (e) =>{
         e.preventDefault();
@@ -18,7 +19,25 @@ const AddAuthor = () => {
         }
 
         await axios.post("http://localhost:8090/authors", newAuthor).then((res)=>{
-            console.log(res)
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Autor został dodany!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się dodać autora!
+                </Alert>
+            )
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się dodać autora!
+            </Alert>
+        )
         })
 
     }
@@ -27,6 +46,7 @@ const AddAuthor = () => {
     <div className="m-3">
     <Form onSubmit={(e)=> addAuthorHandler(e)}>
         <Row className="mb-3">
+        {feedback}
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Imię">
                     <Form.Control onChange={(e) => setName(e.target.value)} type="text" placeholder="Imię" required/>
