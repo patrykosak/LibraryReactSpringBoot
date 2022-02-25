@@ -62,6 +62,8 @@ const EditPublishingHouse = () => {
         setSelectedPublishingHouse(e)
         setName(e.label)
         setCity(e.city)
+        setDisabledButton(true)
+        setFeedback(null)
     }
 
   return (

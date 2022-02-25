@@ -63,6 +63,8 @@ const EditAuthor = () => {
         setName(e.name)
         setSurname(e.surname)
         setNationality(e.nationality)
+        setDisabledButton(true)
+        setFeedback(null)
     }
 
   return (

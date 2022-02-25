@@ -60,6 +60,8 @@ const EditCategory = () => {
     const selectCategoryHandler = (e) =>{
         setSelectedCategory(e)
         setName(e.label)
+        setDisabledButton(true)
+        setFeedback(null)
     }
 
     return (
