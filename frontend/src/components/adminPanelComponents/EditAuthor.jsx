@@ -36,7 +36,25 @@ const EditAuthor = () => {
         }
 
         axios.put(`http://localhost:8090/authors/${selectedAuthor.value}`,updatedAuthor).then((res)=>{
-            console.log(res)
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Autor został zedytowany!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się zedytować autora!
+                </Alert>
+            )
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się zedytować autora!
+            </Alert>
+        )
         })
     }
 
