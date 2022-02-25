@@ -11,17 +11,30 @@ const DeletePublishingHouse = () => {
     const[publishingHouses, setPublishingHouses] = useState([])
     
     const fetchData = async () => {
-
+        axios.get("http://localhost:8090/publishinghouses").then((res)=>{
+            const options = res.data.map((p)=>{
+                return {value: p.publishingHouseId, label: p.name}
+            })
+            setPublishingHouses(options)
+        })
     }  
     
+    useEffect(()=>{
+        fetchData()
+    },[])
 
 
     const DeletePublishingHouseHandler = async (e) =>{
         e.preventDefault()
+
+        axios.delete(`http://localhost:8090/publishinghouses/${selectedPublishingHouse.value}`).then((res)=>{
+            
+        })
     }
 
-    const selectPublishingHouseHandler = () => {
-
+    const selectPublishingHouseHandler = (e) => {
+        setSelectedPublishingHouse(e)
+        setDisabledButton(false)
     }
 
   return (
