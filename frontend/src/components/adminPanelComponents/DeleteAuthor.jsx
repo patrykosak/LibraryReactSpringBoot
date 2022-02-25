@@ -8,14 +8,32 @@ const DeleteAuthor = () => {
     const[authors,setAuthors] = useState([])
     const[feedback,setFeedback] = useState([])
     const[disabledButton,setDisabledButton] = useState(true)
+    const[selectedAuthor, setSelectedAuthor] = useState([])
+
+    const fetchData = async () => {
+        await axios.get("http://localhost:8090/authors").then(res=>{
+            const options = res.data.map((a)=>{
+                return {value: a.authorId, label: a.name + " " + a.surname}
+            })
+            setAuthors(options)
+        })
+    }
+
+    useEffect(()=>{
+        fetchData()
+    },[])
 
     const deleteAuthorHandler = async (e) => {
         e.preventDefault()
         
+        await axios.delete(`http://localhost:8090/authors/${selectedAuthor.value}`).then(res=>{
+            console.log(res)
+        })
     }
 
-    const selectAuthorHandler = () => {
-
+    const selectAuthorHandler = (e) => {
+        setSelectedAuthor(e)
+        setDisabledButton(false)
     }
 
   return (
