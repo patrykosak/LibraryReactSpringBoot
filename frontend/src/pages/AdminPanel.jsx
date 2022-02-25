@@ -5,6 +5,7 @@ import AddCategory from "../components/adminPanelComponents/AddCategory";
 import AddPublishingHouse from "../components/adminPanelComponents/AddPublishingHouse";
 import DeleteCategory from "../components/adminPanelComponents/DeleteCategory";
 import DeletePublishingHouse from "../components/adminPanelComponents/DeletePublishingHouse";
+import EditAuthor from "../components/adminPanelComponents/EditAuthor";
 import EditCategory from "../components/adminPanelComponents/EditCategory";
 import EditPublishingHouse from "../components/adminPanelComponents/EditPublishingHouse";
 
@@ -72,7 +73,7 @@ const AdminPanel = () => {
                     <AddAuthor />
                 </Tab>
                 <Tab eventKey="edit" title="Edytuj autora">
-                    
+                    <EditAuthor />
                 </Tab>
                 <Tab eventKey="delate" title="Usuń autora">
                    
