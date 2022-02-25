@@ -13,12 +13,38 @@ const EditAuthor = () => {
     const[nationality, setNationality] = useState("")
     const[disabledButton, setDisabledButton] = useState(true)
 
+    const fetchData = async () => {
+        await axios.get("http://localhost:8090/authors").then((res)=>{
+            const options = res.data.map((a)=>{
+                return {value: a.authorId, label: a.name + " " + a.surname, name: a.name, surname: a.surname, nationality: a.nationality}
+            })
+            setAuthors(options)
+        })
+    }
+
+    useEffect(()=>{
+        fetchData()
+    },[])
+
     const updateAuthor = async (e) => {
         e.preventDefault()
+
+        const updatedAuthor = {
+            name: name,
+            surname: surname,
+            nationality: nationality
+        }
+
+        axios.put(`http://localhost:8090/authors/${selectedAuthor.value}`,updatedAuthor).then((res)=>{
+            console.log(res)
+        })
     }
 
     const selectAuthorHandler = (e) => {
-
+        setSelectedAuthor(e)
+        setName(e.name)
+        setSurname(e.surname)
+        setNationality(e.nationality)
     }
 
   return (
@@ -36,11 +62,25 @@ const EditAuthor = () => {
                         <hr />
                         {feedback}
                     <Form.Group as={Col} xs={12} md={12} controlId="formGridName">
-                        <FloatingLabel controlId="floatingPassword" label="Nazwa kategorii">
-                            <Form.Control onChange={(e) => {setName(e.target.value); setDisabledButton(false)}} value={name} type="text" placeholder="Nazwa kategorii" required />
+                        <FloatingLabel controlId="floatingPassword" label="Imię">
+                            <Form.Control onChange={(e) => {setName(e.target.value); setDisabledButton(false)}} value={name} type="text" placeholder="Imię" required />
                         </FloatingLabel>
                     </Form.Group>
                 </Row>
+                <Row className="mb-3">
+                <Form.Group as={Col} xs={12} md={12} controlId="formGridName">
+                        <FloatingLabel controlId="floatingPassword" label="Nazwisko">
+                            <Form.Control onChange={(e) => {setSurname(e.target.value); setDisabledButton(false)}} value={surname} type="text" placeholder="Nazwisko" required />
+                        </FloatingLabel>
+                    </Form.Group>
+                </Row>
+                <Row className="mb-3">
+                <Form.Group as={Col} xs={12} md={12} controlId="formGridName">
+                        <FloatingLabel controlId="floatingPassword" label="Narodowość">
+                            <Form.Control onChange={(e) => {setNationality(e.target.value); setDisabledButton(false)}} value={nationality} type="text" placeholder="Narodowość" required />
+                        </FloatingLabel>
+                    </Form.Group>
+                </Row >
                 <div className="d-flex justify-content-end">
                         <Button className="ps-4 pe-4" variant="outline-primary" type="submit" disabled={disabledButton}>
                             Edytuj autora
