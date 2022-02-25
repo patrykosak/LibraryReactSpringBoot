@@ -8,6 +8,7 @@ const EditCategory = () => {
     const [selectedCategory, setSelectedCategory] = useState(null)
     const [name,setName] = useState("")
     const [feedback,setFeedback] = useState([])
+    const[disabledButton, setDisabledButton] = useState(true)
 
     const fetchCategories = async () => {
         axios.get("http://localhost:8090/categories").then(res=>{
@@ -32,7 +33,7 @@ const EditCategory = () => {
         if (res.status === 200)
         setFeedback(
             <Alert variant="success">
-                Kategoria została edytowana!
+                Kategoria została zedytowana!
             </Alert>
         )
     else
@@ -58,6 +59,7 @@ const EditCategory = () => {
 
     const selectCategoryHandler = (e) =>{
         setSelectedCategory(e)
+        setName(e.label)
     }
 
     return (
@@ -76,12 +78,12 @@ const EditCategory = () => {
                         {feedback}
                     <Form.Group as={Col} xs={12} md={12} controlId="formGridName">
                         <FloatingLabel controlId="floatingPassword" label="Nazwa kategorii">
-                            <Form.Control onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Nazwa kategorii" required />
+                            <Form.Control onChange={(e) => {setName(e.target.value); setDisabledButton(false)}} value={name} type="text" placeholder="Nazwa kategorii" required />
                         </FloatingLabel>
                     </Form.Group>
                 </Row>
                 <div className="d-flex justify-content-end">
-                        <Button className="ps-4 pe-4" variant="outline-primary" type="submit">
+                        <Button className="ps-4 pe-4" variant="outline-primary" type="submit" disabled={disabledButton}>
                             Edytuj kategorie
                         </Button>
                     </div>
