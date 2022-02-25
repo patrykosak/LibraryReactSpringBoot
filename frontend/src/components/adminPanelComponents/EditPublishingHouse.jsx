@@ -10,15 +10,24 @@ const EditPublishingHouse = () => {
     const[publishinghouses, setPublishinghouses] = useState([])
     const[name, setName] = useState("")
     const[city, setCity] = useState("")
+    const[disabledButton, setDisabledButton] = useState(true)
 
     const updatePublishingHouse = async (e) =>{
-
+        
+        const updatedPublishingHouse = {
+            name: name,
+            city: city
+        }
+        
+        await axios.post(`http://localhost:8090/publishinghouses/${selectedPublishingHouse.value}`,updatedPublishingHouse).then((res)=>{
+            console.log(res)
+        })
     }
 
     const fetchData = async () => {
         await axios.get("http://localhost:8090/publishinghouses").then((res)=>{
             const options = res.data.map((p)=>{
-                return {value: p.publishingHouseId, label: p.name}
+                return {value: p.publishingHouseId, label: p.name, city: p.city}
             })
             setPublishinghouses(options)
         })
@@ -29,7 +38,10 @@ const EditPublishingHouse = () => {
     },[])
 
     const selectCategoryHandler = (e) =>{
+        console.log(e)
         setSelectedPublishingHouse(e)
+        setName(e.label)
+        setCity(e.city)
     }
 
   return (
@@ -48,12 +60,17 @@ const EditPublishingHouse = () => {
                         {feedback}
                     <Form.Group as={Col} xs={12} md={12} controlId="formGridName">
                         <FloatingLabel controlId="floatingPassword" label="Nazwa wydawnictwa">
-                            <Form.Control onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Nazwa wydawnictwa" required />
+                            <Form.Control onChange={(e) => {setName(e.target.value); setDisabledButton(false) } } value={name} type="text" placeholder="Nazwa wydawnictwa" required />
+                        </FloatingLabel>
+                    </Form.Group>
+                    <Form.Group as={Col} xs={12} md={12} controlId="formGridName">
+                        <FloatingLabel controlId="floatingPassword" label="Miasto">
+                            <Form.Control onChange={(e) => {setCity(e.target.value); setDisabledButton(false)}} value={city} type="text" placeholder="Miasto" required />
                         </FloatingLabel>
                     </Form.Group>
                 </Row>
                 <div className="d-flex justify-content-end">
-                        <Button className="ps-4 pe-4" variant="outline-primary" type="submit">
+                        <Button className="ps-4 pe-4" variant="outline-primary" type="submit" disabled={disabledButton}>
                             Edytuj wydawnictwo
                         </Button>
                     </div>
