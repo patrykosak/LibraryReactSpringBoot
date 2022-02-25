@@ -27,7 +27,26 @@ const DeleteAuthor = () => {
         e.preventDefault()
         
         await axios.delete(`http://localhost:8090/authors/${selectedAuthor.value}`).then(res=>{
-            console.log(res)
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Autor został usunięty!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się usunąć autora!
+                </Alert>
+            )
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                                    Istnieją książki tego autora!
+                    Najpierw usuń te książki
+            </Alert>
+        )
         })
     }
 
