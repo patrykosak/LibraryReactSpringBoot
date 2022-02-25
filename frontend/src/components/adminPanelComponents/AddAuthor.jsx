@@ -8,8 +8,19 @@ const AddAuthor = () => {
     const[surname, setSurname] = useState("")
     const[nationality, setNationality] = useState("")
 
-    const addAuthorHandler = async () =>{
-        
+    const addAuthorHandler = async (e) =>{
+        e.preventDefault();
+
+        const newAuthor = {
+            name: name,
+            surname: surname,
+            nationality: nationality
+        }
+
+        await axios.post("http://localhost:8090/authors", newAuthor).then((res)=>{
+            console.log(res)
+        })
+
     }
 
   return (
