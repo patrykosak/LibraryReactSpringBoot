@@ -3,6 +3,7 @@ import { Tab, Row, Col, Nav, Tabs } from "react-bootstrap";
 import AddCategory from "../components/adminPanelComponents/AddCategory";
 import AddPublishingHouse from "../components/adminPanelComponents/AddPublishingHouse";
 import DeleteCategory from "../components/adminPanelComponents/DeleteCategory";
+import DeletePublishingHouse from "../components/adminPanelComponents/DeletePublishingHouse";
 import EditCategory from "../components/adminPanelComponents/EditCategory";
 import EditPublishingHouse from "../components/adminPanelComponents/EditPublishingHouse";
 
@@ -53,7 +54,7 @@ const AdminPanel = () => {
                     <EditPublishingHouse />
                 </Tab>
                 <Tab eventKey="delate" title="Usuń wydawnictwo">
-                   
+                   <DeletePublishingHouse />
                 </Tab>
               </Tabs>
               </Tab.Pane>
