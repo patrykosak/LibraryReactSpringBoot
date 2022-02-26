@@ -26,8 +26,6 @@ public class Book {
     @Length(max=50)
     private String title;
     private int releaseYear;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-
     private int amount;
     private String url;
     private String description;

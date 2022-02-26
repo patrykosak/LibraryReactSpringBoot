@@ -47,6 +47,26 @@ const AddBook = () => {
 
     const addBookHandler = async (e) => {
         e.preventDefault()
+
+        const newBook = {
+            isbn: ISBN,
+            title: title,
+            release_year: relaseYear,
+            amonut: amonut,
+            url: url,
+            description: description,
+            author_author_id: selectedAuthor.value,
+            category_category_id: selectedCategory.value,
+            publishing_house_publishing_house_id: selectedPublishingHouse.value 
+        }        
+
+        console.log(newBook)
+
+        await axios.post("http://localhost:8090/books",newBook).then(res=>{
+            console.log(res)
+        }).catch((e)=>{
+            console.log(e)
+        })
     }
 
   return (
