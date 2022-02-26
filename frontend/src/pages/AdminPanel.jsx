@@ -5,6 +5,7 @@ import AddBook from "../components/adminPanelComponents/AddBook";
 import AddCategory from "../components/adminPanelComponents/AddCategory";
 import AddPublishingHouse from "../components/adminPanelComponents/AddPublishingHouse";
 import DeleteAuthor from "../components/adminPanelComponents/DeleteAuthor";
+import DeleteBook from "../components/adminPanelComponents/DeleteBook";
 import DeleteCategory from "../components/adminPanelComponents/DeleteCategory";
 import DeletePublishingHouse from "../components/adminPanelComponents/DeletePublishingHouse";
 import EditAuthor from "../components/adminPanelComponents/EditAuthor";
@@ -47,7 +48,7 @@ const AdminPanel = () => {
                 <Tab eventKey="edit" title="Edytuj kategorię">
                 <EditCategory />
                 </Tab>
-                <Tab eventKey="delate" title="Usuń kategorię">
+                <Tab eventKey="delete" title="Usuń kategorię">
                     <DeleteCategory />
                 </Tab>
               </Tabs>
@@ -64,7 +65,7 @@ const AdminPanel = () => {
                 <Tab eventKey="edit" title="Edytuj wydawnictwo">
                     <EditPublishingHouse />
                 </Tab>
-                <Tab eventKey="delate" title="Usuń wydawnictwo">
+                <Tab eventKey="delete" title="Usuń wydawnictwo">
                    <DeletePublishingHouse />
                 </Tab>
               </Tabs>
@@ -81,7 +82,7 @@ const AdminPanel = () => {
                 <Tab eventKey="edit" title="Edytuj autora">
                     <EditAuthor />
                 </Tab>
-                <Tab eventKey="delate" title="Usuń autora">
+                <Tab eventKey="delete" title="Usuń autora">
                     <DeleteAuthor />
                 </Tab>
               </Tabs>
@@ -98,8 +99,8 @@ const AdminPanel = () => {
                 <Tab eventKey="edit" title="Edytuj książkę">
                     <EditBook />
                 </Tab>
-                <Tab eventKey="delate" title="Usuń książkę">
-                    
+                <Tab eventKey="delete" title="Usuń książkę">
+                     <DeleteBook />
                 </Tab>
               </Tabs>
               </Tab.Pane>
