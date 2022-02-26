@@ -9,12 +9,30 @@ const DeleteBook = () => {
     const [selectedBook, setSelectedBook] = useState([])
     const [feedback, setFeedback] = useState(null)
   
-    const deleteBook = async (e) => {
-        e.preventDefault()
+    const fetchData = async () => {
+        await axios.get("http://localhost:8090/books/all").then((res)=>{
+            const options = res.data.map((b)=>{
+                return {value: b.isbn, label: b.title}
+            })
+            setBooks(options)
+        })
     }
 
-    const selectBookHandler = () => {
-        
+    useEffect(()=>{
+        fetchData()
+    })
+
+    const deleteBook = async (e) => {
+        e.preventDefault()
+
+        axios.delete(`http://localhost:8090/books/${selectedBook.value}`).then(res=>{
+            console.log(res)
+        })
+    }
+
+    const selectBookHandler = (e) => {
+        setSelectedBook(e)
+        setDisabledButton(false)
     }
 
     return (
