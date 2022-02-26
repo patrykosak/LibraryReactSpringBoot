@@ -11,20 +11,56 @@ const EditBook = () => {
     const[amonut, setAmount] = useState(1)
     const[url, setUrl] = useState("")
     const[description, setDescription] = useState("")
+    const[books, setBooks] = useState([])
     const[categories, setCategories] = useState([])
     const[authors, setAuthors] = useState([])
     const[publishingHouses, setPublishingHouses] = useState([])
-    const[selectedBook, setSelectedBook] = useState([])
-    const[selectedAuthor, setSelectedAuthor] = useState(null)
+    const[selectedBook, setSelectedBook] = useState(null)
+    const[selectedAuthor, setSelectedAuthor] = useState([])
     const[selectedCategory, setSelectedCategory] = useState([])
     const[selectedPublishingHouse, setSelectedPublishingHouse] = useState([])
   
+    const fetchData = async () => {
+        await axios.get("http://localhost:8090/books/all").then(res=>{
+            const options = res.data.map((b)=>{
+                return {value: b.isbn, label: b.title}
+            })
+            setBooks(options)
+        })
+
+        await axios.get("http://localhost:8090/authors").then(res=>{
+            const options = res.data.map((a)=>{
+                return {value: a.authorId, label: a.name + " " + a.surname}
+            })
+            setAuthors(options)
+        })
+
+        await axios.get("http://localhost:8090/categories").then(res=>{
+            const options = res.data.map((c)=>{
+                return {value: c.categoryId, label: c.name}
+            })
+            setCategories(options)
+        })
+
+        await axios.get("http://localhost:8090/publishinghouses").then(res=>{
+            const options = res.data.map((p)=>{
+                return {value: p.publishingHouseId, label: p.name}
+            })
+            setPublishingHouses(options)
+        })
+    }
+
+    useEffect(()=>{
+        fetchData()
+    },[])
+
+
     const updateBook = async (e) => {
         e.preventDefault()
     }
   
     const selectBookHandler = (e) => {
-
+        setSelectedBook(e)
     }
 
     return (
@@ -32,10 +68,10 @@ const EditBook = () => {
     <Form onSubmit={(e)=> updateBook(e)}>
     <Row className="mb-3">
         <Col xs={6} md={6}>
-                        <Select onChange={(e) => selectBookHandler(e)} options={authors} placeholder="Autor" />
+                        <Select onChange={(e) => selectBookHandler(e)} options={books} placeholder="Książka" />
                     </Col>
                 </Row>
-                {selectedAuthor ? (
+                {selectedBook ? (
                     <>
         <Row className="mb-3">
         {feedback}

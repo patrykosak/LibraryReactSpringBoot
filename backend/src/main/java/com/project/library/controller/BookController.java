@@ -20,10 +20,10 @@ public class BookController {
         return bookService.saveBook(book);
     }
 
-//    @GetMapping("/books")
-//    public List<Book> fetchBookList(){
-//        return bookService.fetchBookList();
-//    }
+    @GetMapping("/books/all")
+    public List<Book> fetchBookList(){
+        return bookService.fetchBookList();
+    }
 
     @GetMapping("/books")
     public Page<Book> fetchPaginatedBookList(@RequestParam(required = false, defaultValue = "30") int pageSize,
