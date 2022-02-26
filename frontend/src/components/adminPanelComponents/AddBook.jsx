@@ -8,7 +8,7 @@ const AddBook = () => {
     const[ISBN, setISBN] = useState("")
     const[title, setTitle] = useState("")
     const[relaseYear, setRelaseYear] = useState(2000)
-    const[amonut, setAmount] = useState(1)
+    const[amount, setAmount] = useState(1)
     const[url, setUrl] = useState("")
     const[description, setDescription] = useState("")
     const[categories, setCategories] = useState([])
@@ -56,7 +56,7 @@ const AddBook = () => {
             isbn: ISBN,
             title: title,
             release_year: relaseYear,
-            amonut: amonut,
+            amonut: amount,
             url: url,
             description: description,
             author_author_id: selectedAuthor.value,

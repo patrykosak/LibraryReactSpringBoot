@@ -8,7 +8,7 @@ const EditBook = () => {
     const[ISBN, setISBN] = useState("")
     const[title, setTitle] = useState("")
     const[relaseYear, setRelaseYear] = useState(2000)
-    const[amonut, setAmount] = useState(1)
+    const[amount, setAmount] = useState(1)
     const[url, setUrl] = useState("")
     const[description, setDescription] = useState("")
     const[books, setBooks] = useState([])
@@ -16,14 +16,15 @@ const EditBook = () => {
     const[authors, setAuthors] = useState([])
     const[publishingHouses, setPublishingHouses] = useState([])
     const[selectedBook, setSelectedBook] = useState(null)
-    const[selectedAuthor, setSelectedAuthor] = useState([])
-    const[selectedCategory, setSelectedCategory] = useState([])
-    const[selectedPublishingHouse, setSelectedPublishingHouse] = useState([])
+    const[selectedAuthorId, setSelectedAuthorId] = useState([])
+    const[selectedCategoryId, setSelectedCategoryId] = useState([])
+    const[selectedPublishingHouseId, setSelectedPublishingHouseId] = useState([])
   
     const fetchData = async () => {
         await axios.get("http://localhost:8090/books/all").then(res=>{
             const options = res.data.map((b)=>{
-                return {value: b.isbn, label: b.title}
+                console.log(b)
+                return {value: b.isbn, label: b.title, amount: b.amount, releaseYear: b.relaseYear, url: b.url, description: b.description, authorId: b?.author?.authorId, categoryId: b?.category?.categoryId, publishingHouseId: b?.publishingHouse?.publishingHouseId}
             })
             setBooks(options)
         })
@@ -61,6 +62,15 @@ const EditBook = () => {
   
     const selectBookHandler = (e) => {
         setSelectedBook(e)
+        setISBN(e.isbn)
+        setTitle(e.label)
+        setAmount(e.amount)
+        setUrl(e.url)
+        setRelaseYear(e.relaseYear)
+        setDescription(e.description)
+        setSelectedAuthorId(e.authorId)
+        setSelectedCategoryId(e.categoryId)
+        setSelectedPublishingHouseId(e.publishingHouseId)
     }
 
     return (
@@ -77,58 +87,58 @@ const EditBook = () => {
         {feedback}
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="ISBN">
-                    <Form.Control onChange={(e) => setISBN(e.target.value)} minLength={13} maxLength={13} type="text" placeholder="ISBN" required/>
+                    <Form.Control onChange={(e) => setISBN(e.target.value)} value={ISBN} minLength={13} maxLength={13} type="text" placeholder="ISBN" required/>
                 </FloatingLabel>
             </Form.Group>
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Tytuł">
-                    <Form.Control onChange={(e) => setTitle(e.target.value)} type="text" maxLength={50} placeholder="Tytuł" required/>
+                    <Form.Control onChange={(e) => setTitle(e.target.value)} value={title} type="text" maxLength={50} placeholder="Tytuł" required/>
                 </FloatingLabel>
             </Form.Group>
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Liczba książek">
-                    <Form.Control onChange={(e) => setAmount(e.target.value)} min={0} type="number" placeholder="Rok Liczba książek" required/>
+                    <Form.Control onChange={(e) => setAmount(e.target.value)} min={0} value={amount} type="number" placeholder="Rok Liczba książek" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="link do zdjęcia okładki">
-                    <Form.Control onChange={(e) => setUrl(e.target.value)}  type="url" placeholder="link do zdjęcia okładki" required/>
+                    <Form.Control onChange={(e) => setUrl(e.target.value)} value={url}  type="url" placeholder="link do zdjęcia okładki" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Rok wydania">
-                    <Form.Control onChange={(e) => setRelaseYear(e.target.value)} min={1800} max={2022} type="number" placeholder="Rok wydania" required/>
+                    <Form.Control onChange={(e) => setRelaseYear(e.target.value)} value={relaseYear} min={1800} max={2022} type="number" placeholder="Rok wydania" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Opis książki">
-                    <Form.Control style={{height: "250px"}} as="textarea" rows={6} onChange={(e) => setDescription(e.target.value)}  type="text" placeholder="Opis książki"/>
+                    <Form.Control style={{height: "250px"}} as="textarea" rows={6} value={description} onChange={(e) => setDescription(e.target.value)}  type="text" placeholder="Opis książki"/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedAuthor(e)}} options={authors} placeholder="Autor"/>
+                    <Select onChange={(e)=>{setSelectedAuthorId(e.value)}} value={selectedAuthorId} options={authors} placeholder="Autor"/>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedCategory(e)}} options={categories} placeholder="Kategoria"/>
+                    <Select onChange={(e)=>{setSelectedCategoryId(e.value)}} value={selectedCategoryId} options={categories} placeholder="Kategoria"/>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedPublishingHouse(e)}} options={publishingHouses} placeholder="Wydawnictwo"/>
+                    <Select onChange={(e)=>{setSelectedPublishingHouseId(e.value)}} value={selectedPublishingHouseId}options={publishingHouses} placeholder="Wydawnictwo"/>
             </Form.Group>
         </Row>
         <div className="d-flex justify-content-end">
