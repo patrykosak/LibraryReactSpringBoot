@@ -1,6 +1,7 @@
 import React from "react";
 import { Tab, Row, Col, Nav, Tabs } from "react-bootstrap";
 import AddAuthor from "../components/adminPanelComponents/AddAuthor";
+import AddBook from "../components/adminPanelComponents/AddBook";
 import AddCategory from "../components/adminPanelComponents/AddCategory";
 import AddPublishingHouse from "../components/adminPanelComponents/AddPublishingHouse";
 import DeleteAuthor from "../components/adminPanelComponents/DeleteAuthor";
@@ -25,6 +26,9 @@ const AdminPanel = () => {
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="authors">Autorzy</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="books">Książki</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
@@ -78,6 +82,23 @@ const AdminPanel = () => {
                 </Tab>
                 <Tab eventKey="delate" title="Usuń autora">
                     <DeleteAuthor />
+                </Tab>
+              </Tabs>
+              </Tab.Pane>
+              <Tab.Pane eventKey="books">
+              <Tabs
+                defaultActiveKey="add"
+                id="uncontrolled-tab-example"
+                className="mb-3"
+              >
+                <Tab eventKey="add" title="Dodaj książkę">
+                    <AddBook />
+                </Tab>
+                <Tab eventKey="edit" title="Edytuj książkę">
+                    
+                </Tab>
+                <Tab eventKey="delate" title="Usuń książkę">
+                    
                 </Tab>
               </Tabs>
               </Tab.Pane>

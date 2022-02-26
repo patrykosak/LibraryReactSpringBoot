@@ -50,9 +50,6 @@ public class BookServiceImpl implements BookService{
         if(Objects.nonNull(book.getAmount())){
             bookDB.setAmount(book.getAmount());
         }
-        if(Objects.nonNull(book.getAcquisitionDate())){
-            bookDB.setAcquisitionDate(book.getAcquisitionDate());
-        }
         if(Objects.nonNull(book.getAuthor())){
             bookDB.setAuthor(book.getAuthor());
         }

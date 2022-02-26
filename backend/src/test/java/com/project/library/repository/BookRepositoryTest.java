@@ -52,7 +52,6 @@ class BookRepositoryTest {
                 .author(author)
                 .category(category)
                 .publishingHouse(publishingHouse)
-                .acquisitionDate(new Date())
                 .releaseYear(2014)
                 .description("Polskie Państwo Podziemne nie zdało egzaminu, twierdzi autor Paktu Ribbentrop-Beck, książki, która zachwiała świadomością historyczną Polaków. Swoje koncepcje, zamiast na realiach, PPP oparło na złudzeniach i pobożnych życzeniach. Obłędny rozkaz wydany w 1944 roku oddziałom Armii Krajowej, by w ramach akcji \"Burza\" pomagały wkraczającej do Polski Armii Czerwonej, równał się wręcz kolaboracji z wrogiem. Dowództwo AK bowiem wydało w ten sposób swoich żołnierzy w ręce sowieckiej bezpieki. Tysiące z nich zapłaciły za to najwyższą cenę.")
                 .url("https://s.lubimyczytac.pl/upload/books/4924000/4924576/809502-352x500.jpg")
