@@ -27,12 +27,33 @@ const DeleteBook = () => {
 
         axios.delete(`http://localhost:8090/books/${selectedBook.value}`).then(res=>{
             console.log(res)
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Książka została usunięta!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się usunąć książki!
+                </Alert>
+            )
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                                    Istnieją wypożyczenia tej książki!
+                    Najpierw usuń te wypożyczenia
+            </Alert>
+        )
         })
     }
 
     const selectBookHandler = (e) => {
         setSelectedBook(e)
         setDisabledButton(false)
+        setFeedback([])
     }
 
     return (
