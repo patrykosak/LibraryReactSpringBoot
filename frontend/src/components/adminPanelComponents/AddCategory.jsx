@@ -9,6 +9,10 @@ const AddCategory = () => {
     const addCategory = async (e) =>{
         e.preventDefault()
 
+        const clearNotification = () =>{
+            setFeedback([])
+        }
+
         const newCategory =
         {
             name: name
@@ -27,6 +31,7 @@ const AddCategory = () => {
                     Nie udało się dodać kategorii!
                 </Alert>
             )
+            const myTimeout = setTimeout(clearNotification, 5000);
     }).catch((e) => {
         console.log(e)
         setFeedback(
@@ -34,6 +39,7 @@ const AddCategory = () => {
                 Nie udało się dodać kategorii!
             </Alert>
         )
+        const myTimeout = setTimeout(clearNotification, 5000);
         })
 
     }

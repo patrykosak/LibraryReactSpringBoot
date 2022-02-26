@@ -15,6 +15,10 @@ const AddPublishingHouse = () => {
             city: city
         }
 
+        const clearNotification = () =>{
+            setFeedback([])
+        }
+
         axios.post("http://localhost:8090/publishinghouses", newPublishingHouse).then((res)=>{
             if (res.status === 200)
             setFeedback(
@@ -28,6 +32,7 @@ const AddPublishingHouse = () => {
                     Nie udało się dodać wydawnictwa!
                 </Alert>
             )
+            const myTimeout = setTimeout(clearNotification, 5000);
     }).catch((e) => {
         console.log(e)
         setFeedback(
@@ -35,7 +40,7 @@ const AddPublishingHouse = () => {
                 Nie udało się dodać wydawnictwa!
             </Alert>
         )
-        
+        const myTimeout = setTimeout(clearNotification, 5000);
         })
     }
 

@@ -9,6 +9,10 @@ const AddAuthor = () => {
     const[nationality, setNationality] = useState("")
     const[feedback,setFeedback] = useState([])
 
+    const clearNotification = () =>{
+        setFeedback([])
+    }
+
     const addAuthorHandler = async (e) =>{
         e.preventDefault();
 
@@ -31,15 +35,17 @@ const AddAuthor = () => {
                     Nie udało się dodać autora!
                 </Alert>
             )
-    }).catch((e) => {
+            const myTimeout = setTimeout(clearNotification, 5000);
+    }
+    ).catch((e) => {
         console.log(e)
         setFeedback(
             <Alert variant="danger">
                 Nie udało się dodać autora!
             </Alert>
         )
+        const myTimeout = setTimeout(clearNotification, 5000);
         })
-
     }
 
   return (
