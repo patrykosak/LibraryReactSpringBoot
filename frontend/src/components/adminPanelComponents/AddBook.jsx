@@ -45,6 +45,10 @@ const AddBook = () => {
         fetchData()
     },[])
 
+    const clearNotification = () =>{
+        setFeedback([])
+    }
+
     const addBookHandler = async (e) => {
         e.preventDefault()
 
@@ -63,9 +67,27 @@ const AddBook = () => {
         console.log(newBook)
 
         await axios.post("http://localhost:8090/books",newBook).then(res=>{
-            console.log(res)
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Książka została dodana!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się dodać książki!
+                </Alert>
+            )
+            const myTimeout = setTimeout(clearNotification, 5000);
         }).catch((e)=>{
             console.log(e)
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się dodać książki!
+                </Alert>
+            )
+            const myTimeout = setTimeout(clearNotification, 5000);
         })
     }
 
