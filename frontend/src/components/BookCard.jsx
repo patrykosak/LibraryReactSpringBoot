@@ -19,7 +19,9 @@ const BookCard = ({book}) => {
     <Card.Text>
       {book.description?.substr(0,200)}
     </Card.Text>
-    <Button onClick={()=>bookDetailsHandler()} variant="primary">Szczegóły</Button>
+    <div className='d-flex justify-content-center'>
+    <Button className='w-100' onClick={()=>bookDetailsHandler()} variant="primary">Szczegóły</Button>
+    </div>
   </Card.Body>
 </Card>
 </Col>
