@@ -24,6 +24,7 @@ public class Category {
             strategy = GenerationType.SEQUENCE,
             generator = "category_sequence"
     )
+    @Column(name="category_id")
     public Long categoryId;
 
     @NotBlank

@@ -55,18 +55,19 @@ const AddBook = () => {
         const newBook = {
             isbn: ISBN,
             title: title,
-            release_year: relaseYear,
-            amonut: amount,
+            releaseYear: relaseYear,
+            amount: amount,
             url: url,
             description: description,
             author_author_id: selectedAuthor.value,
-            category_category_id: selectedCategory.value,
+            category_id: selectedCategory.value,
             publishing_house_publishing_house_id: selectedPublishingHouse.value 
         }        
 
         console.log(newBook)
 
         await axios.post("http://localhost:8090/books",newBook).then(res=>{
+            console.log(res)
             if (res.status === 200)
             setFeedback(
                 <Alert variant="success">
