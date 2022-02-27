@@ -59,10 +59,16 @@ const AddBook = () => {
             amount: amount,
             url: url,
             description: description,
-            author_author_id: selectedAuthor.value,
-            category_id: selectedCategory.value,
-            publishing_house_publishing_house_id: selectedPublishingHouse.value 
-        }        
+            author: {
+                authorId: selectedAuthor.value
+            },
+            category: {
+                categoryId: selectedCategory.value
+            } ,
+            publishingHouse: {
+                publishingHouseId: selectedPublishingHouse.value 
+            }
+            }        
 
         console.log(newBook)
 
