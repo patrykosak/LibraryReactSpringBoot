@@ -22,7 +22,7 @@ const BookDetails = () => {
         // returnDate: ,
         status: "W trakcie realizacji",
         // reader: {
-        //   userId: 
+        //   userId: 2
         // },
         book: {
           isbn: params.id

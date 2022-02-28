@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import MainPage from "./pages/MainPage";
 import AdminPanel from "./pages/AdminPanel";
 import BookDetails from "./pages/BookDetails";
+import Borrows from "./pages/Borrows";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/books" element={<Books />} />
         <Route path="/adminpanel" element={<AdminPanel />} />
+        <Route path="/borrows" element={<Borrows />} />
         <Route path="/books/details/:id" element={<BookDetails />} />
       </Routes>
     </Layout>
