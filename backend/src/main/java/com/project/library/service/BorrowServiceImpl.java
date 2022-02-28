@@ -32,4 +32,11 @@ public class BorrowServiceImpl implements BorrowService {
     public Borrow fetchBorrowById(Long borrowId) {
         return borrowRepository.findById(borrowId).get();
     }
+
+    @Override
+    public void deleteBorrowById(Long borrowId) {
+        borrowRepository.deleteById(borrowId);
+    }
+
+
 }

@@ -33,4 +33,10 @@ public class BorrowController {
     public Borrow fetchBorrowById(@PathVariable("id") Long borrowId){
         return borrowService.fetchBorrowById(borrowId);
     }
+
+    @DeleteMapping("/borrows/{id}")
+    public String deleteBorrowById(@PathVariable("id") Long borrowId){
+        borrowService.deleteBorrowById(borrowId);
+        return "Borrow deleted succesfully";
+    }
 }
