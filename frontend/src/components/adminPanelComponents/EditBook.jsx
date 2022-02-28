@@ -7,7 +7,7 @@ const EditBook = () => {
     const[feedback,setFeedback] = useState([])
     const[ISBN, setISBN] = useState("")
     const[title, setTitle] = useState("")
-    const[relaseYear, setRelaseYear] = useState(2000)
+    const[releaseYear, setReleaseYear] = useState(2000)
     const[amount, setAmount] = useState(1)
     const[url, setUrl] = useState("")
     const[description, setDescription] = useState("")
@@ -23,8 +23,8 @@ const EditBook = () => {
     const fetchData = async () => {
         await axios.get("http://localhost:8090/books/all").then(res=>{
             const options = res.data.map((b)=>{
-                console.log(b)
-                return {value: b.isbn, label: b.title, amount: b.amount, releaseYear: b.relaseYear, url: b.url, description: b.description, authorId: b?.author?.authorId, categoryId: b?.category?.categoryId, publishingHouseId: b?.publishingHouse?.publishingHouseId}
+                //console.log(b)
+                return {value: b.isbn, label: b.title, amount: b.amount, releaseYear: b.releaseYear, url: b.url, description: b.description, authorId: b?.author?.authorId, categoryId: b?.category?.categoryId, publishingHouseId: b?.publishingHouse?.publishingHouseId}
             })
             setBooks(options)
         })
@@ -62,11 +62,12 @@ const EditBook = () => {
   
     const selectBookHandler = (e) => {
         setSelectedBook(e)
-        setISBN(e.isbn)
+        console.log(e)
+        setISBN(e.value)
         setTitle(e.label)
         setAmount(e.amount)
         setUrl(e.url)
-        setRelaseYear(e.relaseYear)
+        setReleaseYear(e.releaseYear)
         setDescription(e.description)
         setSelectedAuthorId(e.authorId)
         setSelectedCategoryId(e.categoryId)
@@ -115,7 +116,7 @@ const EditBook = () => {
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Rok wydania">
-                    <Form.Control onChange={(e) => setRelaseYear(e.target.value)} value={relaseYear} min={1800} max={2022} type="number" placeholder="Rok wydania" required/>
+                    <Form.Control onChange={(e) => setReleaseYear(e.target.value)} value={releaseYear} min={1800} max={2022} type="number" placeholder="Rok wydania" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
@@ -138,12 +139,12 @@ const EditBook = () => {
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedPublishingHouseId(e.value)}} value={selectedPublishingHouseId}options={publishingHouses} placeholder="Wydawnictwo"/>
+                    <Select onChange={(e)=>{setSelectedPublishingHouseId(e.value)}} value={selectedPublishingHouseId} options={publishingHouses} placeholder="Wydawnictwo"/>
             </Form.Group>
         </Row>
         <div className="d-flex justify-content-end">
             <Button className="ps-4 pe-4" variant="outline-primary" type="submit">
-                Dodaj Książkę
+                Edytuj Książkę
             </Button> 
         </div> 
         </>):null}

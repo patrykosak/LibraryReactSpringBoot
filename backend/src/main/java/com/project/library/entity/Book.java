@@ -33,7 +33,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(
-            referencedColumnName = "category_id"
+            referencedColumnName = "categoryId"
     )
     private Category category;
 
