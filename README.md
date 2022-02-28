@@ -1,3 +1,4 @@
 # Praca inżynierska
 
-![Screenshot 2022-02-28 23-53-15](https://user-images.githubusercontent.com/69324884/156071852-d76ba931-058d-4996-9333-b6a313f7421b.jpg)
+
+![Screenshot 2022-03-01 00-00-52](https://user-images.githubusercontent.com/69324884/156072757-650b638e-afdb-4808-825d-ff24d30fe03b.jpg)
