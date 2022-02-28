@@ -27,4 +27,9 @@ public class BorrowServiceImpl implements BorrowService {
     public List<Borrow> fetchAppUserBorrowList(Long readerId) {
         return borrowRepository.findAllByReaderUserId(readerId);
     }
+
+    @Override
+    public Borrow fetchBorrowById(Long borrowId) {
+        return borrowRepository.findById(borrowId).get();
+    }
 }

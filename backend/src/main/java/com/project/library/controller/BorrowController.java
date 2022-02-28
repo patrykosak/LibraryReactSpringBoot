@@ -24,8 +24,13 @@ public class BorrowController {
         return borrowService.fetchBorrowList();
     }
 
-    @GetMapping("/borrows/{id}")
+    @GetMapping("/borrows/user/{id}")
     public List<Borrow> fetchAppUserBorrowList(@PathVariable("id") Long readerId){
         return borrowService.fetchAppUserBorrowList(readerId);
+    }
+
+    @GetMapping("/borrows/{id}")
+    public Borrow fetchBorrowById(@PathVariable("id") Long borrowId){
+        return borrowService.fetchBorrowById(borrowId);
     }
 }

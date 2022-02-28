@@ -10,4 +10,6 @@ public interface BorrowService {
     public List<Borrow> fetchBorrowList();
 
     public List<Borrow> fetchAppUserBorrowList(Long readerId);
+
+    public Borrow fetchBorrowById(Long borrowId);
 }
