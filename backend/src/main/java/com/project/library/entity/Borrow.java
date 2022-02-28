@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Data
@@ -28,9 +27,9 @@ public class Borrow {
     @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate borrowDate;
 
-    private Date deadline;
+    private LocalDate deadline;
 
-    private Date returnDate;
+    private LocalDate returnDate;
 
     private String status;
 

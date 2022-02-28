@@ -21,9 +21,9 @@ const EditBorrow = ({borrowId,fetchData}) => {
     }
 
     const options = [
-        { value:1, label:"w trakcie realizacji",},
-        {value:2, label:"wypożyczona"},
-        {value:3, label:"zwrócona"}
+        { value:1, label:"W trakcie realizacji",},
+        {value:2, label:"Wypożyczona"},
+        {value:3, label:"Zwrócona"}
     ]
 
   return (

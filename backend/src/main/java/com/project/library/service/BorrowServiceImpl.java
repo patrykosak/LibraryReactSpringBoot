@@ -61,6 +61,13 @@ public class BorrowServiceImpl implements BorrowService {
             borrowDB.setReturnDate(borrow.getReturnDate());
         }
         if(Objects.nonNull(borrow.getStatus())&&!"".equalsIgnoreCase(borrow.getStatus())){
+            LocalDate today = LocalDate.now();
+            if(borrow.getStatus().equalsIgnoreCase("Wypożyczona")){
+                borrowDB.setDeadline(today.plusDays(14));
+            }
+            else if(borrow.getStatus().equalsIgnoreCase("Zwrócona")){
+                borrowDB.setReturnDate(today);
+            }
             borrowDB.setStatus(borrow.getStatus());
         }
 
