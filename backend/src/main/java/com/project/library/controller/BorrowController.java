@@ -5,6 +5,7 @@ import com.project.library.service.BorrowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -15,7 +16,7 @@ public class BorrowController {
     private BorrowService borrowService;
 
     @PostMapping("/borrows")
-    public Borrow saveBorrow(@RequestBody Borrow borrow){
+    public Borrow saveBorrow(@RequestBody Borrow borrow) throws ParseException {
         return borrowService.saveBorrow(borrow);
     }
 

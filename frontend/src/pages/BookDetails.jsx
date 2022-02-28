@@ -12,6 +12,30 @@ const BookDetails = () => {
 
     const params = useParams();
 
+    const handleBorrow = async () => {
+      
+      const current = new Date();
+      const date = `${current.getDate()}/0${current.getMonth()+1}/${current.getFullYear()}`;
+
+      const borrow = {
+        // deadline: ,
+        // returnDate: ,
+        status: "W trakcie realizacji",
+        // reader: {
+        //   userId: 
+        // },
+        book: {
+          isbn: params.id
+        }
+      }
+      console.log(borrow)
+      
+      await axios.post("http://localhost:8090/borrows",borrow).then(res=>{
+        console.log(res)
+      })
+      }
+    
+
     const fetchBook = async () => {
         await axios.get(`http://localhost:8090/books/${params.id}`).then(res=>{
         setBook(res.data)
@@ -21,6 +45,7 @@ const BookDetails = () => {
     useEffect(()=>{
         fetchBook()
     },[])
+
   return (
     <div className="m-4">
     <Row>
@@ -61,7 +86,7 @@ const BookDetails = () => {
           <Button variant="secondary" onClick={handleClose}>
             Zamknij
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleBorrow}>
             Wypożycz
           </Button>
         </Modal.Footer>

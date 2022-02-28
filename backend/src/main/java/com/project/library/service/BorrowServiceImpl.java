@@ -5,6 +5,7 @@ import com.project.library.repository.BorrowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,7 +17,8 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Override
     public Borrow saveBorrow(Borrow borrow) {
-       return borrowRepository.save(borrow);
+        borrow.setBorrowDate(LocalDate.now());
+        return borrowRepository.save(borrow);
     }
 
     @Override

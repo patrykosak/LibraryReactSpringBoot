@@ -1,11 +1,13 @@
 package com.project.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -23,7 +25,8 @@ public class Borrow {
     generator = "borrow_sequence")
     private Long borrowId;
 
-    private Date borrowDate;
+    @JsonFormat(pattern="dd-MM-yyyy")
+    private LocalDate borrowDate;
 
     private Date deadline;
 
