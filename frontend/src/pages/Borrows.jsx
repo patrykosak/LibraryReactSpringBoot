@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BorrowRow from '../components/BorrowRow'
+import axios from 'axios'
 
 const Borrows = () => {
+    const[borrows, setBorrows] = useState([]);
+
+    const fetchData = async () => {
+        axios.get("http://localhost:8090/borrows").then(res=>{
+            setBorrows(res.data)
+            console.log(borrows)
+        })        
+    }
+
+    useEffect(()=>{
+        fetchData()
+    },[])
 
   return (
     <>
@@ -21,10 +34,14 @@ const Borrows = () => {
                         <th scope="col">Uczeń</th>
                         <th scope="col">Data zamówienia</th>
                         <th scope="col">Termin oddania</th>
+                        <th scope="col">Status</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
+                    {borrows.map((borrow,index)=>(
+                        <BorrowRow key={index} borrow={borrow} /> 
+                    ))}
                 <BorrowRow />
                 </tbody>
             </table>

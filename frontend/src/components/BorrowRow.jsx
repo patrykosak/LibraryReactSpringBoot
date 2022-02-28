@@ -14,6 +14,7 @@ const BorrowRow = () => {
   <td>Uczeń</td>
   <td>Data</td>
   <td>Termin</td>
+  <td>Status</td>
   <td>
   <a onClick={handleShow} data-toggle="modal" ><i className="material-icons" style={{color:"#F9DC5C",cursor:"pointer"}} data-toggle="tooltip" title="subcategory.edit">&#xE254;</i></a>
   </td>
