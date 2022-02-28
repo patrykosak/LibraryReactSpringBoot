@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
 
 const BookDetails = () => {
     const[book, setBook] = useState([])
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const params = useParams();
 
@@ -43,10 +47,25 @@ const BookDetails = () => {
             <p>{book.description}</p>
             </div>
             <div className='d-flex justify-content-end mt-3'>
-            <Button className='w-25'>Wypożycz</Button>
+            <Button onClick={()=>{handleShow()}} className='w-25'>Wypożycz</Button>
             </div>
         </Col>
         </Row>
+        
+        <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Wypożyczenie</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Czy na pewno chcesz wypożyczyć tę książkę?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Zamknij
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Wypożycz
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
         </div>
   )
