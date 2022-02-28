@@ -1,4 +1,5 @@
 import React from 'react'
+import BorrowRow from '../components/BorrowRow'
 
 const Borrows = () => {
 
@@ -24,7 +25,7 @@ const Borrows = () => {
                     </tr>
                 </thead>
                 <tbody>
-
+                <BorrowRow />
                 </tbody>
             </table>
         </div>
