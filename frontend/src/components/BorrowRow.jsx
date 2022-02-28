@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import EditBorrow from './EditBorrow';
 
-const BorrowRow = ({borrow}) => {
+const BorrowRow = ({borrow,fetchData}) => {
     const [show,setShow] = useState(false);
 
     const handleShow = () => setShow(true);
@@ -27,7 +27,7 @@ const BorrowRow = ({borrow}) => {
             Edytuj
             </Modal.Header>
             <Modal.Body>
-                <EditBorrow/>
+                <EditBorrow fetchData={fetchData} borrowId={borrow?.borrowId} />
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={handleClose} variant="secondary">

@@ -40,7 +40,7 @@ const Borrows = () => {
                 </thead>
                 <tbody>
                     {borrows.map((borrow,index)=>(
-                        <BorrowRow key={index} borrow={borrow} /> 
+                        <BorrowRow fetchData={fetchData} key={index} borrow={borrow} /> 
                     ))}
                 <BorrowRow />
                 </tbody>

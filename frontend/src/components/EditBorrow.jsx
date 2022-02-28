@@ -1,13 +1,23 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Form, Alert  } from "react-bootstrap";
 import Select from 'react-select';
 
-const EditBorrow = () => {
+const EditBorrow = ({borrowId,fetchData}) => {
     const[feedback, setFeedback] = useState([]);
     const[status, setStatus] = useState("")
     
-    const updateBorrow = async () => {
-        
+    const updateBorrow = async (e) => {
+        e.preventDefault();
+
+        const updatedBorrow = {
+            status: status
+        }
+
+        axios.put(`http://localhost:8090/borrows/${borrowId}`, updatedBorrow).then(res=>{
+            fetchData()
+        })
+
     }
 
     const options = [
@@ -17,7 +27,7 @@ const EditBorrow = () => {
     ]
 
   return (
-    <Form onSubmit={updateBorrow}>
+    <Form onSubmit={(e)=>updateBorrow(e)}>
          {feedback}
       <Form.Group className="m-1">
       <Select
@@ -28,7 +38,7 @@ const EditBorrow = () => {
                 />
                  </Form.Group>
       <Button
-        onClick={updateBorrow}
+        onClick={(e)=>updateBorrow(e)}
         className="m-1 w-100"
         variant="success"
         type="submit"
