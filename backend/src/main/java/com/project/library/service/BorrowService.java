@@ -14,4 +14,6 @@ public interface BorrowService {
     public Borrow fetchBorrowById(Long borrowId);
 
     public void deleteBorrowById(Long borrowId);
+
+    public Borrow updateBorrow(Long borrowId, Borrow borrow);
 }

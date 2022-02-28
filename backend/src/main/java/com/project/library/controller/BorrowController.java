@@ -39,4 +39,9 @@ public class BorrowController {
         borrowService.deleteBorrowById(borrowId);
         return "Borrow deleted succesfully";
     }
+
+    @PutMapping("/borrows/{id}")
+    public Borrow updateBorrow(@PathVariable("id") Long borrowId, @RequestBody Borrow borrow){
+        return borrowService.updateBorrow(borrowId, borrow);
+    }
 }
