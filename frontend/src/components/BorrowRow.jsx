@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Button, Modal } from 'react-bootstrap';
 
-const BorrowRow = () => {
+const BorrowRow = ({borrow}) => {
     const [show,setShow] = useState(false);
 
     const handleShow = () => setShow(true);
@@ -10,11 +10,11 @@ const BorrowRow = () => {
   return (
     <>
     <tr>
-  <td>tytuł</td>
-  <td>Uczeń</td>
-  <td>Data</td>
-  <td>Termin</td>
-  <td>Status</td>
+  <td>{borrow?.book?.title}</td>
+  <td>{borrow?.reader}</td>
+  <td>{borrow?.borrowDate}</td>
+  <td>{borrow?.deadline}</td>
+  <td>{borrow?.status}</td>
   <td>
   <a onClick={handleShow} data-toggle="modal" ><i className="material-icons" style={{color:"#F9DC5C",cursor:"pointer"}} data-toggle="tooltip" title="subcategory.edit">&#xE254;</i></a>
   </td>
