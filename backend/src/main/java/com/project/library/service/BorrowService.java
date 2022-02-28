@@ -8,4 +8,6 @@ public interface BorrowService {
     public Borrow saveBorrow(Borrow borrow);
 
     public List<Borrow> fetchBorrowList();
+
+    public List<Borrow> fetchAppUserBorrowList(Long readerId);
 }

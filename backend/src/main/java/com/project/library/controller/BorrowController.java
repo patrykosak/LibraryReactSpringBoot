@@ -3,10 +3,7 @@ package com.project.library.controller;
 import com.project.library.entity.Borrow;
 import com.project.library.service.BorrowService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +19,13 @@ public class BorrowController {
         return borrowService.saveBorrow(borrow);
     }
 
+    @GetMapping("/borrows")
     public List<Borrow> fetchBorrowList(){
         return borrowService.fetchBorrowList();
+    }
+
+    @GetMapping("/borrows/{id}")
+    public List<Borrow> fetchAppUserBorrowList(@PathVariable("id") Long readerId){
+        return borrowService.fetchAppUserBorrowList(readerId);
     }
 }
