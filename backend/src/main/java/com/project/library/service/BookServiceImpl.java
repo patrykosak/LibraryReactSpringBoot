@@ -71,10 +71,22 @@ public class BookServiceImpl implements BookService{
             return bookRepository.findAll(page);
         }
         else if(!searchQuery.equalsIgnoreCase("")&&!category.equalsIgnoreCase("")&&publishingHouse.equalsIgnoreCase("")){
-            return bookRepository.findByTitleContainingAndCategory_NameEquals(searchQuery,category,page);
+            return bookRepository.findByTitleContainingAndCategoryName(searchQuery,category,page);
         }
         else if(searchQuery.equalsIgnoreCase("")&&!category.equalsIgnoreCase("")&&publishingHouse.equalsIgnoreCase("")){
             return bookRepository.findByCategoryName(category,page);
+        }
+        else if(searchQuery.equalsIgnoreCase("")&&category.equalsIgnoreCase("")&&!publishingHouse.equalsIgnoreCase("")){
+            return bookRepository.findByPublishingHouseName(publishingHouse,page);
+        }
+        else if(searchQuery.equalsIgnoreCase("")&&!category.equalsIgnoreCase("")&&!publishingHouse.equalsIgnoreCase("")){
+            return bookRepository.findByCategoryNameAndPublishingHouseName(category,publishingHouse,page);
+        }
+        else if(!searchQuery.equalsIgnoreCase("")&&category.equalsIgnoreCase("")&&!publishingHouse.equalsIgnoreCase("")){
+            return bookRepository.findByTitleContainingAndPublishingHouseName(searchQuery,publishingHouse,page);
+        }
+        else if(!searchQuery.equalsIgnoreCase("")&&!category.equalsIgnoreCase("")&&!publishingHouse.equalsIgnoreCase("")){
+            return bookRepository.findByTitleContainingAndCategoryNameAndPublishingHouseName(searchQuery,category,publishingHouse,page);
         }
        else{
            return bookRepository.findByTitleContaining(searchQuery, page);
