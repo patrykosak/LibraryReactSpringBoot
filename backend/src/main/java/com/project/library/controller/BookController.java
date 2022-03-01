@@ -28,8 +28,10 @@ public class BookController {
     @GetMapping("/books")
     public Page<Book> fetchPaginatedBookList(@RequestParam(required = false, defaultValue = "30") int pageSize,
                                              @RequestParam(required = false, defaultValue = "0") int pageNumber,
-                                             @RequestParam(required = false, defaultValue = "") String searchQuery){
-        return bookService.fetchPaginatedBookList(pageSize, pageNumber,searchQuery);
+                                             @RequestParam(required = false, defaultValue = "") String searchQuery,
+                                             @RequestParam(required = false, defaultValue = "") String category,
+                                             @RequestParam(required = false, defaultValue = "") String publishingHouse){
+        return bookService.fetchPaginatedBookList(pageSize, pageNumber, searchQuery, category, publishingHouse);
     }
 
     @GetMapping("/books/{isbn}")

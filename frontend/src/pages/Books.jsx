@@ -13,8 +13,11 @@ const Books = () => {
     const [isLoading,setIsLoading] = useState(true);
     const [searchQuery,setSearchQuery] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
+    const [filteringCategory, setFilteringCategory] = useState("")
+    const [filteringPublishingHouse, setFilteringPublishingHouse] = useState("")
+
     const fetchBooks = async() => {
-        await axios.get(`http://localhost:8090/books?pageNumber=${pageNumber}&pageSize=2&searchQuery=${searchQuery}`).then((response)=>{
+        await axios.get(`http://localhost:8090/books?pageNumber=${pageNumber}&pageSize=2&searchQuery=${searchQuery}&category=${filteringCategory}&publishingHouse=${filteringPublishingHouse}`).then((response)=>{
             setIsLoading(false)
             setBooks(response.data.content)
             setInfo(response.data)
@@ -24,7 +27,7 @@ const Books = () => {
     }
     useEffect(()=>{
         fetchBooks()
-    },[pageNumber, searchQuery])
+    },[pageNumber, searchQuery, filteringCategory, filteringPublishingHouse])
 
     if(isLoading) return <Loading />
 
@@ -32,7 +35,7 @@ const Books = () => {
       <>
       <SearchBar setSearchQuery={setSearchQuery} />
     <Row>
-        <Col xs={4}><Filters /></Col>
+        <Col xs={4}><Filters setFilteringCategory={setFilteringCategory} setFilteringPublishingHouse={setFilteringPublishingHouse} /></Col>
         <Col xs={8}><BookList books={books}/></Col>
     </Row>
     <AppPagination pageNumber={pageNumber} setPageNumber={setPageNumber} info={info}/>

@@ -64,11 +64,17 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public Page<Book> fetchPaginatedBookList(int pageSize, int pageNumber,String searchQuery) {
+    public Page<Book> fetchPaginatedBookList(int pageSize, int pageNumber,String searchQuery, String category, String publishingHouse) {
         Pageable page = PageRequest.of(pageNumber, pageSize);
-        if(searchQuery.equals(""))
+        if(searchQuery.equalsIgnoreCase("")&&category.equalsIgnoreCase("")&&publishingHouse.equalsIgnoreCase(""))
         {
             return bookRepository.findAll(page);
+        }
+        else if(!searchQuery.equalsIgnoreCase("")&&!category.equalsIgnoreCase("")&&publishingHouse.equalsIgnoreCase("")){
+            return bookRepository.findByTitleContainingAndCategory_NameEquals(searchQuery,category,page);
+        }
+        else if(searchQuery.equalsIgnoreCase("")&&!category.equalsIgnoreCase("")&&publishingHouse.equalsIgnoreCase("")){
+            return bookRepository.findByCategoryName(category,page);
         }
        else{
            return bookRepository.findByTitleContaining(searchQuery, page);
