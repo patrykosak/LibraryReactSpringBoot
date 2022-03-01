@@ -3,7 +3,7 @@ import { Row, Form, FloatingLabel,Button,Col,Alert } from 'react-bootstrap'
 import axios from 'axios'
 import Select from 'react-select'; 
 
-const AddStudent = () => {
+const EditStudent = () => {
     const[feedback,setFeedback] = useState([]);
     const[name,setName] = useState("")
     const[surname,setSurname] = useState("")
@@ -11,11 +11,6 @@ const AddStudent = () => {
     const[password,setPassword] = useState("")
     const[confirmPassword,setConfirmPassword] = useState("")
     const[selectedClass,setSelectedClass] = useState("")
-
-    const clearNotification = () =>{
-        setFeedback([])
-    }
-
 
     const options = [
         {value:1, label:"1A"},
@@ -37,45 +32,13 @@ const AddStudent = () => {
 
     ]
 
-    const addStudentHandler = async (e) => {
-        e.preventDefault();
-
-        const newStudent = {
-            name: name,
-            surname: surname,
-            email: email,
-            password: password,
-            schoolClass: selectedClass
-        }
-
-        axios.post("http://localhost:8090/api/user/save", newStudent).then(res=>{
-            if (res.status === 201)
-            setFeedback(
-                <Alert variant="success">
-                    Uczeń został dodany!
-                </Alert>
-            )
-            else
-            setFeedback(
-                <Alert variant="danger">
-                    Nie udało się dodać ucznia!
-                </Alert>
-            )
-            const myTimeout = setTimeout(clearNotification, 5000);
-    }).catch((e) => {
-        console.log(e)
-        setFeedback(
-            <Alert variant="danger">
-                 Uczeń o podanym emailu już istnieje!
-            </Alert>
-        )
-        const myTimeout = setTimeout(clearNotification, 5000);
-        })
+    const updateStudentHandler = async (e) => {
+        e.preventDefault()
     }
 
   return (
     <div className="m-3">
-    <Form onSubmit={(e)=> addStudentHandler(e)}>
+    <Form onSubmit={(e)=> updateStudentHandler(e)}>
         <Row className="mb-3">
         {feedback}
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
@@ -127,4 +90,4 @@ const AddStudent = () => {
   )
 }
 
-export default AddStudent
+export default EditStudent

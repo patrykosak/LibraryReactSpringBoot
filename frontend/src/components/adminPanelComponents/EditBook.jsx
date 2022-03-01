@@ -16,15 +16,16 @@ const EditBook = () => {
     const[authors, setAuthors] = useState([])
     const[publishingHouses, setPublishingHouses] = useState([])
     const[selectedBook, setSelectedBook] = useState(null)
-    const[selectedAuthorId, setSelectedAuthorId] = useState([])
-    const[selectedCategoryId, setSelectedCategoryId] = useState([])
-    const[selectedPublishingHouseId, setSelectedPublishingHouseId] = useState([])
+    const[selectedAuthorId, setSelectedAuthorId] = useState()
+    const[selectedCategoryId, setSelectedCategoryId] = useState()
+    const[selectedPublishingHouseId, setSelectedPublishingHouseId] = useState()
+    const[selectedPublishingHouseName, setSelectedPublishingHouseName] = useState()
   
     const fetchData = async () => {
         await axios.get("http://localhost:8090/books/all").then(res=>{
             const options = res.data.map((b)=>{
                 //console.log(b)
-                return {value: b.isbn, label: b.title, amount: b.amount, releaseYear: b.releaseYear, url: b.url, description: b.description, authorId: b?.author?.authorId, categoryId: b?.category?.categoryId, publishingHouseId: b?.publishingHouse?.publishingHouseId}
+                return {value: b.isbn, label: b.title, amount: b.amount, releaseYear: b.releaseYear, url: b.url, description: b.description, authorId: b?.author?.authorId, categoryId: b?.category?.categoryId, categoryName: b?.category?.name, publishingHouseId: b?.publishingHouse?.publishingHouseId}
             })
             setBooks(options)
         })
@@ -70,7 +71,7 @@ const EditBook = () => {
         setReleaseYear(e.releaseYear)
         setDescription(e.description)
         setSelectedAuthorId(e.authorId)
-        setSelectedCategoryId(e.categoryId)
+        setSelectedCategoryId({value: e.categoryId, label: e.categoryName})
         setSelectedPublishingHouseId(e.publishingHouseId)
     }
 
@@ -129,17 +130,17 @@ const EditBook = () => {
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedAuthorId(e.value)}} value={selectedAuthorId} options={authors} placeholder="Autor"/>
+                    <Select onChange={(e)=>{setSelectedAuthorId(e.value)}}  defaultValue={selectedAuthorId} options={authors} placeholder="Autor"/>
             </Form.Group>
         </Row>
         <Row className="mb-3">
-            <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedCategoryId(e.value)}} value={selectedCategoryId} options={categories} placeholder="Kategoria"/>
+            <Form.Group as={Col} xs={12} md={6} controlId="formGridNamess">
+                    <Select onChange={(e)=>{setSelectedCategoryId(e.value)}} defaultInputValue={selectedCategoryId} options={categories} placeholder="Kategoria"/>
             </Form.Group>
         </Row>
         <Row className="mb-3">
-            <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedPublishingHouseId(e.value)}} value={selectedPublishingHouseId} options={publishingHouses} placeholder="Wydawnictwo"/>
+            <Form.Group as={Col} xs={12} md={6} controlId="formGridNames">
+                    <Select onChange={(e)=>{setSelectedPublishingHouseId(e.value)}} value={{label:'mylabel1',value:1}} options={publishingHouses} placeholder="Wydawnictwo"/>
             </Form.Group>
         </Row>
         <div className="d-flex justify-content-end">
