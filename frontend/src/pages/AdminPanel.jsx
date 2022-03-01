@@ -32,6 +32,9 @@ const AdminPanel = () => {
               <Nav.Item>
                 <Nav.Link eventKey="books">Książki</Nav.Link>
               </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="students">Uczniowie</Nav.Link>
+              </Nav.Item>
             </Nav>
           </Col>
           <Col sm={9}>
@@ -100,6 +103,23 @@ const AdminPanel = () => {
                     <EditBook />
                 </Tab>
                 <Tab eventKey="delete" title="Usuń książkę">
+                     <DeleteBook />
+                </Tab>
+              </Tabs>
+              </Tab.Pane>
+              <Tab.Pane eventKey="students">
+              <Tabs
+                defaultActiveKey="add"
+                id="uncontrolled-tab-example"
+                className="mb-3"
+              >
+                <Tab eventKey="add" title="Dodaj ucznia">
+                    <AddBook />
+                </Tab>
+                <Tab eventKey="edit" title="Edytuj ucznia">
+                    <EditBook />
+                </Tab>
+                <Tab eventKey="delete" title="Usuń ucznia">
                      <DeleteBook />
                 </Tab>
               </Tabs>
