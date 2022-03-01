@@ -13,6 +13,11 @@ const AddStudent = () => {
     const[schoolClass,setSchoolClass] = useState("")
     const[selectedClass,setSelectedClass] = useState("")
 
+    const clearNotification = () =>{
+        setFeedback([])
+    }
+
+
     const options = [
         {value:1, label:"1A"},
         {value:2, label:"1B"},
@@ -45,7 +50,27 @@ const AddStudent = () => {
         }
 
         axios.post("http://localhost:8090/api/user/save", newStudent).then(res=>{
-            console.log(res)
+            if (res.status === 201)
+            setFeedback(
+                <Alert variant="success">
+                    Uczeń został dodany!
+                </Alert>
+            )
+            else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się dodać ucznia!
+                </Alert>
+            )
+            const myTimeout = setTimeout(clearNotification, 5000);
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                 Uczeń o podanym emailu już istnieje!
+            </Alert>
+        )
+        const myTimeout = setTimeout(clearNotification, 5000);
         })
     }
 
