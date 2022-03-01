@@ -4,6 +4,7 @@ import AddAuthor from "../components/adminPanelComponents/AddAuthor";
 import AddBook from "../components/adminPanelComponents/AddBook";
 import AddCategory from "../components/adminPanelComponents/AddCategory";
 import AddPublishingHouse from "../components/adminPanelComponents/AddPublishingHouse";
+import AddStudent from "../components/adminPanelComponents/AddStudent";
 import DeleteAuthor from "../components/adminPanelComponents/DeleteAuthor";
 import DeleteBook from "../components/adminPanelComponents/DeleteBook";
 import DeleteCategory from "../components/adminPanelComponents/DeleteCategory";
@@ -114,13 +115,13 @@ const AdminPanel = () => {
                 className="mb-3"
               >
                 <Tab eventKey="add" title="Dodaj ucznia">
-                    <AddBook />
+                    <AddStudent />
                 </Tab>
                 <Tab eventKey="edit" title="Edytuj ucznia">
-                    <EditBook />
+                    
                 </Tab>
                 <Tab eventKey="delete" title="Usuń ucznia">
-                     <DeleteBook />
+
                 </Tab>
               </Tabs>
               </Tab.Pane>
