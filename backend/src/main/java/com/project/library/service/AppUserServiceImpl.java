@@ -33,20 +33,20 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser appUser = appUserRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        AppUser appUser = appUserRepository.findByEmail(email);
         if(appUser == null){
             log.error("User not found in the database");
             throw new UsernameNotFoundException("User not found in the database");
         }
         else{
-            log.info("User {} found in the database", username);
+            log.info("User {} found in the database", email);
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         appUser.getRoles().forEach(role -> {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         });
-        return new org.springframework.security.core.userdetails.User(appUser.getUsername(), appUser.getPassword(), authorities);
+        return new org.springframework.security.core.userdetails.User(appUser.getEmail(), appUser.getPassword(), authorities);
     }
 
     @Override
@@ -63,17 +63,17 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
-    public void addRoleToUser(String username, String roleName) {
-        log.info("Adding role {} to user {}", roleName, username);
-        AppUser appUser = appUserRepository.findByUsername(username);
+    public void addRoleToUser(String email, String roleName) {
+        log.info("Adding role {} to user {}", roleName, email);
+        AppUser appUser = appUserRepository.findByEmail(email);
         Role role = roleRepository.findByName(roleName);
         appUser.getRoles().add(role);
     }
 
     @Override
-    public AppUser getAppUser(String username) {
-        log.info("fetching user {} ", username);
-        return appUserRepository.findByUsername(username);
+    public AppUser getAppUser(String email) {
+        log.info("fetching user {} ", email);
+        return appUserRepository.findByEmail(email);
     }
 
     @Override

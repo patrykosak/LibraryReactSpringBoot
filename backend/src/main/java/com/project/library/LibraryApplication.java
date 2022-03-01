@@ -31,7 +31,6 @@ public class LibraryApplication {
 			appUserController.saveRole(new Role(null,"ROLE_USER"));
 			appUserController.saveRole(new Role(null,"ROLE_ADMIN"));
 
-			appUserController.saveUser(new AppUser(null,"John","Travolta","john","1234",new ArrayList<>()));
 
 			appUserService.addRoleToUser("john","ROLE_ADMIN");
 		};

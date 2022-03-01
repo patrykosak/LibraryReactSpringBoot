@@ -35,6 +35,18 @@ const AddStudent = () => {
 
     const addStudentHandler = async (e) => {
         e.preventDefault();
+
+        const newStudent = {
+            name: name,
+            surname: surname,
+            email: email,
+            password: password,
+            schoolClass: selectedClass
+        }
+
+        axios.post("http://localhost:8090/api/user/save", newStudent).then(res=>{
+            console.log(res)
+        })
     }
 
   return (
@@ -58,7 +70,7 @@ const AddStudent = () => {
             <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Email">
-                    <Form.Control onChange={(e) => setEmail(e.target.value)} min={0} type="text" placeholder="Email" required/>
+                    <Form.Control onChange={(e) => setEmail(e.target.value)} min={0} type="email" placeholder="Email" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
@@ -72,7 +84,7 @@ const AddStudent = () => {
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Potwierdź hasło">
-                    <Form.Control onChange={(e) => setConfirmPassword(e.target.value)} type="text" placeholder="Potwierdź hasło" required/>
+                    <Form.Control onChange={(e) => setConfirmPassword(e.target.value)} type="password" placeholder="Potwierdź hasło" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
