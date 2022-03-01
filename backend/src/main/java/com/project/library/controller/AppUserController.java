@@ -33,6 +33,7 @@ import static java.util.Arrays.stream;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AppUserController {
 
     private final AppUserService appUserService;
