@@ -3,7 +3,7 @@ import { Accordion } from 'react-bootstrap'
 import axios from 'axios'
 import FilterButton from './FilterButton';
 
-const Filters = () => {
+const Filters = ({setFilteringPublishingHouse,setFilteringCategory}) => {
     const [categories, setCategories] = useState([]);
     const [publishingHouses, setPublishingHouses] = useState([]);
     const fetchFilters = async () =>{
@@ -26,7 +26,7 @@ const Filters = () => {
     <Accordion.Header>Kategorie</Accordion.Header>
     <Accordion.Body className='d-flex'>
         {categories.map((category,index)=>{
-           return <FilterButton key={index} name={category.name} index={index} item={category.name}/>
+           return <FilterButton task={setFilteringCategory} key={index} name={category.name} index={index} item={category.name}/>
         })}
     </Accordion.Body>
   </Accordion.Item>
@@ -34,7 +34,7 @@ const Filters = () => {
     <Accordion.Header>Wydawnictwa</Accordion.Header>
     <Accordion.Body className='d-flex'>
         {publishingHouses.map((publisingHouse,index)=>{
-            return <FilterButton key={index} name={publisingHouse.name} index={index} item={publisingHouse.name} />
+            return <FilterButton task={setFilteringPublishingHouse} key={index} name={publisingHouse.name} index={index} item={publisingHouse.name} />
         })}
     </Accordion.Body>
   </Accordion.Item>
