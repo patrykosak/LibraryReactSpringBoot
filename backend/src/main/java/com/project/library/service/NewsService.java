@@ -8,4 +8,6 @@ public interface NewsService {
     News saveNews(News news);
 
     List<News> fetchNewsList();
+
+    News fetchNewsById(Long newsId);
 }

@@ -23,5 +23,10 @@ public class NewsServiceImpl implements NewsService{
         return newsRepository.findAll();
     }
 
+    @Override
+    public News fetchNewsById(Long newsId) {
+        return newsRepository.findById(newsId).get();
+    }
+
 
 }
