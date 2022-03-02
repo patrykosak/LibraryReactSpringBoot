@@ -12,4 +12,6 @@ import java.util.List;
 public interface BorrowRepository extends JpaRepository<Borrow, Long> {
     public List<Borrow> findAllByReaderUserId(Long readerId);
     Page<Borrow> findByStatus(String status, Pageable pageable);
+    Page<Borrow> findByBookTitleContainingOrReaderNameContaining(String searchQuery,String searchQuery2, Pageable pageable);
+    Page<Borrow> findByStatusAndBookTitleContainingOrReaderNameContaining(String status, String searchQuery, String searchQuery2, Pageable pageable);
 }

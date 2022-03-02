@@ -19,7 +19,7 @@ const Borrows = () => {
     ]
 
     const fetchData = async () => {
-        axios.get(`http://localhost:8090/borrows?pageNumber=${pageNumber}&pageSize=4&status=${status}`).then(res=>{
+        axios.get(`http://localhost:8090/borrows?pageNumber=${pageNumber}&pageSize=4&status=${status}&searchQuery=${searchQuery}`).then(res=>{
         console.log(res)    
         setBorrows(res.data.content)
             setInfo(res.data)

@@ -2,7 +2,6 @@ package com.project.library.service;
 
 import com.project.library.entity.Book;
 import com.project.library.entity.Borrow;
-import com.project.library.repository.BookRepository;
 import com.project.library.repository.BorrowRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,12 +92,16 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public Page<Borrow> fetchPaginatedBorrowList(int pageSize, int pageNumber, String status) {
+    public Page<Borrow> fetchPaginatedBorrowList(int pageSize, int pageNumber, String status, String searchQuery) {
         Pageable page = PageRequest.of(pageNumber, pageSize);
-        if(status.equalsIgnoreCase(""))
+        if(status.equalsIgnoreCase("")&&searchQuery.equalsIgnoreCase(""))
         return borrowRepository.findAll(page);
-        else
+        else if(!status.equalsIgnoreCase("")&&searchQuery.equalsIgnoreCase(""))
             return borrowRepository.findByStatus(status,page);
+        else if(status.equalsIgnoreCase("")&&!searchQuery.equalsIgnoreCase(""))
+            return borrowRepository.findByBookTitleContainingOrReaderNameContaining(searchQuery,searchQuery,page);
+        else
+            return borrowRepository.findByStatusAndBookTitleContainingOrReaderNameContaining(status,searchQuery,searchQuery,page);
     }
 
 
