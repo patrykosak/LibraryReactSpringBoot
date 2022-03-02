@@ -85,6 +85,8 @@ const EditPublishingHouse = () => {
                             <Form.Control onChange={(e) => {setName(e.target.value); setDisabledButton(false) } } value={name} type="text" placeholder="Nazwa wydawnictwa" required />
                         </FloatingLabel>
                     </Form.Group>
+                    </Row>
+                        <Row className="mb-3">
                     <Form.Group as={Col} xs={12} md={12} controlId="formGridName">
                         <FloatingLabel controlId="floatingPassword" label="Miasto">
                             <Form.Control onChange={(e) => {setCity(e.target.value); setDisabledButton(false)}} value={city} type="text" placeholder="Miasto" required />

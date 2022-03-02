@@ -21,7 +21,7 @@ import EditStudent from "../components/adminPanelComponents/EditStudent";
 
 const AdminPanel = () => {
   return (
-    <div className="m-4">
+    <div style={{minHeight:"70vh"}} className="m-4">
       <Tab.Container id="left-tabs-example" defaultActiveKey="category">
         <Row>
           <Col sm={3}>
