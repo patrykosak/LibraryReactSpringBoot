@@ -30,7 +30,7 @@ const AppNavbar = () => {
       </NavDropdown>
     </Nav>
     <Nav>
-      <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/login">Login</NavLink></Nav.Link>
+      <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/login">Zaloguj się</NavLink></Nav.Link>
     </Nav>
   </Navbar.Collapse>
   </Container>
