@@ -86,7 +86,7 @@ const AddStudent = () => {
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                <FloatingLabel controlId="floatingPassword" label="Tytuł">
+                <FloatingLabel controlId="floatingPassword" label="Nazwisko">
                     <Form.Control onChange={(e) => setSurname(e.target.value)} type="text" maxLength={50} placeholder="Nazwisko" required/>
                 </FloatingLabel>
             </Form.Group>
