@@ -6,6 +6,9 @@ import com.project.library.repository.BookRepository;
 import com.project.library.repository.BorrowRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -87,6 +90,12 @@ public class BorrowServiceImpl implements BorrowService {
         }
 
         return borrowRepository.save(borrowDB);
+    }
+
+    @Override
+    public Page<Borrow> fetchPaginatedBorrowList(int pageSize, int pageNumber) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return borrowRepository.findAll(page);
     }
 
 

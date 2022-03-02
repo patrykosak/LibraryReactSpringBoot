@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import BorrowRow from '../components/BorrowRow'
 import axios from 'axios'
+import AppPagination from '../components/AppPagination';
 
 const Borrows = () => {
     const[borrows, setBorrows] = useState([]);
+    const[pageNumber, setPageNumber] = useState(0)
+    const [info,setInfo] = useState([]);
 
     const fetchData = async () => {
-        axios.get("http://localhost:8090/borrows").then(res=>{
-            setBorrows(res.data)
+        axios.get(`http://localhost:8090/borrows?pageNumber=${pageNumber}&pageSize=2`).then(res=>{
+        console.log(res)    
+        setBorrows(res.data.content)
+            setInfo(res.data)
             console.log(borrows)
         })        
     }
@@ -43,6 +48,7 @@ const Borrows = () => {
                         <BorrowRow fetchData={fetchData} key={index} borrow={borrow} /> 
                     ))}
                 <BorrowRow />
+                <AppPagination pageNumber={pageNumber} setPageNumber={setPageNumber} info={info}/>
                 </tbody>
             </table>
         </div>

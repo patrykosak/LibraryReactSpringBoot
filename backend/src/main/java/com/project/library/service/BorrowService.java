@@ -1,6 +1,7 @@
 package com.project.library.service;
 
 import com.project.library.entity.Borrow;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface BorrowService {
     public void deleteBorrowById(Long borrowId);
 
     public Borrow updateBorrow(Long borrowId, Borrow borrow);
+
+    Page<Borrow> fetchPaginatedBorrowList(int pageSize, int pageNumber);
 }

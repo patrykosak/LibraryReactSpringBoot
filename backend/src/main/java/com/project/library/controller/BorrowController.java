@@ -3,6 +3,7 @@ package com.project.library.controller;
 import com.project.library.entity.Borrow;
 import com.project.library.service.BorrowService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -20,9 +21,16 @@ public class BorrowController {
         return borrowService.saveBorrow(borrow);
     }
 
-    @GetMapping("/borrows")
+    @GetMapping("/borrows/all")
     public List<Borrow> fetchBorrowList(){
         return borrowService.fetchBorrowList();
+    }
+
+    @GetMapping("/borrows")
+    public Page<Borrow> fetchPaginatedBorrowList(@RequestParam(required = false, defaultValue = "30") int pageSize,
+                                                 @RequestParam(required = false, defaultValue = "0") int pageNumber
+    ){
+        return borrowService.fetchPaginatedBorrowList(pageSize, pageNumber);
     }
 
     @GetMapping("/borrows/user/{id}")
