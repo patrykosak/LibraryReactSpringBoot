@@ -18,7 +18,9 @@ const MainPage = () => {
   return (
     <div>
        <AppCarousel />
-       <News />
+       {newses.map((news, index)=>{
+         return <News key={index} news={news} />
+       })}
     </div>
   )
 }
