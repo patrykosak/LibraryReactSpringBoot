@@ -8,8 +8,6 @@ const EditStudent = () => {
     const[name,setName] = useState("")
     const[surname,setSurname] = useState("")
     const[email,setEmail] = useState("")
-    const[password,setPassword] = useState("")
-    const[confirmPassword,setConfirmPassword] = useState("")
     const[selectedClass,setSelectedClass] = useState("")
     const[students, setStudents] = useState([])
     const[selectedStudent, setSelectedStudent] = useState(null)
@@ -37,7 +35,7 @@ const EditStudent = () => {
     const fetchData = async (e) => {
         axios.get("http://localhost:8090/api/users").then(res=>{
             const options = res.data.map(u=>{
-                return {value: u.userId, label: u.email}
+                return {value: u.userId, label: u.email, name: u.name, surname: u.surname, schoolClass: u.schoolClass}
             })
             setStudents(options)
         })
@@ -54,7 +52,6 @@ const EditStudent = () => {
             name: name,
             surname: surname,
             email: email,
-            password: password,
             setSelectedStudent: selectedClass
         }
 
@@ -81,12 +78,20 @@ const EditStudent = () => {
     })
     }
 
+    const selectStudentHandler = (e) => {
+        setSelectedStudent(e)
+        setName(e.name)
+        setSurname(e.surname)
+        setSelectedClass(e.schoolClass)
+        setEmail(e.label)
+    }
+
   return (
     <div className="m-3">
     <Form onSubmit={(e)=> updateStudentHandler(e)}>
     <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedStudent(e)}} options={students} placeholder="Uczeń"/>
+                    <Select onChange={(e)=>{selectStudentHandler(e)}} options={students} placeholder="Uczeń"/>
             </Form.Group>
         </Row>
         {selectedStudent?(<>
@@ -94,41 +99,27 @@ const EditStudent = () => {
         {feedback}
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Imię">
-                    <Form.Control onChange={(e) => setName(e.target.value)} type="text" placeholder="Imię" required/>
+                    <Form.Control value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Imię" required/>
                 </FloatingLabel>
             </Form.Group>
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Nazwisko">
-                    <Form.Control onChange={(e) => setSurname(e.target.value)} type="text" maxLength={50} placeholder="Nazwisko" required/>
+                    <Form.Control value={surname} onChange={(e) => setSurname(e.target.value)} type="text" maxLength={50} placeholder="Nazwisko" required/>
                 </FloatingLabel>
             </Form.Group>
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Email">
-                    <Form.Control onChange={(e) => setEmail(e.target.value)} min={0} type="email" placeholder="Email" required/>
+                    <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} min={0} type="email" placeholder="Email" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                <FloatingLabel controlId="floatingPassword" label="Hasło">
-                    <Form.Control onChange={(e) => setPassword(e.target.value)}  type="password" placeholder="Hasło" required/>
-                </FloatingLabel>
-            </Form.Group>
-        </Row>
-        <Row className="mb-3">
-            <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                <FloatingLabel controlId="floatingPassword" label="Potwierdź hasło">
-                    <Form.Control onChange={(e) => setConfirmPassword(e.target.value)} type="password" placeholder="Potwierdź hasło" required/>
-                </FloatingLabel>
-            </Form.Group>
-        </Row>
-        <Row className="mb-3">
-            <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedClass(e.label)}} options={options} placeholder="Klasa"/>
+                    <Select defaultInputValue={selectedClass} onChange={(e)=>{setSelectedClass(e.label)}} options={options} placeholder="Klasa"/>
             </Form.Group>
         </Row>
         <div className="d-flex justify-content-end">
