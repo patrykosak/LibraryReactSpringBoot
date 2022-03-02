@@ -16,6 +16,7 @@ import EditBook from "../components/adminPanelComponents/EditBook";
 import EditCategory from "../components/adminPanelComponents/EditCategory";
 import EditNews from "../components/adminPanelComponents/EditNews";
 import EditPublishingHouse from "../components/adminPanelComponents/EditPublishingHouse";
+import EditStudent from "../components/adminPanelComponents/EditStudent";
 
 const AdminPanel = () => {
   return (
@@ -124,7 +125,7 @@ const AdminPanel = () => {
                     <AddStudent />
                 </Tab>
                 <Tab eventKey="edit" title="Edytuj ucznia">
-                    
+                    <EditStudent />
                 </Tab>
                 <Tab eventKey="delete" title="Usuń ucznia">
 
