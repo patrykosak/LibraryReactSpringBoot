@@ -5,6 +5,8 @@ import com.project.library.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NewsServiceImpl implements NewsService{
 
@@ -15,4 +17,11 @@ public class NewsServiceImpl implements NewsService{
     public News saveNews(News news) {
         return newsRepository.save(news);
     }
+
+    @Override
+    public List<News> fetchNewsList() {
+        return newsRepository.findAll();
+    }
+
+
 }
