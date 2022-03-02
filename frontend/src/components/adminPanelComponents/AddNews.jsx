@@ -7,6 +7,10 @@ const AddNews = () => {
     const[title, setTitle] = useState("");
     const[content, setContent] = useState("");
 
+    const clearNotification = () =>{
+        setFeedback([])
+    }
+
     const addNewsHandler = async (e) => {
         e.preventDefault()
 
@@ -16,8 +20,29 @@ const AddNews = () => {
         }
 
         axios.post("http://localhost:8090/news",newPost).then(res=>{
-            console.log(res)
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Post została dodany!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się dodać posta!
+                </Alert>
+            )
+            const myTimeout = setTimeout(clearNotification, 5000);
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się dodać posta!
+            </Alert>
+        )
+        const myTimeout = setTimeout(clearNotification, 5000);
         })
+
 
     }
 
