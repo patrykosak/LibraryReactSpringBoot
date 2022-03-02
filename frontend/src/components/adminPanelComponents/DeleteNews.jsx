@@ -25,7 +25,27 @@ const DeleteNews = () => {
     const deleteNewsHandler = async (e) => {
         e.preventDefault();
 
-
+        await axios.delete(`http://localhost:8090/news/${selectedNews.value}`).then(res=>{
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Post został usunięty!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się usunąć wpisu!
+                </Alert>
+            )
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się usunąć wpisu!
+            </Alert>
+        )
+        })
     }
 
     const selectNewsHandler = (e) => {
