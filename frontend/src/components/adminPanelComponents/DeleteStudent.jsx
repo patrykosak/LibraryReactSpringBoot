@@ -26,7 +26,27 @@ const DeleteStudent = () => {
     const deleteStudentHandler = async (e) => {
         e.preventDefault()
 
-        
+        await axios.delete("").then(res=>{
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Uczeń został usunięty!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się usunąć ucznia!
+                </Alert>
+            )
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się usunąć ucznia!
+            </Alert>
+        )
+        })
     }
 
   return (
