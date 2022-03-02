@@ -33,8 +33,26 @@ const EditNews = () => {
     }
 
     await axios.put(`http://localhost:8090/news/${selectedNews.value}`,updatedNews).then(res=>{
-      console.log(res)
-    })
+      if (res.status === 200)
+        setFeedback(
+            <Alert variant="success">
+                Post został zedytowany!
+            </Alert>
+        )
+    else
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się zedytować wpisu!
+            </Alert>
+        )
+}).catch((e) => {
+    console.log(e)
+    setFeedback(
+        <Alert variant="danger">
+            Nie udało się zedytować wpisu!
+        </Alert>
+    )
+})
   }
 
   const selectNewsHandler = (e) => {
