@@ -34,4 +34,9 @@ public class NewsController {
         return "News deleted succesfully!";
     }
 
+    @PutMapping("/news/{id}")
+    public News updateNews(@PathVariable("id") Long newsId, @RequestBody News news){
+        return newsService.updateNews(newsId,news);
+    }
+
 }
