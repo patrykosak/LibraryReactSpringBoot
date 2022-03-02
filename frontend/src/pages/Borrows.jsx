@@ -9,7 +9,7 @@ const Borrows = () => {
     const [info,setInfo] = useState([]);
 
     const fetchData = async () => {
-        axios.get(`http://localhost:8090/borrows?pageNumber=${pageNumber}&pageSize=2`).then(res=>{
+        axios.get(`http://localhost:8090/borrows?pageNumber=${pageNumber}&pageSize=4`).then(res=>{
         console.log(res)    
         setBorrows(res.data.content)
             setInfo(res.data)
@@ -19,7 +19,7 @@ const Borrows = () => {
 
     useEffect(()=>{
         fetchData()
-    },[])
+    },[pageNumber])
 
   return (
     <>
