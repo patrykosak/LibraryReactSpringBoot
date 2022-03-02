@@ -44,14 +44,21 @@ public class AppUserController {
     }
 
     @PostMapping("/user/save")
-    public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
-        return ResponseEntity.created(uri).body(appUserService.saveAppUser(appUser));
+    public AppUser saveUser(@RequestBody AppUser appUser){
+       AppUser a = appUserService.saveAppUser(appUser);
+         appUserService.addRoleToUser(appUser.getEmail(),"USER");;
+        return a;
+    }
+
+    @PostMapping("/user/admin/save")
+    public ResponseEntity<AppUser> saveAdmin(@RequestBody AppUser appUser){
+        appUserService.saveAppUser(appUser);
+        appUserService.addRoleToUser(appUser.getEmail(),"ADMIN");
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/user/delete/{id}")
     public ResponseEntity<AppUser> deleteUserById(@PathVariable("id") Long userId){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/delete/"+userId).toUriString());
         appUserService.deleteUserById(userId);
         return ResponseEntity.ok().build();
     }
@@ -64,7 +71,7 @@ public class AppUserController {
 
     @PostMapping("/role/addtouser")
     public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form){
-        appUserService.addRoleToUser(form.getUsername(),form.getRoleName());
+        appUserService.addRoleToUser(form.getEmail(),form.getRoleName());
         return ResponseEntity.ok().build();
     }
 
@@ -110,6 +117,6 @@ public class AppUserController {
 
 @Data
 class RoleToUserForm {
-    private String username;
+    private String email;
     private String roleName;
 }

@@ -49,7 +49,8 @@ const AddStudent = () => {
         }
 
         axios.post("http://localhost:8090/api/user/save", newStudent).then(res=>{
-            if (res.status === 201)
+            
+        if (res.status === 200)
             setFeedback(
                 <Alert variant="success">
                     Uczeń został dodany!
