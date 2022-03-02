@@ -9,6 +9,19 @@ const DeleteNews = () => {
     const[selectedNews, setSelectedNews] = useState(null)
     const[disabledButton,setDisabledButton] = useState(true)
 
+    const fetchData = async () => {
+        await axios.get("http://localhost:8090/news").then((res)=>{
+          const options = res.data.map((n)=>{
+            return {value: n.newsId, label: n.title, content: n.content}
+          })
+          setNewses(options)
+        })
+      }
+    
+      useEffect(()=>{
+        fetchData()
+      },[])
+
     const deleteNewsHandler = async (e) => {
         e.preventDefault();
 
@@ -16,7 +29,8 @@ const DeleteNews = () => {
     }
 
     const selectNewsHandler = (e) => {
-        
+        setSelectedNews(e)
+        setDisabledButton(false)
     }
 
   return (

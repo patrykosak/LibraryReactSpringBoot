@@ -9,6 +9,7 @@ import AddStudent from "../components/adminPanelComponents/AddStudent";
 import DeleteAuthor from "../components/adminPanelComponents/DeleteAuthor";
 import DeleteBook from "../components/adminPanelComponents/DeleteBook";
 import DeleteCategory from "../components/adminPanelComponents/DeleteCategory";
+import DeleteNews from "../components/adminPanelComponents/DeleteNews";
 import DeletePublishingHouse from "../components/adminPanelComponents/DeletePublishingHouse";
 import EditAuthor from "../components/adminPanelComponents/EditAuthor";
 import EditBook from "../components/adminPanelComponents/EditBook";
@@ -143,7 +144,7 @@ const AdminPanel = () => {
                     <EditNews />
                 </Tab>
                 <Tab eventKey="delete" title="Usuń post">
-
+                    <DeleteNews />
                 </Tab>
               </Tabs>
               </Tab.Pane>
