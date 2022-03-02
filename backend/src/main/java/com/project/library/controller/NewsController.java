@@ -28,4 +28,10 @@ public class NewsController {
         return newsService.fetchNewsById(newsId);
     }
 
+    @DeleteMapping("/news/{id}")
+    public String deleteNewsById(@PathVariable("id") Long newsId){
+        newsService.deleteNewsById(newsId);
+        return "News deleted succesfully!";
+    }
+
 }

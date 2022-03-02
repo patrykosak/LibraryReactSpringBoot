@@ -10,4 +10,6 @@ public interface NewsService {
     List<News> fetchNewsList();
 
     News fetchNewsById(Long newsId);
+
+    void deleteNewsById(Long newsId);
 }
