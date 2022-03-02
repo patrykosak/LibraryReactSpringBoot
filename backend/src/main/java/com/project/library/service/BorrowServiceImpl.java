@@ -99,9 +99,9 @@ public class BorrowServiceImpl implements BorrowService {
         else if(!status.equalsIgnoreCase("")&&searchQuery.equalsIgnoreCase(""))
             return borrowRepository.findByStatus(status,page);
         else if(status.equalsIgnoreCase("")&&!searchQuery.equalsIgnoreCase(""))
-            return borrowRepository.findByBookTitleContainingOrReaderNameContaining(searchQuery,searchQuery,page);
+            return borrowRepository.findByBookTitleContainingOrReaderNameContainingOrReaderSurnameContainingOrReaderEmail(searchQuery,searchQuery,searchQuery,searchQuery,page);
         else
-            return borrowRepository.findByStatusAndBookTitleContainingOrReaderNameContaining(status,searchQuery,searchQuery,page);
+            return borrowRepository.findByStatusAndBookTitleContainingOrReaderNameOrReaderSurnameContainingOrReaderEmailContaining(status,searchQuery,searchQuery,searchQuery,searchQuery,page);
     }
 
 
