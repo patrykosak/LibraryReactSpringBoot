@@ -28,9 +28,10 @@ public class BorrowController {
 
     @GetMapping("/borrows")
     public Page<Borrow> fetchPaginatedBorrowList(@RequestParam(required = false, defaultValue = "30") int pageSize,
-                                                 @RequestParam(required = false, defaultValue = "0") int pageNumber
+                                                 @RequestParam(required = false, defaultValue = "0") int pageNumber,
+                                                 @RequestParam(required = false, defaultValue = "") String status
     ){
-        return borrowService.fetchPaginatedBorrowList(pageSize, pageNumber);
+        return borrowService.fetchPaginatedBorrowList(pageSize, pageNumber, status);
     }
 
     @GetMapping("/borrows/user/{id}")

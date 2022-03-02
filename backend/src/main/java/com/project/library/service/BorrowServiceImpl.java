@@ -93,9 +93,12 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public Page<Borrow> fetchPaginatedBorrowList(int pageSize, int pageNumber) {
+    public Page<Borrow> fetchPaginatedBorrowList(int pageSize, int pageNumber, String status) {
         Pageable page = PageRequest.of(pageNumber, pageSize);
+        if(status.equalsIgnoreCase(""))
         return borrowRepository.findAll(page);
+        else
+            return borrowRepository.findByStatus(status,page);
     }
 
 

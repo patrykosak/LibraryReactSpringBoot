@@ -18,5 +18,5 @@ public interface BorrowService {
 
     public Borrow updateBorrow(Long borrowId, Borrow borrow);
 
-    Page<Borrow> fetchPaginatedBorrowList(int pageSize, int pageNumber);
+    Page<Borrow> fetchPaginatedBorrowList(int pageSize, int pageNumber, String status);
 }

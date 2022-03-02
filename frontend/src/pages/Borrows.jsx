@@ -17,7 +17,7 @@ const Borrows = () => {
     ]
 
     const fetchData = async () => {
-        axios.get(`http://localhost:8090/borrows?pageNumber=${pageNumber}&pageSize=4`).then(res=>{
+        axios.get(`http://localhost:8090/borrows?pageNumber=${pageNumber}&pageSize=4&status=${status}`).then(res=>{
         console.log(res)    
         setBorrows(res.data.content)
             setInfo(res.data)
@@ -27,7 +27,7 @@ const Borrows = () => {
 
     useEffect(()=>{
         fetchData()
-    },[pageNumber])
+    },[pageNumber,status])
 
   return (
     <>
