@@ -12,4 +12,6 @@ public interface AppUserService {
     void addRoleToUser(String email, String roleName);
     AppUser getAppUser(String email);
     List<AppUser> getAppUsers();
+
+    void deleteUserById(Long userId);
 }

@@ -49,6 +49,12 @@ public class AppUserController {
         return ResponseEntity.created(uri).body(appUserService.saveAppUser(appUser));
     }
 
+    @DeleteMapping("/user/delete/{id}")
+    public ResponseEntity<AppUser> deleteUserById(@PathVariable("id") Long userId){
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/delete/"+userId).toUriString());
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping("/role/save")
     public ResponseEntity<Role> saveRole(@RequestBody Role role){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());

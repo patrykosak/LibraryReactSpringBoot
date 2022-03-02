@@ -82,4 +82,9 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         return appUserRepository.findAll();
     }
 
+    @Override
+    public void deleteUserById(Long userId) {
+        appUserRepository.deleteById(userId);
+    }
+
 }
