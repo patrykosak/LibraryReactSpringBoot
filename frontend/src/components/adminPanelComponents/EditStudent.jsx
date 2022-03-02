@@ -11,6 +11,8 @@ const EditStudent = () => {
     const[password,setPassword] = useState("")
     const[confirmPassword,setConfirmPassword] = useState("")
     const[selectedClass,setSelectedClass] = useState("")
+    const[students, setStudents] = useState([])
+    const[selectedStudent, setSelectedStudent] = useState(null)
 
     const options = [
         {value:1, label:"1A"},
@@ -32,6 +34,19 @@ const EditStudent = () => {
 
     ]
 
+    const fetchData = async (e) => {
+        axios.get("http://localhost:8090/api/users").then(res=>{
+            const options = res.data.map(u=>{
+                return {value: u.userId, label: u.email}
+            })
+            setStudents(options)
+        })
+    }
+
+    useEffect(()=>{
+        fetchData()
+    },[])
+
     const updateStudentHandler = async (e) => {
         e.preventDefault()
     }
@@ -39,6 +54,12 @@ const EditStudent = () => {
   return (
     <div className="m-3">
     <Form onSubmit={(e)=> updateStudentHandler(e)}>
+    <Row className="mb-3">
+            <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
+                    <Select onChange={(e)=>{setSelectedStudent(e)}} options={students} placeholder="Uczeń"/>
+            </Form.Group>
+        </Row>
+        {selectedStudent?(<>
         <Row className="mb-3">
         {feedback}
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
@@ -82,9 +103,10 @@ const EditStudent = () => {
         </Row>
         <div className="d-flex justify-content-end">
             <Button className="ps-4 pe-4" variant="outline-primary" type="submit">
-                Dodaj ucznia
+                Edytuj ucznia
             </Button> 
         </div>
+        </>):null}
     </Form>
 </div>
   )
