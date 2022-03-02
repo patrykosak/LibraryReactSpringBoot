@@ -1,7 +1,10 @@
 package com.project.library.service;
 
+import com.project.library.entity.Book;
 import com.project.library.entity.Borrow;
+import com.project.library.repository.BookRepository;
 import com.project.library.repository.BorrowRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,14 +13,23 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@Slf4j
 public class BorrowServiceImpl implements BorrowService {
 
     @Autowired
     private BorrowRepository borrowRepository;
 
+    @Autowired
+    private BookService bookService;
+
     @Override
     public Borrow saveBorrow(Borrow borrow) {
         borrow.setBorrowDate(LocalDate.now());
+        Book book = bookService.fetchBookByISBN(borrow.getBook().getISBN());
+        if(book.getAmount()>=1) {
+            book.setAmount(book.getAmount() - 1);
+        bookService.updateBook(book.getISBN(),book);
+        }
         return borrowRepository.save(borrow);
     }
 
