@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SearchBar = ({setSearchQuery}) => {
+const SearchBar = ({setSearchQuery,style,pHolder}) => {
   return (
-    <div className="input-group  mt-3 m-auto w-50">
-    <input onChange={(data)=>setSearchQuery(data.target.value)} type="text" className="form-control" placeholder="Szukaj książki" />
+    <div className={style}>
+    <input onChange={(data)=>setSearchQuery(data.target.value)} type="text" className="form-control" placeholder={pHolder} />
   </div>
   )
 }
