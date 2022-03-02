@@ -17,7 +17,7 @@ const BorrowRow = ({borrow,fetchData}) => {
   <td>{borrow?.deadline}</td>
   <td>{borrow?.status}</td>
   <td>
-  <a onClick={handleShow} data-toggle="modal" ><i className="material-icons" style={{color:"#F9DC5C",cursor:"pointer"}} data-toggle="tooltip" title="subcategory.edit">&#xE254;</i></a>
+  <a onClick={handleShow} data-toggle="modal" ><i className="material-icons" style={{color:"#F9DC5C",cursor:"pointer"}} data-toggle="tooltip" title="borrow.edit">&#xE254;</i></a>
   </td>
 </tr>  
 

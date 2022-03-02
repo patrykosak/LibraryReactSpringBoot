@@ -2,11 +2,19 @@ import React, { useEffect, useState } from 'react'
 import BorrowRow from '../components/BorrowRow'
 import axios from 'axios'
 import AppPagination from '../components/AppPagination';
+import Select from 'react-select'; 
 
 const Borrows = () => {
     const[borrows, setBorrows] = useState([]);
     const[pageNumber, setPageNumber] = useState(0)
-    const [info,setInfo] = useState([]);
+    const[info,setInfo] = useState([]);
+    const[status,setStatus] = useState("")
+
+    const options = [
+        { value:1, label:"W trakcie realizacji",},
+        {value:2, label:"Wypożyczona"},
+        {value:3, label:"Zwrócona"}
+    ]
 
     const fetchData = async () => {
         axios.get(`http://localhost:8090/borrows?pageNumber=${pageNumber}&pageSize=4`).then(res=>{
@@ -32,6 +40,12 @@ const Borrows = () => {
                     </div>
                 </div>
             </div>
+            <Select
+                  className='mb-3'
+                  onChange={(e) => setStatus(e.label)}
+                  options={options}
+                  placeholder={"status"}
+                />
             <table className="table">
                 <thead className='table-dark'>
                     <tr>
