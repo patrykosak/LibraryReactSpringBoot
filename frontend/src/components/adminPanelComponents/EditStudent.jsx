@@ -11,6 +11,7 @@ const EditStudent = () => {
     const[selectedClass,setSelectedClass] = useState("")
     const[students, setStudents] = useState([])
     const[selectedStudent, setSelectedStudent] = useState(null)
+    const[disabledButton,setDisabledButton] = useState(true)
 
     const options = [
         {value:1, label:"1A"},
@@ -100,31 +101,31 @@ const EditStudent = () => {
         {feedback}
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Imię">
-                    <Form.Control value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Imię" required/>
+                    <Form.Control value={name} onChange={(e) => {setName(e.target.value);setDisabledButton(false)}} type="text" placeholder="Imię" required/>
                 </FloatingLabel>
             </Form.Group>
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Nazwisko">
-                    <Form.Control value={surname} onChange={(e) => setSurname(e.target.value)} type="text" maxLength={50} placeholder="Nazwisko" required/>
+                    <Form.Control value={surname} onChange={(e) => {setSurname(e.target.value);setDisabledButton(false)}} type="text" maxLength={50} placeholder="Nazwisko" required/>
                 </FloatingLabel>
             </Form.Group>
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
                 <FloatingLabel controlId="floatingPassword" label="Email">
-                    <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} min={0} type="email" placeholder="Email" required/>
+                    <Form.Control value={email} onChange={(e) => {setEmail(e.target.value);setDisabledButton(false)}} min={0} type="email" placeholder="Email" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select defaultInputValue={selectedClass} onChange={(e)=>{setSelectedClass(e.label)}} options={options} placeholder="Klasa"/>
+                    <Select defaultInputValue={selectedClass} onChange={(e)=>{setSelectedClass(e.label);setDisabledButton(false)}} options={options} placeholder="Klasa"/>
             </Form.Group>
         </Row>
         <div className="d-flex justify-content-end">
-            <Button className="ps-4 pe-4" variant="outline-primary" type="submit">
+            <Button className="ps-4 pe-4" variant="outline-primary" type="submit" disabled={disabledButton}>
                 Edytuj ucznia
             </Button> 
         </div>
