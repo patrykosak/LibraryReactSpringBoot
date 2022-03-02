@@ -30,7 +30,7 @@ const Filters = ({setFilteringPublishingHouse,setFilteringCategory}) => {
         })}
     </Accordion.Body>
   </Accordion.Item>
-  <Accordion.Item eventKey="1">
+  <Accordion.Item onClick={()=>{setFilteringCategory("")}} eventKey="1">
     <Accordion.Header>Wydawnictwa</Accordion.Header>
     <Accordion.Body className='d-flex'>
         {publishingHouses.map((publisingHouse,index)=>{
