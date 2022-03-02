@@ -13,6 +13,7 @@ import DeletePublishingHouse from "../components/adminPanelComponents/DeletePubl
 import EditAuthor from "../components/adminPanelComponents/EditAuthor";
 import EditBook from "../components/adminPanelComponents/EditBook";
 import EditCategory from "../components/adminPanelComponents/EditCategory";
+import EditNews from "../components/adminPanelComponents/EditNews";
 import EditPublishingHouse from "../components/adminPanelComponents/EditPublishingHouse";
 
 const AdminPanel = () => {
@@ -139,7 +140,7 @@ const AdminPanel = () => {
                     <AddNews />
                 </Tab>
                 <Tab eventKey="edit" title="Edytuj post">
-                    
+                    <EditNews />
                 </Tab>
                 <Tab eventKey="delete" title="Usuń post">
 
