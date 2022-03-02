@@ -53,9 +53,32 @@ const EditStudent = () => {
         const updatedStudent = {
             name: name,
             surname: surname,
-            email
+            email: email,
+            password: password,
+            setSelectedStudent: selectedClass
         }
 
+        await axios.post("",updatedStudent).then(res=>{
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Uczeń został zedytowany!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się zedytować ucznia!
+                </Alert>
+            )
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się zedytować ucznia!
+            </Alert>
+        )
+    })
     }
 
   return (
