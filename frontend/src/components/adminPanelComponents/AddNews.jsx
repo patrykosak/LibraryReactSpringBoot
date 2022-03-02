@@ -10,6 +10,14 @@ const AddNews = () => {
     const addNewsHandler = async (e) => {
         e.preventDefault()
 
+        const newPost ={
+            title: title,
+            content: content
+        }
+
+        axios.post("http://localhost:8090/news",newPost).then(res=>{
+            console.log(res)
+        })
 
     }
 
