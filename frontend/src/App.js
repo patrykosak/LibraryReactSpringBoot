@@ -8,6 +8,7 @@ import BookDetails from "./pages/BookDetails";
 import Borrows from "./pages/Borrows";
 import Login from "./pages/Login";
 import Statue from "./pages/Statue";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/borrows" element={<Borrows />} />
         <Route path="/login" element={<Login />} />
         <Route path="/statue" element={<Statue />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/books/details/:id" element={<BookDetails />} />
       </Routes>
     </Layout>
