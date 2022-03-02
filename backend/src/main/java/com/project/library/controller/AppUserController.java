@@ -52,6 +52,7 @@ public class AppUserController {
     @DeleteMapping("/user/delete/{id}")
     public ResponseEntity<AppUser> deleteUserById(@PathVariable("id") Long userId){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/delete/"+userId).toUriString());
+        appUserService.deleteUserById(userId);
         return ResponseEntity.ok().build();
     }
 

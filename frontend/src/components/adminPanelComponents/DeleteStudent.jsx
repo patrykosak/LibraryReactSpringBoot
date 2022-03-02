@@ -26,7 +26,8 @@ const DeleteStudent = () => {
     const deleteStudentHandler = async (e) => {
         e.preventDefault()
 
-        await axios.delete("").then(res=>{
+        await axios.delete(`http://localhost:8090/api/user/delete/${selectedStudent.value}`).then(res=>{
+            console.log(res)
             if (res.status === 200)
             setFeedback(
                 <Alert variant="success">
@@ -54,7 +55,7 @@ const DeleteStudent = () => {
     <Form onSubmit={(e)=> deleteStudentHandler(e)}>
     <Row className="mb-3">
         <Col xs={6} md={6}>
-                        <Select onChange={(e) => {selectedStudent(e); setDisabledButton(false)}} options={students} placeholder="Uczeń" />
+                        <Select onChange={(e) => {setSelectedStudent(e); setDisabledButton(false)}} options={students} placeholder="Uczeń" />
                     </Col>
                 </Row>
         {feedback}
