@@ -3,6 +3,7 @@ import { Tab, Row, Col, Nav, Tabs } from "react-bootstrap";
 import AddAuthor from "../components/adminPanelComponents/AddAuthor";
 import AddBook from "../components/adminPanelComponents/AddBook";
 import AddCategory from "../components/adminPanelComponents/AddCategory";
+import AddNews from "../components/adminPanelComponents/AddNews";
 import AddPublishingHouse from "../components/adminPanelComponents/AddPublishingHouse";
 import AddStudent from "../components/adminPanelComponents/AddStudent";
 import DeleteAuthor from "../components/adminPanelComponents/DeleteAuthor";
@@ -35,6 +36,9 @@ const AdminPanel = () => {
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="students">Uczniowie</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="newses">Posty</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
@@ -121,6 +125,23 @@ const AdminPanel = () => {
                     
                 </Tab>
                 <Tab eventKey="delete" title="Usuń ucznia">
+
+                </Tab>
+              </Tabs>
+              </Tab.Pane>
+              <Tab.Pane eventKey="newses">
+              <Tabs
+                defaultActiveKey="add"
+                id="uncontrolled-tab-example"
+                className="mb-3"
+              >
+                <Tab eventKey="add" title="Dodaj post">
+                    <AddNews />
+                </Tab>
+                <Tab eventKey="edit" title="Edytuj post">
+                    
+                </Tab>
+                <Tab eventKey="delete" title="Usuń post">
 
                 </Tab>
               </Tabs>
