@@ -5,8 +5,46 @@ import Select from 'react-select';
 
 
 const DeleteStudent = () => {
+    const[feedback,setFeedback] = useState([])
+    const[disabledButton, setDisabledButton] = useState(true)
+    const[selectedStudent, setSelectedStudent] = useState(null)
+    const[students, setStudents] = useState([])
+
+    const fetchData = async (e) => {
+        axios.get("http://localhost:8090/api/users").then(res=>{
+            const options = res.data.map(u=>{
+                return {value: u.userId, label: u.email}
+            })
+            setStudents(options)
+        })
+    }
+
+    useEffect(()=>{
+        fetchData()
+    },[])
+
+    const deleteStudentHandler = async (e) => {
+        e.preventDefault()
+
+        
+    }
+
   return (
-    <div>DeleteStudent</div>
+      <div className="m-3">
+    <Form onSubmit={(e)=> deleteStudentHandler(e)}>
+    <Row className="mb-3">
+        <Col xs={6} md={6}>
+                        <Select onChange={(e) => {selectedStudent(e); setDisabledButton(false)}} options={students} placeholder="Uczeń" />
+                    </Col>
+                </Row>
+        {feedback}
+        <div className="d-flex justify-content-end">
+            <Button className="ps-4 pe-4" variant="outline-primary" type="submit" disabled={disabledButton}>
+                Usuń ucznia
+            </Button> 
+        </div>
+    </Form>
+</div>
   )
 }
 
