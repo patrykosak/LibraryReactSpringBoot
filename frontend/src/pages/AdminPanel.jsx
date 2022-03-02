@@ -11,6 +11,7 @@ import DeleteBook from "../components/adminPanelComponents/DeleteBook";
 import DeleteCategory from "../components/adminPanelComponents/DeleteCategory";
 import DeleteNews from "../components/adminPanelComponents/DeleteNews";
 import DeletePublishingHouse from "../components/adminPanelComponents/DeletePublishingHouse";
+import DeleteStudent from "../components/adminPanelComponents/DeleteStudent";
 import EditAuthor from "../components/adminPanelComponents/EditAuthor";
 import EditBook from "../components/adminPanelComponents/EditBook";
 import EditCategory from "../components/adminPanelComponents/EditCategory";
@@ -128,7 +129,7 @@ const AdminPanel = () => {
                     <EditStudent />
                 </Tab>
                 <Tab eventKey="delete" title="Usuń ucznia">
-
+                    <DeleteStudent />
                 </Tab>
               </Tabs>
               </Tab.Pane>
