@@ -57,6 +57,12 @@ public class AppUserController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/user/update/{id}")
+    public ResponseEntity<AppUser> updateAppUser(@PathVariable("id") Long userId, @RequestBody AppUser appUser){
+        appUserService.updateAppUser(userId, appUser);
+        return ResponseEntity.ok().build();
+    }
+
     @DeleteMapping("/user/delete/{id}")
     public ResponseEntity<AppUser> deleteUserById(@PathVariable("id") Long userId){
         appUserService.deleteUserById(userId);

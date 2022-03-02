@@ -55,8 +55,9 @@ const EditStudent = () => {
             setSelectedStudent: selectedClass
         }
 
-        await axios.post("",updatedStudent).then(res=>{
-            if (res.status === 200)
+        await axios.put(`http://localhost:8090/api/user/update/${selectedStudent.value}`,updatedStudent).then(res=>{
+        console.log(res)    
+        if (res.status === 200)
             setFeedback(
                 <Alert variant="success">
                     Uczeń został zedytowany!

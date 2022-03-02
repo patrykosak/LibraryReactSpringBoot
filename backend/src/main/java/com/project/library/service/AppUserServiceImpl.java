@@ -19,6 +19,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -85,6 +86,26 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     @Override
     public void deleteUserById(Long userId) {
         appUserRepository.deleteById(userId);
+    }
+
+    @Override
+    public void updateAppUser(Long userId, AppUser appUser) {
+        AppUser appUserDB = appUserRepository.findById(userId).get();
+
+        if(Objects.nonNull(appUser.getName())&&!"".equalsIgnoreCase(appUser.getName())){
+            appUserDB.setName(appUser.getName());
+        }
+        if(Objects.nonNull(appUser.getSurname())&&!"".equalsIgnoreCase(appUser.getSurname())){
+            appUserDB.setSurname(appUser.getSurname());
+        }
+        if(Objects.nonNull(appUser.getEmail())&&!"".equalsIgnoreCase(appUser.getEmail())){
+            appUserDB.setEmail(appUser.getEmail());
+        }
+        if(Objects.nonNull(appUser.getSchoolClass())&&!"".equalsIgnoreCase(appUser.getSchoolClass())){
+            appUserDB.setSchoolClass(appUser.getSchoolClass());
+        }
+
+        appUserRepository.save(appUserDB);
     }
 
 }
