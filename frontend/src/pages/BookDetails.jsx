@@ -6,6 +6,7 @@ import axios from 'axios';
 const BookDetails = () => {
     const[book, setBook] = useState([])
     const [show, setShow] = useState(false);
+    const [disabledButton, setDisabledButton] = useState(true);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -39,6 +40,9 @@ const BookDetails = () => {
     const fetchBook = async () => {
         await axios.get(`http://localhost:8090/books/${params.id}`).then(res=>{
         setBook(res.data)
+        if(res.data.amount>=1){
+          setDisabledButton(false)
+        }
         })
     }
 
@@ -72,7 +76,7 @@ const BookDetails = () => {
             <p>{book.description}</p>
             </div>
             <div className='d-flex justify-content-end mt-3'>
-            <Button onClick={()=>{handleShow()}} className='w-25'>Wypożycz</Button>
+            <Button onClick={()=>{handleShow()}} className='w-25' disabled={disabledButton}>Wypożycz</Button>
             </div>
         </Col>
         </Row>
