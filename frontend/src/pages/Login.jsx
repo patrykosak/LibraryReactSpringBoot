@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Form,Button,Alert } from 'react-bootstrap'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../contexts/AuthContext';
 
 const Login = () => {
     const[email,setEmail] = useState("");
@@ -10,6 +11,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    const authCtx = useContext(AuthContext)
     
     const clearNotification = () =>{
         setFeedback([])
@@ -25,8 +27,11 @@ const Login = () => {
 
         console.log({ username: email, password: password })
         await axios.post("http://localhost:8090/login", params).then(res=>{
-            if(res.status===200)
+            if(res.status===200){
                 navigate("/")
+                authCtx.setAuthTokens(res.data)
+                authCtx.setAuthTokens(res.data.access_token)
+              }
                 else
                 setFeedback(
                     <Alert variant="danger">
