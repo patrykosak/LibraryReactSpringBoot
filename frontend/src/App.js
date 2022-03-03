@@ -9,9 +9,11 @@ import Borrows from "./pages/Borrows";
 import Login from "./pages/Login";
 import Statue from "./pages/Statue";
 import Contact from "./pages/Contact";
+import {AuthProvider} from "./contexts/AuthContext";
 
 function App() {
   return (
+    <AuthProvider>
     <Layout>
       <Routes>
         <Route path="/" element={<MainPage />} />
@@ -24,6 +26,7 @@ function App() {
         <Route path="/books/details/:id" element={<BookDetails />} />
       </Routes>
     </Layout>
+    </AuthProvider>
   );
 }
 
