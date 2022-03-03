@@ -11,7 +11,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const authCtx = useContext(AuthContext)
+    const {loginUser} = useContext(AuthContext)
     
     const clearNotification = () =>{
         setFeedback([])
@@ -29,8 +29,7 @@ const Login = () => {
         await axios.post("http://localhost:8090/login", params).then(res=>{
             if(res.status===200){
                 navigate("/")
-                authCtx.setAuthTokens(res.data)
-                authCtx.setAuthTokens(res.data.access_token)
+                loginUser(res.data,res.data.access_token)
               }
                 else
                 setFeedback(
