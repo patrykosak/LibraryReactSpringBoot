@@ -1,6 +1,5 @@
 import React, {createContext, useState, useEffect} from 'react'
 import jwt_decode from "jwt-decode"
-import jwtDecode from 'jwt-decode';
 
 const AuthContext = createContext();
 
@@ -13,7 +12,8 @@ export const AuthProvider = ({children}) => {
 
     const loginUser = (aTokens, userDetails) => {
         setAuthTokens(aTokens)
-        setUser(jwt_decode.apply(userDetails))
+        setUser(jwt_decode(userDetails))
+        console.log(user)
     }
 
     const contextData = {

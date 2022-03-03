@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Navbar,Container, Nav, NavDropdown } from 'react-bootstrap'
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import AuthContext from '../contexts/AuthContext';
 
 const AppNavbar = () => {
+
+  const {user} = useContext(AuthContext)
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
   <Container>
@@ -30,8 +34,12 @@ const AppNavbar = () => {
       </NavDropdown>
     </Nav>
     <Nav>
+      {user ? 
+            <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/logout">Wyloguj się</NavLink></Nav.Link>
+      :
       <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/login">Zaloguj się</NavLink></Nav.Link>
-    </Nav>
+    }
+      </Nav>
   </Navbar.Collapse>
   </Container>
 </Navbar>

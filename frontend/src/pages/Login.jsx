@@ -25,9 +25,9 @@ const Login = () => {
         params.append('username', email);
         params.append('password', password);
 
-        console.log({ username: email, password: password })
         await axios.post("http://localhost:8090/login", params).then(res=>{
             if(res.status===200){
+              console.log(res)
                 navigate("/")
                 loginUser(res.data,res.data.access_token)
               }
