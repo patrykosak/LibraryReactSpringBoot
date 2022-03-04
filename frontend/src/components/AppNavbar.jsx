@@ -5,7 +5,7 @@ import AuthContext from '../contexts/AuthContext';
 
 const AppNavbar = () => {
 
-  const {user,logoutUser} = useContext(AuthContext)
+  const {user,logoutUser,roles} = useContext(AuthContext)
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -27,7 +27,10 @@ const AppNavbar = () => {
     <Nav className="me-auto">
       <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/books">Książki</NavLink></Nav.Link>
       <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/borrows">Wypożyczenia</NavLink></Nav.Link>
+      {roles.includes("USER")?
       <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/adminpanel">Panel admina</NavLink></Nav.Link>
+    : null
+    }
       <NavDropdown title="Informacje" id="collasible-nav-dropdown">
         <NavDropdown.Item><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/statue">Regulamin</NavLink></NavDropdown.Item>
         <NavDropdown.Item><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/contact">Kontakt</NavLink></NavDropdown.Item>

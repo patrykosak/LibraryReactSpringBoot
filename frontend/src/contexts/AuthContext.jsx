@@ -18,9 +18,8 @@ export const AuthProvider = ({children}) => {
     const loginUser = (aTokens, userDetails) => {
         setAuthTokens(aTokens)
         setUser(jwt_decode(userDetails))
-        setRoles(user.roles)
+        setRoles(jwt_decode(userDetails).roles)
         localStorage.setItem('authTokens',JSON.stringify(aTokens))
-        console.log(user)
     }
 
     const logoutUser = () => {
