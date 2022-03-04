@@ -11,12 +11,14 @@ export const AuthProvider = ({children}) => {
     const[user, setUser] = useState(()=>localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
     const[authTokens, setAuthTokens] = useState(()=>localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     const[loading,setLoading] = useState(true)
+    const[roles, setRoles] = useState([])
 
     const navigate = useNavigate()
 
     const loginUser = (aTokens, userDetails) => {
         setAuthTokens(aTokens)
         setUser(jwt_decode(userDetails))
+        setRoles(user.roles)
         localStorage.setItem('authTokens',JSON.stringify(aTokens))
         console.log(user)
     }
@@ -24,6 +26,7 @@ export const AuthProvider = ({children}) => {
     const logoutUser = () => {
         setAuthTokens(null)
         setUser(null)
+        setRoles(null)
         localStorage.removeItem('authTokens')
         navigate("/")
     }
@@ -39,6 +42,7 @@ export const AuthProvider = ({children}) => {
         if(res.status === 200){
         setAuthTokens(res.data)
         setUser(jwt_decode(res.data.access_token))
+        setRoles(user.roles)
         localStorage.setItem('authTokens',JSON.stringify(res.data))
         }
         else{
@@ -52,7 +56,8 @@ export const AuthProvider = ({children}) => {
     const contextData = {
         user: user,
         loginUser: loginUser,
-        logoutUser: logoutUser
+        logoutUser: logoutUser,
+        roles: roles
     }
 
     useEffect(()=>{
