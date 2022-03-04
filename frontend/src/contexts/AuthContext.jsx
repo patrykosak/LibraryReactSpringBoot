@@ -34,7 +34,7 @@ export const AuthProvider = ({children}) => {
         console.log('Update token called')
         const headers = {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${authTokens.refresh_token}`
+            'Authorization': `Bearer ${authTokens?.refresh_token}`
         }
 
         await axios.get("http://localhost:8090/api/token/refresh",{headers:headers}).then(res=>{
@@ -50,6 +50,9 @@ export const AuthProvider = ({children}) => {
             localStorage.removeItem('authTokens')
         }
     })
+    if(loading){
+        setLoading(false)
+    }
     }
 
     const contextData = {
@@ -61,6 +64,9 @@ export const AuthProvider = ({children}) => {
 
     useEffect(()=>{
 
+        if(loading){
+            updateToken()
+        }
 
         const minutes = 1000 * 60 * 9
        let interval = setInterval(()=>{
@@ -74,7 +80,7 @@ export const AuthProvider = ({children}) => {
 
     return(
         <AuthContext.Provider value={contextData}>
-            {children}
+            {loading ? children : null}
         </AuthContext.Provider>
     )
 } 
