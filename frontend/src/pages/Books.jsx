@@ -35,8 +35,8 @@ const Books = () => {
       <>
       <SearchBar style="input-group  mt-3 m-auto w-50" pHolder="Szukaj książki" setSearchQuery={setSearchQuery} />
     <Row>
-        <Col xs={4}><Filters setFilteringCategory={setFilteringCategory} setFilteringPublishingHouse={setFilteringPublishingHouse} /></Col>
-        <Col xs={8}><BookList books={books}/></Col>
+        <Col className="col-lg-3 col-12"><Filters setFilteringCategory={setFilteringCategory} setFilteringPublishingHouse={setFilteringPublishingHouse} /></Col>
+        <Col className="mx-4 col-lg-8 col-12"><BookList books={books}/></Col>
     </Row>
     <AppPagination pageNumber={pageNumber} setPageNumber={setPageNumber} info={info}/>
     </>
