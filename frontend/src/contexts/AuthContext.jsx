@@ -11,8 +11,11 @@ export const AuthProvider = ({children}) => {
 
 
     const loginUser = (aTokens, userDetails) => {
+
+        //localStorage.getItem('authTokens')
         setAuthTokens(aTokens)
         setUser(jwt_decode(userDetails))
+        localStorage.setItem('authTokens',JSON.stringify(aTokens))
         console.log(user)
     }
 
