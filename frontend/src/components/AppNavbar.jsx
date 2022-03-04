@@ -5,7 +5,7 @@ import AuthContext from '../contexts/AuthContext';
 
 const AppNavbar = () => {
 
-  const {user} = useContext(AuthContext)
+  const {user,logoutUser} = useContext(AuthContext)
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -35,7 +35,7 @@ const AppNavbar = () => {
     </Nav>
     <Nav>
       {user ? 
-            <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/logout">Wyloguj się</NavLink></Nav.Link>
+            <Nav.Link onClick={logoutUser} >Wyloguj się</Nav.Link>
       :
       <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/login">Zaloguj się</NavLink></Nav.Link>
     }

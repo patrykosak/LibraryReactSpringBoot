@@ -19,17 +19,17 @@ export const AuthProvider = ({children}) => {
         console.log(user)
     }
 
-    const contextData = {
-        user: user,
-        loginUser: loginUser,
-        logoutUser: logoutUser
-    }
-
     const logoutUser = () => {
         setAuthTokens(null)
         setUser(null)
         localStorage.removeItem('authTokens')
-        navigate("/")
+        //navigate("/")
+    }
+
+    const contextData = {
+        user: user,
+        loginUser: loginUser,
+        logoutUser: logoutUser
     }
 
     return(
