@@ -1,14 +1,16 @@
 import React, {createContext, useState, useEffect} from 'react'
 import jwt_decode from "jwt-decode"
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
 export default AuthContext;
 
 export const AuthProvider = ({children}) => {
-    const[user, setUser] = useState(localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
-    const[authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
+    const[user, setUser] = useState(()=>localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
+    const[authTokens, setAuthTokens] = useState(()=>localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
 
+    const navigate = useNavigate()
 
     const loginUser = (aTokens, userDetails) => {
         setAuthTokens(aTokens)
@@ -19,7 +21,15 @@ export const AuthProvider = ({children}) => {
 
     const contextData = {
         user: user,
-        loginUser: loginUser
+        loginUser: loginUser,
+        logoutUser: logoutUser
+    }
+
+    const logoutUser = () => {
+        setAuthTokens(null)
+        setUser(null)
+        localStorage.removeItem('authTokens')
+        navigate("/")
     }
 
     return(
