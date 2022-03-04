@@ -1,6 +1,7 @@
 import React, {createContext, useState, useEffect} from 'react'
 import jwt_decode from "jwt-decode"
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 const AuthContext = createContext();
 
@@ -23,7 +24,32 @@ export const AuthProvider = ({children}) => {
         setAuthTokens(null)
         setUser(null)
         localStorage.removeItem('authTokens')
-        //navigate("/")
+        navigate("/")
+    }
+
+    const updateToken = async () => {
+
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + authTokens.refresh_token
+        }
+        const params = new URLSearchParams();
+        params.append('Authorization', authTokens.refresh_token);
+
+        await axios.get("http://localhost:8090/api/token/refresh",{headers:headers}).then(res=>{
+            
+        if(res.status === 200){
+        setAuthTokens(res.data)
+        setUser(jwt_decode(res.data.access_token))
+        localStorage.setItem('authTokens',JSON.stringify(res.data))
+        }
+        else{
+            setAuthTokens(null)
+            setUser(null)
+            localStorage.removeItem('authTokens')
+            navigate("/")
+        }
+    })
     }
 
     const contextData = {
