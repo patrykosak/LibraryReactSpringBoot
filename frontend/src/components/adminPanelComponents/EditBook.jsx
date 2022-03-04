@@ -71,7 +71,7 @@ const EditBook = () => {
         setReleaseYear(e.releaseYear)
         setDescription(e.description)
         setSelectedAuthorId(e.authorId)
-        setSelectedCategoryId({value: e.categoryId, label: e.categoryName})
+        setSelectedCategoryId(e.categoryId)
         setSelectedPublishingHouseId(e.publishingHouseId)
     }
 
@@ -140,7 +140,7 @@ const EditBook = () => {
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridNames">
-                    <Select onChange={(e)=>{setSelectedPublishingHouseId(e.value)}} value={{label:'mylabel1',value:1}} options={publishingHouses} placeholder="Wydawnictwo"/>
+                    <Select onChange={(e)=>{setSelectedPublishingHouseId(e.value)}} defaultValue={selectedPublishingHouseId} options={publishingHouses} placeholder="Wydawnictwo"/>
             </Form.Group>
         </Row>
         <div className="d-flex justify-content-end">

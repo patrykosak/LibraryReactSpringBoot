@@ -11,7 +11,7 @@ export const AuthProvider = ({children}) => {
     const[user, setUser] = useState(()=>localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
     const[authTokens, setAuthTokens] = useState(()=>localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     const[loading,setLoading] = useState(true)
-    const[roles, setRoles] = useState([])
+    const[roles, setRoles] = useState(null)
 
     const navigate = useNavigate()
 

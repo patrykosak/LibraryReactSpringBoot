@@ -58,7 +58,7 @@ const BookDetails = () => {
       src={book.url}
       className='img-thumbnail'
       alt='...'
-      style={{ maxWidth: '24rem' }}
+      style={{ maxWidth: 'inherit' }}
     />
         </Col>
         <Col xs={12} md={9}>

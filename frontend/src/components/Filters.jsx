@@ -30,7 +30,7 @@ const Filters = ({setFilteringPublishingHouse,setFilteringCategory}) => {
         <Accordion defaultActiveKey="0" className='m-4'>
   <Accordion.Item eventKey="0">
     <Accordion.Header onClick={()=>{clear()}}>Kategorie</Accordion.Header>
-    <Accordion.Body className='d-flex'>
+    <Accordion.Body  style={{flexWrap:"wrap"}} className='d-flex'>
         {categories.map((category,index)=>{
            return <FilterButton task={setFilteringCategory} key={index} name={category.name} index={index} item={category.name}/>
         })}
@@ -38,7 +38,7 @@ const Filters = ({setFilteringPublishingHouse,setFilteringCategory}) => {
   </Accordion.Item>
   <Accordion.Item eventKey="1">
     <Accordion.Header onClick={()=>{clear()}}>Wydawnictwa</Accordion.Header>
-    <Accordion.Body className='d-flex'>
+    <Accordion.Body style={{flexWrap:"wrap"}} className='d-flex'>
         {publishingHouses.map((publisingHouse,index)=>{
             return <FilterButton task={setFilteringPublishingHouse} key={index} name={publisingHouse.name} index={index} item={publisingHouse.name} />
         })}
