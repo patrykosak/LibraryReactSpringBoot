@@ -10,6 +10,7 @@ export default AuthContext;
 export const AuthProvider = ({children}) => {
     const[user, setUser] = useState(()=>localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
     const[authTokens, setAuthTokens] = useState(()=>localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
+    const[loading,setLoading] = useState(true)
 
     const navigate = useNavigate()
 
@@ -28,16 +29,13 @@ export const AuthProvider = ({children}) => {
     }
 
     const updateToken = async () => {
-
+        console.log('Update token called')
         const headers = {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + authTokens.refresh_token
+            'Authorization': `Bearer ${authTokens.refresh_token}`
         }
-        const params = new URLSearchParams();
-        params.append('Authorization', authTokens.refresh_token);
 
         await axios.get("http://localhost:8090/api/token/refresh",{headers:headers}).then(res=>{
-            
         if(res.status === 200){
         setAuthTokens(res.data)
         setUser(jwt_decode(res.data.access_token))
@@ -47,7 +45,6 @@ export const AuthProvider = ({children}) => {
             setAuthTokens(null)
             setUser(null)
             localStorage.removeItem('authTokens')
-            navigate("/")
         }
     })
     }
@@ -57,6 +54,17 @@ export const AuthProvider = ({children}) => {
         loginUser: loginUser,
         logoutUser: logoutUser
     }
+
+    useEffect(()=>{
+
+       let interval = setInterval(()=>{
+            if(authTokens){
+                updateToken()
+            }
+        },2000)
+        return () => clearInterval(interval)
+
+    },[authTokens,loading])
 
     return(
         <AuthContext.Provider value={contextData}>
