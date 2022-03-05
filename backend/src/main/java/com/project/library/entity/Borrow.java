@@ -35,7 +35,7 @@ public class Borrow {
 
     @ManyToOne
     @JoinColumn(
-            referencedColumnName = "userId"
+            referencedColumnName = "email"
     )
     private AppUser reader;
 

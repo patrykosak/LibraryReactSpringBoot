@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface BorrowRepository extends JpaRepository<Borrow, Long> {
-    public List<Borrow> findAllByReaderUserId(Long readerId);
+    public List<Borrow> findAllByReaderEmail(String email);
     Page<Borrow> findByStatus(String status, Pageable pageable);
     Page<Borrow> findByBookTitleContainingOrReaderNameContainingOrReaderSurnameContainingOrReaderEmail(String searchQuery,String searchQuery2, String searchQuery3, String searchQuery4, Pageable pageable);
     Page<Borrow> findByStatusAndBookTitleContainingOrReaderNameOrReaderSurnameContainingOrReaderEmailContaining(String status, String searchQuery, String searchQuery2, String searchQuery3, String searchQuery4, Pageable pageable);

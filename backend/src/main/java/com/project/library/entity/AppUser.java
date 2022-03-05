@@ -15,20 +15,9 @@ import java.util.Collection;
 public class AppUser {
 
     @Id
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
-    private Long userId;
+    private String email;
     private String name;
     private String surname;
-    @Column(unique=true)
-    private String email;
     private String password;
     private String schoolClass;
     @ManyToMany(fetch = FetchType.EAGER)

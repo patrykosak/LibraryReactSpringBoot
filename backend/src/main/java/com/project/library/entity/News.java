@@ -32,7 +32,7 @@ public class News {
 
     @ManyToOne
     @JoinColumn(
-            referencedColumnName = "userId"
+            referencedColumnName = "email"
     )
     private AppUser creator;
 }
