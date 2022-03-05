@@ -85,12 +85,12 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 
     @Override
     public void deleteUserByEmail(String email) {
-        appUserRepository.deleteById(email);
+        appUserRepository.deleteByEmail(email);
     }
 
     @Override
-    public void updateAppUser(Long userId, AppUser appUser) {
-        AppUser appUserDB = appUserRepository.findById(userId).get();
+    public void updateAppUser(String email, AppUser appUser) {
+        AppUser appUserDB = appUserRepository.findByEmail(email);
 
         if(Objects.nonNull(appUser.getName())&&!"".equalsIgnoreCase(appUser.getName())){
             appUserDB.setName(appUser.getName());

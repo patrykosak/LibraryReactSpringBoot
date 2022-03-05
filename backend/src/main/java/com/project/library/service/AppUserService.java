@@ -15,5 +15,5 @@ public interface AppUserService {
 
     void deleteUserByEmail(String email);
 
-    void updateAppUser(Long userId, AppUser appUser);
+    void updateAppUser(String email, AppUser appUser);
 }
