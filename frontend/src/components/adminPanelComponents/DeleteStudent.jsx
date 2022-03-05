@@ -13,7 +13,7 @@ const DeleteStudent = () => {
     const fetchData = async (e) => {
         axios.get("http://localhost:8090/api/users").then(res=>{
             const options = res.data.map(u=>{
-                return {value: u.userId, label: u.email}
+                return {value: u.email, label: u.email}
             })
             setStudents(options)
         })
