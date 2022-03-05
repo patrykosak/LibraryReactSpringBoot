@@ -84,8 +84,8 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
-    public void deleteUserById(Long userId) {
-        appUserRepository.deleteById(userId);
+    public void deleteUserByEmail(String email) {
+        appUserRepository.deleteById(email);
     }
 
     @Override

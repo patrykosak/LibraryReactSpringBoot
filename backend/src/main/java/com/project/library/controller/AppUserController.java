@@ -64,8 +64,8 @@ public class AppUserController {
     }
 
     @DeleteMapping("/user/delete/{id}")
-    public ResponseEntity<AppUser> deleteUserById(@PathVariable("id") Long userId){
-        appUserService.deleteUserById(userId);
+    public ResponseEntity<AppUser> deleteUserByEmail(@PathVariable("id") String email){
+        appUserService.deleteUserByEmail(email);
         return ResponseEntity.ok().build();
     }
 

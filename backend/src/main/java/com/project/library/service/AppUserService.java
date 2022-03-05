@@ -13,7 +13,7 @@ public interface AppUserService {
     AppUser getAppUser(String email);
     List<AppUser> getAppUsers();
 
-    void deleteUserById(Long userId);
+    void deleteUserByEmail(String email);
 
     void updateAppUser(Long userId, AppUser appUser);
 }
