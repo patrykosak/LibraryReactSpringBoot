@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Row, Form, FloatingLabel,Button,Col,Alert } from 'react-bootstrap'
 import axios from 'axios'
+import AuthContext from '../../contexts/AuthContext'
 
 const AddNews = () => {
     const[feedback, setFeedback] = useState([])
@@ -11,12 +12,17 @@ const AddNews = () => {
         setFeedback([])
     }
 
+    const {email} = useContext(AuthContext)
+
     const addNewsHandler = async (e) => {
         e.preventDefault()
 
         const newPost ={
             title: title,
-            content: content
+            content: content,
+            creator: {
+                email: email
+            }
         }
 
         axios.post("http://localhost:8090/news",newPost).then(res=>{
