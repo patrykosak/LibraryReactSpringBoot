@@ -12,7 +12,7 @@ const BorrowRow = ({borrow,fetchData}) => {
     <>
     <tr>
   <td>{borrow?.book?.title}</td>
-  <td>{borrow?.reader}</td>
+  <td>{borrow?.reader?.name +" " + borrow?.reader?.surname}</td>
   <td>{borrow?.borrowDate}</td>
   <td>{borrow?.deadline}</td>
   <td>{borrow?.status}</td>

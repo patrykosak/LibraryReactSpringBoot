@@ -12,6 +12,7 @@ export const AuthProvider = ({children}) => {
     const[authTokens, setAuthTokens] = useState(()=>localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     const[loading,setLoading] = useState(true)
     const[roles, setRoles] = useState(null)
+    const[email,setEmail] = useState(null)
 
     const navigate = useNavigate()
 
@@ -19,6 +20,7 @@ export const AuthProvider = ({children}) => {
         setAuthTokens(aTokens)
         setUser(jwt_decode(userDetails))
         setRoles(jwt_decode(userDetails).roles)
+        setEmail(jwt_decode(userDetails).sub)
         localStorage.setItem('authTokens',JSON.stringify(aTokens))
     }
 
@@ -26,6 +28,7 @@ export const AuthProvider = ({children}) => {
         setAuthTokens(null)
         setUser(null)
         setRoles(null)
+        setEmail(null)
         localStorage.removeItem('authTokens')
         navigate("/")
     }
@@ -42,11 +45,14 @@ export const AuthProvider = ({children}) => {
         setAuthTokens(res.data)
         setUser(jwt_decode(res.data.access_token))
         setRoles(user.roles)
+        setEmail(user.sub)
         localStorage.setItem('authTokens',JSON.stringify(res.data))
         }
         else{
             setAuthTokens(null)
             setUser(null)
+            setRoles(null)
+            setEmail(null)
             localStorage.removeItem('authTokens')
         }
     })
@@ -59,7 +65,8 @@ export const AuthProvider = ({children}) => {
         user: user,
         loginUser: loginUser,
         logoutUser: logoutUser,
-        roles: roles
+        roles: roles,
+        email: email
     }
 
     useEffect(()=>{

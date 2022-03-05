@@ -64,7 +64,6 @@ const Borrows = () => {
                     {borrows.map((borrow,index)=>(
                         <BorrowRow fetchData={fetchData} key={index} borrow={borrow} /> 
                     ))}
-                <BorrowRow />
                 <AppPagination pageNumber={pageNumber} setPageNumber={setPageNumber} info={info}/>
                 </tbody>
             </table>

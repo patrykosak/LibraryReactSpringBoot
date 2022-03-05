@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Row, Col, Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
+import AuthContext from '../contexts/AuthContext';
 
 const BookDetails = () => {
     const[book, setBook] = useState([])
@@ -11,6 +12,8 @@ const BookDetails = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const {email} = useContext(AuthContext)
+
     const params = useParams();
 
     const handleBorrow = async () => {
@@ -19,12 +22,10 @@ const BookDetails = () => {
       const date = `${current.getDate()}/0${current.getMonth()+1}/${current.getFullYear()}`;
 
       const borrow = {
-        // deadline: ,
-        // returnDate: ,
         status: "W trakcie realizacji",
-        // reader: {
-        //   userId: 2
-        // },
+         reader: {
+            email: email
+         },
         book: {
           isbn: params.id
         }
