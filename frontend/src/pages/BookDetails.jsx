@@ -52,7 +52,7 @@ const BookDetails = () => {
     },[])
 
   return (
-    <div className="m-4">
+    <div  style={{minHeight:"75vh"}} className="m-4">
     <Row>
         <Col xs={12} md={3}>
         <img

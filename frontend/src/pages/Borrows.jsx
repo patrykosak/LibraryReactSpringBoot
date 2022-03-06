@@ -33,7 +33,7 @@ const Borrows = () => {
 
   return (
     <>
-    <div style={{overflowX:"auto"}} className='container '>
+    <div style={{overflowX:"auto",minHeight:"74vh"}} className='container '>
         <div className='py-4'>
             <div className="table-title">
                 <div className="row mb-1">

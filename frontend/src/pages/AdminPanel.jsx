@@ -51,7 +51,7 @@ const AdminPanel = () => {
               <Nav.Item>
                 <Nav.Link eventKey="newses">Posty</Nav.Link>
               </Nav.Item>
-              {roles?
+              {roles?.includes("ADMIN")?
               <Nav.Item>
                 <Nav.Link eventKey="workers">Pracownicy</Nav.Link>
               </Nav.Item>

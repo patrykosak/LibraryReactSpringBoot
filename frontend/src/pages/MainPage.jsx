@@ -16,7 +16,7 @@ const MainPage = () => {
     fetchData()
   },[])
   return (
-    <div>
+    <div  style={{minHeight:"75vh"}}>
        <AppCarousel />
        {newses.map((news, index)=>{
          return <News key={index} news={news} />
