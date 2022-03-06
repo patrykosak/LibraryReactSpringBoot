@@ -11,6 +11,7 @@ import Statue from "./pages/Statue";
 import Contact from "./pages/Contact";
 import AuthContext from "./contexts/AuthContext";
 import { useContext } from "react";
+import MyBorrows from "./pages/MyBorrows";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/adminpanel" element={roles?.includes("ADMIN") ? <AdminPanel /> : <Navigate to="/" /> } />
         <Route path="/borrows" element={roles?.includes("ADMIN") ? <Borrows /> : <Navigate to="/" /> } />
         <Route path="/login" element={!roles ? <Login /> : <Navigate to="/" /> } />
+        <Route path="/myborrows" element={roles ? <MyBorrows /> : <Navigate to="/login" /> } />
         <Route path="/statue" element={<Statue />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/books/details/:id" element={<BookDetails />} />

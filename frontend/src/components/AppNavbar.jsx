@@ -40,6 +40,9 @@ const AppNavbar = () => {
       </NavDropdown>
     </Nav>
     <Nav>
+      {roles.includes("USER")?
+      <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/myborrows">Moje wypożyczenia</NavLink></Nav.Link>
+    :null}
       {user ? 
             <Nav.Link onClick={logoutUser} >Wyloguj się</Nav.Link>
       :
