@@ -10,10 +10,14 @@ const AddWorker = () => {
     const[password,setPassword] = useState("")
     const[confirmPassword,setConfirmPassword] = useState("")
 
+    const clearNotification = () =>{
+        setFeedback([])
+    }
+
     const addWorkerHandler = async (e) => {
         e.preventDefault()
 
-        //if(password===confirmPassword){
+        if(password===confirmPassword){
 
         const newWorker = {
             name: name,
@@ -23,10 +27,37 @@ const AddWorker = () => {
         }
 
         await axios.post("http://localhost:8090/api/user/worker/save",newWorker).then(res=>{
-            console.log(res)
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Pracownik został dodany!
+                </Alert>
+            )
+            else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się dodać pracownika!
+                </Alert>
+            )
+            const myTimeout = setTimeout(clearNotification, 5000);
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                 Użytkownik o podanym emailu już istnieje!
+            </Alert>
+        )
+        const myTimeout = setTimeout(clearNotification, 5000);
         })
     
-    //}
+    }
+    else{
+        setFeedback(
+            <Alert variant="danger">
+               Hasła nie są takie same
+            </Alert>
+        )
+    }
     }
 
   return (

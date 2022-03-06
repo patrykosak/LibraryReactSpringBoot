@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Row, Form, FloatingLabel,Button,Col,Alert } from 'react-bootstrap'
 import axios from 'axios'
 import Select from 'react-select'; 
@@ -47,7 +47,7 @@ const AddStudent = () => {
             password: password,
             schoolClass: selectedClass
         }
-
+        if(password===confirmPassword){
         axios.post("http://localhost:8090/api/user/save", newStudent).then(res=>{
             
         if (res.status === 200)
@@ -71,8 +71,19 @@ const AddStudent = () => {
             </Alert>
         )
         const myTimeout = setTimeout(clearNotification, 5000);
-        })
+        
+    })
+        }
+        else{
+            setFeedback(
+                <Alert variant="danger">
+                   Hasła nie są takie same
+                </Alert>
+            )
+        }
     }
+
+    
 
   return (
     <div className="m-3">
