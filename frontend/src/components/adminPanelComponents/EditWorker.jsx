@@ -10,13 +10,13 @@ const EditWorker = () => {
     const[surname,setSurname] = useState("")
     const[email,setEmail] = useState("")
     const[workers, setWorkers] = useState([])
-    const[selectedWorker, setselectedWorker] = useState(null)
+    const[selectedWorker, setSelectedWorker] = useState(null)
     const[disabledButton,setDisabledButton] = useState(true)
 
     const fetchData = async () => {
         await axios.get("http://localhost:8090/api/users?role=WORKER").then(res=>{
             const options = res.data.map((w)=>{
-                return {value: w.email, label: w.email }
+                return {value: w.email, label: w.email, name: w.name, surname: w.surname }
             })
             setWorkers(options)
         })
@@ -28,10 +28,23 @@ const EditWorker = () => {
 
     const updateWorkerHandler = async (e) => {
         e.preventDefault()
+
+        const updatedWorker = {
+            name: name,
+            surname: surname,
+            email: email
+        }
+
+        axios.put(`http://localhost:8090/api/user/update/${selectedWorker.value}`,updatedWorker).then(res=>{
+            console.log(res)
+        })
     }
 
-    const selectWorkerHandler = () => {
-
+    const selectWorkerHandler = (e) => {
+        setSelectedWorker(e)
+        setName(e.name)
+        setSurname(e.surname)
+        setEmail(e.value)
     }
 
   return (
