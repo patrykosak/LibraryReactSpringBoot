@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Tab, Row, Col, Nav, Tabs } from "react-bootstrap";
 import AddAuthor from "../components/adminPanelComponents/AddAuthor";
 import AddBook from "../components/adminPanelComponents/AddBook";
@@ -21,8 +21,12 @@ import EditNews from "../components/adminPanelComponents/EditNews";
 import EditPublishingHouse from "../components/adminPanelComponents/EditPublishingHouse";
 import EditStudent from "../components/adminPanelComponents/EditStudent";
 import EditWorker from "../components/adminPanelComponents/EditWorker";
+import AuthContext from "../contexts/AuthContext";
 
 const AdminPanel = () => {
+
+  const {roles} = useContext(AuthContext)
+
   return (
     <div style={{minHeight:"70vh"}} className="m-4">
       <Tab.Container id="left-tabs-example" defaultActiveKey="category">
@@ -47,9 +51,11 @@ const AdminPanel = () => {
               <Nav.Item>
                 <Nav.Link eventKey="newses">Posty</Nav.Link>
               </Nav.Item>
+              {roles?
               <Nav.Item>
                 <Nav.Link eventKey="workers">Pracownicy</Nav.Link>
               </Nav.Item>
+              :null}
             </Nav>
           </Col>
           <Col sm={9}>
