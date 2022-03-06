@@ -43,7 +43,7 @@ const AppNavbar = () => {
       {roles?.includes("USER")?
       <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/myborrows">Moje wypożyczenia</NavLink></Nav.Link>
     :null}
-      {user ? 
+      {localStorage.getItem("authTokens") ? 
             <Nav.Link onClick={logoutUser} >Wyloguj się</Nav.Link>
       :
       <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/login">Zaloguj się</NavLink></Nav.Link>

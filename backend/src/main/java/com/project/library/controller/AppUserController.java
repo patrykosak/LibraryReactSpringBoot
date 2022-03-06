@@ -57,6 +57,13 @@ public class AppUserController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/user/worker/save")
+    public ResponseEntity<AppUser> saveWorker(@RequestBody AppUser appUser){
+        appUserService.saveAppUser(appUser);
+        appUserService.addRoleToUser(appUser.getEmail(),"WORKER");
+        return ResponseEntity.ok().build();
+    }
+
     @PutMapping("/user/update/{id}")
     public ResponseEntity<AppUser> updateAppUser(@PathVariable("id") String email, @RequestBody AppUser appUser){
         appUserService.updateAppUser(email, appUser);

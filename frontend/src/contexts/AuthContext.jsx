@@ -75,7 +75,7 @@ export const AuthProvider = ({children}) => {
             updateToken()
         }
 
-        const minutes = 1000 * 60 * 9
+        const minutes = 1000 * 60 * 4
        let interval = setInterval(()=>{
             if(authTokens){
                 updateToken()
