@@ -6,6 +6,7 @@ import AddCategory from "../components/adminPanelComponents/AddCategory";
 import AddNews from "../components/adminPanelComponents/AddNews";
 import AddPublishingHouse from "../components/adminPanelComponents/AddPublishingHouse";
 import AddStudent from "../components/adminPanelComponents/AddStudent";
+import AddWorker from "../components/adminPanelComponents/AddWorker";
 import DeleteAuthor from "../components/adminPanelComponents/DeleteAuthor";
 import DeleteBook from "../components/adminPanelComponents/DeleteBook";
 import DeleteCategory from "../components/adminPanelComponents/DeleteCategory";
@@ -43,6 +44,9 @@ const AdminPanel = () => {
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="newses">Posty</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="workers">Pracownicy</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
@@ -147,6 +151,23 @@ const AdminPanel = () => {
                 </Tab>
                 <Tab eventKey="delete" title="Usuń post">
                     <DeleteNews />
+                </Tab>
+              </Tabs>
+              </Tab.Pane>
+              <Tab.Pane eventKey="workers">
+              <Tabs
+                defaultActiveKey="add"
+                id="uncontrolled-tab-example"
+                className="mb-3"
+              >
+                <Tab eventKey="add" title="Dodaj pracownika">
+                    <AddWorker />
+                </Tab>
+                <Tab eventKey="edit" title="Edytuj pracownika">
+                    
+                </Tab>
+                <Tab eventKey="delete" title="Usuń pracownika">
+                    
                 </Tab>
               </Tabs>
               </Tab.Pane>
