@@ -49,7 +49,7 @@ const AddStudent = () => {
         }
         if(password===confirmPassword){
         axios.post("http://localhost:8090/api/user/save", newStudent).then(res=>{
-            
+            console.log(res)
         if (res.status === 200)
             setFeedback(
                 <Alert variant="success">
@@ -80,6 +80,7 @@ const AddStudent = () => {
                    Hasła nie są takie same
                 </Alert>
             )
+            const myTimeout = setTimeout(clearNotification, 5000);
         }
     }
 
