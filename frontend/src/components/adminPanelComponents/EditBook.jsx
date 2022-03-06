@@ -77,7 +77,25 @@ const EditBook = () => {
             }
             
             axios.put(`http://localhost:8090/books/${selectedBook.value}`,updatedBook).then(res=>{
-                console.log(res)
+                if (res.status === 200)
+                setFeedback(
+                    <Alert variant="success">
+                        Książka została zedytowana!
+                    </Alert>
+                )
+            else
+                setFeedback(
+                    <Alert variant="danger">
+                        Nie udało się zedytować książki!
+                    </Alert>
+                )
+        }).catch((e) => {
+            console.log(e)
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się zedytować książki!
+                </Alert>
+            )
             })
     }
   
