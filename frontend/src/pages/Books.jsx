@@ -33,7 +33,7 @@ const Books = () => {
 
     return (
       <>
-      <SearchBar style="input-group  mt-3 m-auto w-50" pHolder="Szukaj książki" setSearchQuery={setSearchQuery} />
+      <SearchBar style={"input-group  mt-3 m-auto w-50"} pHolder="Szukaj książki" setSearchQuery={setSearchQuery} />
     <Row>
         <Col className="col-lg-3 col-12"><Filters setFilteringCategory={setFilteringCategory} setFilteringPublishingHouse={setFilteringPublishingHouse} /></Col>
         <Col className="mx-4 col-lg-8 col-12"><BookList books={books}/></Col>
