@@ -13,6 +13,19 @@ const EditWorker = () => {
     const[selectedWorker, setselectedWorker] = useState(null)
     const[disabledButton,setDisabledButton] = useState(true)
 
+    const fetchData = async () => {
+        await axios.get("http://localhost:8090/api/users?role=WORKER").then(res=>{
+            const options = res.data.map((w)=>{
+                return {value: w.email, label: w.email }
+            })
+            setWorkers(options)
+        })
+    }
+
+    useEffect(()=>{
+        fetchData()
+    },[])
+
     const updateWorkerHandler = async (e) => {
         e.preventDefault()
     }

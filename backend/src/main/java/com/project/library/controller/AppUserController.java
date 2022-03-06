@@ -44,27 +44,24 @@ public class AppUserController {
     }
 
     @PostMapping("/user/save")
-    public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser){
+    public AppUser saveUser(@RequestBody AppUser appUser){
        AppUser a = appUserService.saveAppUser(appUser);
-         appUserService.addRoleToUser(appUser.getEmail(),"USER");;
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
-        return ResponseEntity.created(uri).body(a);
+         appUserService.addRoleToUser(appUser.getEmail(),"USER");
+        return a;
     }
 
     @PostMapping("/user/admin/save")
     public ResponseEntity<AppUser> saveAdmin(@RequestBody AppUser appUser){
-        AppUser a = appUserService.saveAppUser(appUser);
+        appUserService.saveAppUser(appUser);
         appUserService.addRoleToUser(appUser.getEmail(),"ADMIN");
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/admin/save").toUriString());
-        return ResponseEntity.created(uri).body(a);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/user/worker/save")
     public ResponseEntity<AppUser> saveWorker(@RequestBody AppUser appUser){
-        AppUser a = appUserService.saveAppUser(appUser);
+        appUserService.saveAppUser(appUser);
         appUserService.addRoleToUser(appUser.getEmail(),"WORKER");
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/worker/save").toUriString());
-        return ResponseEntity.created(uri).body(a);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/user/update/{id}")

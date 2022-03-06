@@ -27,7 +27,8 @@ const AddWorker = () => {
         }
 
         await axios.post("http://localhost:8090/api/user/worker/save",newWorker).then(res=>{
-            if (res.status === 200)
+            console.log(res)
+        if (res.status === 200)
             setFeedback(
                 <Alert variant="success">
                     Pracownik został dodany!
