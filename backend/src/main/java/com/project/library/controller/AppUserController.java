@@ -39,8 +39,8 @@ public class AppUserController {
     private final AppUserService appUserService;
 
     @GetMapping("/users")
-    public ResponseEntity<List<AppUser>> getUsers(){
-        return ResponseEntity.ok().body(appUserService.getAppUsers());
+    public ResponseEntity<List<AppUser>> getUsers(@RequestParam(required = false, defaultValue = "") String role){
+        return ResponseEntity.ok().body(appUserService.getAppUsers(role));
     }
 
     @PostMapping("/user/save")
