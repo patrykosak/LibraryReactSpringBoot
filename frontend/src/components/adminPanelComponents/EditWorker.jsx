@@ -36,8 +36,26 @@ const EditWorker = () => {
         }
 
         axios.put(`http://localhost:8090/api/user/update/${selectedWorker.value}`,updatedWorker).then(res=>{
-            console.log(res)
-        })
+            if (res.status === 200)
+            setFeedback(
+                <Alert variant="success">
+                    Pracownik został zedytowany!
+                </Alert>
+            )
+        else
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się zedytować pracownika!
+                </Alert>
+            )
+    }).catch((e) => {
+        console.log(e)
+        setFeedback(
+            <Alert variant="danger">
+                Nie udało się zedytować pracownika!
+            </Alert>
+        )
+    })
     }
 
     const selectWorkerHandler = (e) => {
