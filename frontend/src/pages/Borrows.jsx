@@ -37,7 +37,7 @@ const Borrows = () => {
         <div className='py-4'>
             <div className="table-title">
                 <div className="row mb-1">
-                    <div className="col-9">
+                    <div className="text-center">
                         <h2><b>Wypożyczenia</b></h2>
                     </div>
                 </div>
@@ -64,9 +64,9 @@ const Borrows = () => {
                     {borrows.map((borrow,index)=>(
                         <BorrowRow fetchData={fetchData} key={index} borrow={borrow} /> 
                     ))}
-                <AppPagination pageNumber={pageNumber} setPageNumber={setPageNumber} info={info}/>
                 </tbody>
             </table>
+            <AppPagination pageNumber={pageNumber} setPageNumber={setPageNumber} info={info}/>
         </div>
     </div>
 
