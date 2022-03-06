@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import MyBorrowRow from '../components/MyBorrowRow'
+import AuthContext from '../contexts/AuthContext'
 
 const MyBorrows = () => {
     const[borrows,setBorrows]=useState([])
 
+    const {email} = useContext(AuthContext)
+
     const fetchData = async () => {
-        
+
+        await axios.get(`http://localhost:8090/borrows/user/${email}`).then(res=>{
+            console.log(res)    
+        setBorrows(res.data)
+        })
+
     }
 
     useEffect(()=>{
