@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Row, Form, FloatingLabel,Button,Col,Alert } from 'react-bootstrap'
 import axios from 'axios'
-import Select from 'react-select'; 
 
 const AddWorker = () => {
     const[feedback,setFeedback] = useState([]);
@@ -10,10 +9,24 @@ const AddWorker = () => {
     const[email,setEmail] = useState("")
     const[password,setPassword] = useState("")
     const[confirmPassword,setConfirmPassword] = useState("")
-    const[selectedClass,setSelectedClass] = useState("")
 
     const addWorkerHandler = async (e) => {
         e.preventDefault()
+
+        //if(password===confirmPassword){
+
+        const newWorker = {
+            name: name,
+            surname: surname,
+            email: email,
+            password: password
+        }
+
+        await axios.post("http://localhost:8090/api/user/worker/save",newWorker).then(res=>{
+            console.log(res)
+        })
+    
+    //}
     }
 
   return (
