@@ -22,8 +22,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/books" element={<Books />} />
-        <Route path="/adminpanel" element={roles?.includes("ADMIN") ? <AdminPanel /> : <Navigate to="/" /> } />
-        <Route path="/borrows" element={roles?.includes("ADMIN") ? <Borrows /> : <Navigate to="/" /> } />
+        <Route path="/adminpanel" element={roles?.includes("ADMIN")||roles?.includes("WORKER") ? <AdminPanel /> : <Navigate to="/" /> } />
+        <Route path="/borrows" element={roles?.includes("ADMIN")||roles?.includes("WORKER") ? <Borrows /> : <Navigate to="/" /> } />
         <Route path="/login" element={!roles ? <Login /> : <Navigate to="/" /> } />
         <Route path="/myborrows" element={roles ? <MyBorrows /> : null } />
         <Route path="/statue" element={<Statue />} />
