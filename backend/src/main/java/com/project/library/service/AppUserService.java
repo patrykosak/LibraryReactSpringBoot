@@ -11,7 +11,7 @@ public interface AppUserService {
     Role saveRole(Role role);
     void addRoleToUser(String email, String roleName);
     AppUser getAppUser(String email);
-    List<AppUser> getAppUsers(String role);
+    List<AppUser> getAppUsers();
 
     void deleteUserByEmail(String email);
 
