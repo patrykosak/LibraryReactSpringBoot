@@ -78,9 +78,9 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
-    public List<AppUser> getAppUsers() {
+    public List<AppUser> getAppUsers(String role) {
         log.info("fetching all users");
-        return appUserRepository.findAll();
+        return appUserRepository.findByRolesName(role);
     }
 
     @Override
