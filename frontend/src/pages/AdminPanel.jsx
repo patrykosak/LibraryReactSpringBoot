@@ -13,12 +13,14 @@ import DeleteCategory from "../components/adminPanelComponents/DeleteCategory";
 import DeleteNews from "../components/adminPanelComponents/DeleteNews";
 import DeletePublishingHouse from "../components/adminPanelComponents/DeletePublishingHouse";
 import DeleteStudent from "../components/adminPanelComponents/DeleteStudent";
+import DeleteWorker from "../components/adminPanelComponents/DeleteWorker";
 import EditAuthor from "../components/adminPanelComponents/EditAuthor";
 import EditBook from "../components/adminPanelComponents/EditBook";
 import EditCategory from "../components/adminPanelComponents/EditCategory";
 import EditNews from "../components/adminPanelComponents/EditNews";
 import EditPublishingHouse from "../components/adminPanelComponents/EditPublishingHouse";
 import EditStudent from "../components/adminPanelComponents/EditStudent";
+import EditWorker from "../components/adminPanelComponents/EditWorker";
 
 const AdminPanel = () => {
   return (
@@ -164,10 +166,10 @@ const AdminPanel = () => {
                     <AddWorker />
                 </Tab>
                 <Tab eventKey="edit" title="Edytuj pracownika">
-                    
+                    <EditWorker />
                 </Tab>
                 <Tab eventKey="delete" title="Usuń pracownika">
-                    
+                    <DeleteWorker />
                 </Tab>
               </Tabs>
               </Tab.Pane>
