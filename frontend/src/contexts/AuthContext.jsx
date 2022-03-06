@@ -55,6 +55,12 @@ export const AuthProvider = ({children}) => {
             setEmail(null)
             localStorage.removeItem('authTokens')
         }
+    }).catch((e)=>{
+        setAuthTokens(null)
+            setUser(null)
+            setRoles(null)
+            setEmail(null)
+            localStorage.removeItem('authTokens')
     })
     if(loading){
         setLoading(false)
