@@ -48,7 +48,7 @@ const Login = () => {
           <p>Witamy ponownie! Zaloguj się do swojego konta i wypożyczaj książki</p>
           {isError &&
               <Alert variant="danger">
-                  Nie prawidłowe hasło lub E-mail!
+                  Nieprawidłowe hasło lub E-mail!
               </Alert>}
           <div className={styles.floatingLabel}>
               <input placeholder="E-mail" type="email" id="email" value={email} onChange={(e)=>setEmail(e.target.value)} autoComplete="off" required />

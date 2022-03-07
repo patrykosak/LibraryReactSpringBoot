@@ -6,7 +6,9 @@ const News = ({news}) => {
     <h1>{news.title}</h1>
     <hr />
     <h3>{news.date}</h3>
+    <pre>
     <p>{news.content}</p>
+    </pre>
     </div>
   )
 }

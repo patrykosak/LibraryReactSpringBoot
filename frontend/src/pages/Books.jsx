@@ -40,7 +40,7 @@ const Books = () => {
     if(isLoading) return <Loading />
 
     return (
-      <>
+      <div style={{minHeight:"74vh"}}>
       <Row>
           <Col className="col-lg-3 col-12"></Col>
           <Col className='col-lg-8 col-12'>      <SearchBar style={"input-group  mt-3 mx-4 w-100"} pHolder="Szukaj książki" setSearchQuery={setSearchQuery} /></Col>
@@ -59,7 +59,7 @@ const Books = () => {
     </Row>
     
 
-    </>
+    </div>
   )
 }
 
