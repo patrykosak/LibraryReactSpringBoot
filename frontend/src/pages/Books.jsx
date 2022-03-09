@@ -35,7 +35,7 @@ const Books = () => {
     }
     useEffect(()=>{
         fetchBooks()
-    },[pageNumber, searchQuery, filteringCategory, filteringPublishingHouse])
+    },[pageNumber, searchQuery, filteringCategory, filteringPublishingHouse,booksPerPage])
 
     if(isLoading) return <Loading />
 
@@ -50,7 +50,7 @@ const Books = () => {
         <Col className="col-lg-3 col-12">
             <Filters setFilteringCategory={setFilteringCategory} setFilteringPublishingHouse={setFilteringPublishingHouse} />
             <h5 className='text-center mx-5'>Liczba książek na stronę</h5>
-            <Select className='mx-5 w-75' options={options} placeholder={booksPerPage}/>
+            <Select onChange={(e)=>{setBooksPerPage(e.value)}} className='mx-5 w-75' options={options} placeholder={booksPerPage}/>
             </Col>
         <Col className="mx-4 col-lg-8 col-12">
             <BookList books={books}/>

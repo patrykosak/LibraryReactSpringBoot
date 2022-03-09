@@ -22,7 +22,7 @@ const BookCard = ({book}) => {
       </div>
     </Card.Text>
     <div className='d-flex justify-content-center'>
-    <Button style={{bottom:"20px"}} className='m-3 w-100' onClick={()=>bookDetailsHandler()} variant="primary">Szczegóły</Button>
+    <Button className='m-3 w-100' onClick={()=>bookDetailsHandler()} variant="primary">Szczegóły</Button>
     </div>
   </Card.Body>
 </Card>
