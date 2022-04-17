@@ -36,7 +36,7 @@ const EditStudent = () => {
     const fetchData = async (e) => {
         axios.get("http://localhost:8090/api/users").then(res=>{
             const options = res.data.map(u=>{
-                return {value: u.email, label: u.email, name: u.name, surname: u.surname, schoolClass: u.schoolClass}
+                return {value: u.userId, label: u.email, name: u.name, surname: u.surname, schoolClass: u.schoolClass}
             })
             setStudents(options)
         })

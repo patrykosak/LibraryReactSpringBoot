@@ -11,6 +11,7 @@ import Statue from "./pages/Statue";
 import Contact from "./pages/Contact";
 import AuthContext from "./contexts/AuthContext";
 import { useContext } from "react";
+import Payment from "./components/Payment";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login" element={!roles ? <Login /> : <Navigate to="/" /> } />
         <Route path="/statue" element={<Statue />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/payment" element={<Payment />} />
         <Route path="/books/details/:id" element={<BookDetails />} />
       </Routes>
     </Layout>
