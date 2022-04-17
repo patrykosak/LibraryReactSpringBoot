@@ -11,11 +11,8 @@ import Statue from "./pages/Statue";
 import Contact from "./pages/Contact";
 import AuthContext from "./contexts/AuthContext";
 import { useContext } from "react";
-<<<<<<< HEAD
 import Payment from "./components/Payment";
-=======
 import MyBorrows from "./pages/MyBorrows";
->>>>>>> 73ce9d93cf0a6b05a68343ed8b387d4c5db3a79b
 
 function App() {
 
