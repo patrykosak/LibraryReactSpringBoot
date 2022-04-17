@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 const Contact = () => {
   return (
       <>
-    <Row className="ms-5 mt-3">
+    <Row className="ms-5 mt-3" >
     <Col xs={4} className="d-flex">
         <div className="d-flex justify-content-start align-items-center">
             <img src="https://img.icons8.com/office/40/000000/iphone.png" alt="telefon" />
@@ -46,9 +46,11 @@ const Contact = () => {
         </div>
     </Col>
 </Row>
+<br/>
 <Row className="mt-3">
     <div className="text-center">
         <h1 className="">Odwiedź nas</h1>
+        <br/>
         <div className="">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2431.2346949975704!2d16.91187911580511!3d52.45677687980238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470443d224a2b073%3A0xa813667f8f2f45ec!2sSzko%C5%82a%20Podstawowa%20nr%2017%20J.I%20Kraszewskiego!5e0!3m2!1spl!2spl!4v1646260606613!5m2!1spl!2spl" width="70%" height="500px"  loading="lazy" title="Google"></iframe>
         </div>

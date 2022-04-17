@@ -39,14 +39,14 @@ public class AppUserController {
     private final AppUserService appUserService;
 
     @GetMapping("/users")
-    public ResponseEntity<List<AppUser>> getUsers(){
-        return ResponseEntity.ok().body(appUserService.getAppUsers());
+    public ResponseEntity<List<AppUser>> getUsers(@RequestParam(required = false, defaultValue = "") String role){
+        return ResponseEntity.ok().body(appUserService.getAppUsers(role));
     }
 
     @PostMapping("/user/save")
     public AppUser saveUser(@RequestBody AppUser appUser){
        AppUser a = appUserService.saveAppUser(appUser);
-         appUserService.addRoleToUser(appUser.getEmail(),"USER");;
+         appUserService.addRoleToUser(appUser.getEmail(),"USER");
         return a;
     }
 
@@ -54,6 +54,13 @@ public class AppUserController {
     public ResponseEntity<AppUser> saveAdmin(@RequestBody AppUser appUser){
         appUserService.saveAppUser(appUser);
         appUserService.addRoleToUser(appUser.getEmail(),"ADMIN");
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/user/worker/save")
+    public ResponseEntity<AppUser> saveWorker(@RequestBody AppUser appUser){
+        appUserService.saveAppUser(appUser);
+        appUserService.addRoleToUser(appUser.getEmail(),"WORKER");
         return ResponseEntity.ok().build();
     }
 

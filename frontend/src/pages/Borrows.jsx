@@ -19,7 +19,7 @@ const Borrows = () => {
     ]
 
     const fetchData = async () => {
-        axios.get(`http://localhost:8090/borrows?pageNumber=${pageNumber}&pageSize=4&status=${status}&searchQuery=${searchQuery}`).then(res=>{
+        axios.get(`http://localhost:8090/borrows?pageNumber=${pageNumber}&pageSize=100&status=${status}&searchQuery=${searchQuery}`).then(res=>{
         console.log(res)    
         setBorrows(res.data.content)
             setInfo(res.data)
@@ -33,11 +33,11 @@ const Borrows = () => {
 
   return (
     <>
-    <div style={{overflowX:"auto"}} className='container '>
+    <div style={{overflowX:"auto",minHeight:"74vh"}} className='container '>
         <div className='py-4'>
             <div className="table-title">
                 <div className="row mb-1">
-                    <div className="col-9">
+                    <div className="text-center">
                         <h2><b>Wypożyczenia</b></h2>
                     </div>
                 </div>
@@ -64,9 +64,9 @@ const Borrows = () => {
                     {borrows.map((borrow,index)=>(
                         <BorrowRow fetchData={fetchData} key={index} borrow={borrow} /> 
                     ))}
-                <AppPagination pageNumber={pageNumber} setPageNumber={setPageNumber} info={info}/>
                 </tbody>
             </table>
+            <AppPagination pageNumber={pageNumber} setPageNumber={setPageNumber} info={info}/>
         </div>
     </div>
 

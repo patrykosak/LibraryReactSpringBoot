@@ -11,7 +11,7 @@ const DeleteStudent = () => {
     const[students, setStudents] = useState([])
 
     const fetchData = async (e) => {
-        axios.get("http://localhost:8090/api/users").then(res=>{
+        axios.get("http://localhost:8090/api/users?role=USER").then(res=>{
             const options = res.data.map(u=>{
                 return {value: u.email, label: u.email}
             })

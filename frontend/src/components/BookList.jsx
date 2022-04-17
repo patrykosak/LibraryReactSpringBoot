@@ -1,6 +1,6 @@
 import React from "react";
 import BookCard from "./BookCard"
-import { Row,Col, Pagination } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 const BookList = ({books}) => {
   return (

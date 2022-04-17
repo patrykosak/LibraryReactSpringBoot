@@ -3,14 +3,24 @@ import { useParams } from 'react-router-dom'
 import { Row, Col, Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import AuthContext from '../contexts/AuthContext';
-
+import { useNavigate } from 'react-router-dom';
 const BookDetails = () => {
+
+    const {roles} = useContext(AuthContext)
+    const navigate = useNavigate();
     const[book, setBook] = useState([])
     const [show, setShow] = useState(false);
     const [disabledButton, setDisabledButton] = useState(true);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+      if(roles){
+      setShow(true)
+      }
+      else{
+        navigate("/login")
+      }
+    };
 
     const {email} = useContext(AuthContext)
 
@@ -52,7 +62,7 @@ const BookDetails = () => {
     },[])
 
   return (
-    <div className="m-4">
+    <div  style={{minHeight:"75vh"}} className="m-4">
     <Row>
         <Col xs={12} md={3}>
         <img

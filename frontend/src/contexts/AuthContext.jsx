@@ -55,6 +55,12 @@ export const AuthProvider = ({children}) => {
             setEmail(null)
             localStorage.removeItem('authTokens')
         }
+    }).catch((e)=>{
+        setAuthTokens(null)
+            setUser(null)
+            setRoles(null)
+            setEmail(null)
+            localStorage.removeItem('authTokens')
     })
     if(loading){
         setLoading(false)
@@ -75,7 +81,7 @@ export const AuthProvider = ({children}) => {
             updateToken()
         }
 
-        const minutes = 1000 * 60 * 9
+        const minutes = 1000 * 60 * 4
        let interval = setInterval(()=>{
             if(authTokens){
                 updateToken()

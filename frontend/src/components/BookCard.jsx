@@ -11,16 +11,18 @@ const BookCard = ({book}) => {
   }
 
   return (
-      <Col xs={4}>
-    <Card style={{borderRadius: "10px", border: "3px solid #0b5ed7",minHeight:"643px",width:"100%" }} className={" mb-4"}>
-  <Card.Img style={{borderRadius:"10px",maxHeight:"400px"}} variant="top" src={book.url} />
+      <Col className="mb-4" xs={4}>
+    <Card style={{borderRadius: "10px",height:"100%", border: "3px solid #0b5ed7", width:"100%" }}>
+  <Card.Img style={{borderRadius:"10px"}} variant="top" src={book.url} />
   <Card.Body>
     <Card.Title>{book.title}</Card.Title>
     <Card.Text>
+      <div>
       {book.description?.substr(0,200)}
+      </div>
     </Card.Text>
     <div className='d-flex justify-content-center'>
-    <Button className='m-3 w-100' style={{position:"absolute" ,bottom:"20px"}} onClick={()=>bookDetailsHandler()} variant="primary">Szczegóły</Button>
+    <Button className='m-3 w-100' onClick={()=>bookDetailsHandler()} variant="primary">Szczegóły</Button>
     </div>
   </Card.Body>
 </Card>

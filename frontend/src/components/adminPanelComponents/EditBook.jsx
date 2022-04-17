@@ -19,12 +19,10 @@ const EditBook = () => {
     const[selectedAuthorId, setSelectedAuthorId] = useState()
     const[selectedCategoryId, setSelectedCategoryId] = useState()
     const[selectedPublishingHouseId, setSelectedPublishingHouseId] = useState()
-    const[selectedPublishingHouseName, setSelectedPublishingHouseName] = useState()
   
     const fetchData = async () => {
         await axios.get("http://localhost:8090/books/all").then(res=>{
             const options = res.data.map((b)=>{
-                //console.log(b)
                 return {value: b.isbn, label: b.title, amount: b.amount, releaseYear: b.releaseYear, url: b.url, description: b.description, authorId: b?.author?.authorId, categoryId: b?.category?.categoryId, categoryName: b?.category?.name, publishingHouseId: b?.publishingHouse?.publishingHouseId}
             })
             setBooks(options)
@@ -59,6 +57,46 @@ const EditBook = () => {
 
     const updateBook = async (e) => {
         e.preventDefault()
+
+        const updatedBook = {
+            isbn: ISBN,
+            title: title,
+            releaseYear: releaseYear,
+            amount: amount,
+            url: url,
+            description: description,
+            author: {
+                authorId: selectedAuthorId
+            },
+            category: {
+                categoryId: selectedCategoryId
+            } ,
+            publishingHouse: {
+                publishingHouseId: selectedPublishingHouseId
+            }
+            }
+            
+            axios.put(`http://localhost:8090/books/${selectedBook.value}`,updatedBook).then(res=>{
+                if (res.status === 200)
+                setFeedback(
+                    <Alert variant="success">
+                        Książka została zedytowana!
+                    </Alert>
+                )
+            else
+                setFeedback(
+                    <Alert variant="danger">
+                        Nie udało się zedytować książki!
+                    </Alert>
+                )
+        }).catch((e) => {
+            console.log(e)
+            setFeedback(
+                <Alert variant="danger">
+                    Nie udało się zedytować książki!
+                </Alert>
+            )
+            })
     }
   
     const selectBookHandler = (e) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Tab, Row, Col, Nav, Tabs } from "react-bootstrap";
 import AddAuthor from "../components/adminPanelComponents/AddAuthor";
 import AddBook from "../components/adminPanelComponents/AddBook";
@@ -6,20 +6,27 @@ import AddCategory from "../components/adminPanelComponents/AddCategory";
 import AddNews from "../components/adminPanelComponents/AddNews";
 import AddPublishingHouse from "../components/adminPanelComponents/AddPublishingHouse";
 import AddStudent from "../components/adminPanelComponents/AddStudent";
+import AddWorker from "../components/adminPanelComponents/AddWorker";
 import DeleteAuthor from "../components/adminPanelComponents/DeleteAuthor";
 import DeleteBook from "../components/adminPanelComponents/DeleteBook";
 import DeleteCategory from "../components/adminPanelComponents/DeleteCategory";
 import DeleteNews from "../components/adminPanelComponents/DeleteNews";
 import DeletePublishingHouse from "../components/adminPanelComponents/DeletePublishingHouse";
 import DeleteStudent from "../components/adminPanelComponents/DeleteStudent";
+import DeleteWorker from "../components/adminPanelComponents/DeleteWorker";
 import EditAuthor from "../components/adminPanelComponents/EditAuthor";
 import EditBook from "../components/adminPanelComponents/EditBook";
 import EditCategory from "../components/adminPanelComponents/EditCategory";
 import EditNews from "../components/adminPanelComponents/EditNews";
 import EditPublishingHouse from "../components/adminPanelComponents/EditPublishingHouse";
 import EditStudent from "../components/adminPanelComponents/EditStudent";
+import EditWorker from "../components/adminPanelComponents/EditWorker";
+import AuthContext from "../contexts/AuthContext";
 
 const AdminPanel = () => {
+
+  const {roles} = useContext(AuthContext)
+
   return (
     <div style={{minHeight:"70vh"}} className="m-4">
       <Tab.Container id="left-tabs-example" defaultActiveKey="category">
@@ -44,6 +51,11 @@ const AdminPanel = () => {
               <Nav.Item>
                 <Nav.Link eventKey="newses">Posty</Nav.Link>
               </Nav.Item>
+              {roles?.includes("ADMIN")?
+              <Nav.Item>
+                <Nav.Link eventKey="workers">Pracownicy</Nav.Link>
+              </Nav.Item>
+              :null}
             </Nav>
           </Col>
           <Col sm={9}>
@@ -147,6 +159,23 @@ const AdminPanel = () => {
                 </Tab>
                 <Tab eventKey="delete" title="Usuń post">
                     <DeleteNews />
+                </Tab>
+              </Tabs>
+              </Tab.Pane>
+              <Tab.Pane eventKey="workers">
+              <Tabs
+                defaultActiveKey="add"
+                id="uncontrolled-tab-example"
+                className="mb-3"
+              >
+                <Tab eventKey="add" title="Dodaj pracownika">
+                    <AddWorker />
+                </Tab>
+                <Tab eventKey="edit" title="Edytuj pracownika">
+                    <EditWorker />
+                </Tab>
+                <Tab eventKey="delete" title="Usuń pracownika">
+                    <DeleteWorker />
                 </Tab>
               </Tabs>
               </Tab.Pane>
