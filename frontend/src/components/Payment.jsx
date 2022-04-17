@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-
+import {Row, Form, FloatingLabel,Col} from "react-bootstrap"
 const Payment = () => {
+
+const [amount, setAmount] = useState(1)
 
 const paypal = useRef()
 
@@ -14,7 +16,7 @@ useEffect(()=>{
                         descrpition: "Wsparcie biblioteki szkolnej",
                         amount: {
                             currency:"PLN",
-                            value: 650
+                            value: document.getElementById('amount').value
                         }
                     }
                 ]
@@ -31,16 +33,19 @@ useEffect(()=>{
 },[])
 
     return (
-    <div>
+    <div className='m-5'>
         <h2>Jeśli chcesz wspomóc funkcjonowanie naszej biblioteki, zachęcamy do dowolnych wpłat na zakup nowych książek.</h2>
         <br />
-        <h2>Dane do wpłaty:</h2>
-        <h5><b>Numer konta:</b> 4234 8900 0001 2139 4356 67</h5>
 
+        <Row className="d-flex mt-5 justify-content-center align-items-center">
+            <Form.Group as={Col} xs={12} md={7} controlId="formGridName">
+                <FloatingLabel controlId="floatingPassword" label="Kwota">
+                    <Form.Control id="amount" onChange={(e) => {setAmount(e.target.value);}} type="number" placeholder="Kwota" required/>
+                </FloatingLabel>
+            </Form.Group>
+            </Row>
 
-        <div ref={paypal}>
-
-        </div>
+        <div className='d-flex mt-5 justify-content-center align-items-center' ref={paypal}></div>
     </div>
   )
 }
