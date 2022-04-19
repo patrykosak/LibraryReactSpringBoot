@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a186d15b-1b47-4826-aa60-86ae06527904" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/library/controller/AppUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/library/controller/AppUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/library/repository/AppUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/library/repository/AppUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/library/service/AppUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/library/service/AppUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/library/service/AppUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/library/service/AppUserServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="a186d15b-1b47-4826-aa60-86ae06527904" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

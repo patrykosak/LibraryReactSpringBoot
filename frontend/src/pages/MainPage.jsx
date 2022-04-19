@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AppCarousel from '../components/AppCarousel'
 import News from '../components/News'
 import axios from 'axios'
+import Chat from '../components/Chat'
 
 const MainPage = () => {
   const[newses,setNewses] = useState([])
@@ -21,6 +22,7 @@ const MainPage = () => {
        {newses.map((news, index)=>{
          return <News key={index} news={news} />
        })}
+       <Chat />
     </div>
   )
 }
