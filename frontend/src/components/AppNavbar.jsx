@@ -35,6 +35,7 @@ const AppNavbar = () => {
     : null
     }
       <NavDropdown title="Informacje" id="collasible-nav-dropdown">
+      <NavDropdown.Item><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/payment">Wspomóż nas</NavLink></NavDropdown.Item>
         <NavDropdown.Item><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/statue">Regulamin</NavLink></NavDropdown.Item>
         <NavDropdown.Item><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/contact">Kontakt</NavLink></NavDropdown.Item>
       </NavDropdown>
