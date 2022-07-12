@@ -12,8 +12,11 @@ import java.util.Objects;
 @Service
 public class NewsServiceImpl implements NewsService{
 
-    @Autowired
     private NewsRepository newsRepository;
+
+    public NewsServiceImpl(NewsRepository newsRepository) {
+        this.newsRepository = newsRepository;
+    }
 
     @Override
     public News saveNews(News news) {
