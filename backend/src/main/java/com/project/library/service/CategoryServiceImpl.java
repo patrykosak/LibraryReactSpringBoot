@@ -2,7 +2,6 @@ package com.project.library.service;
 
 import com.project.library.entity.Category;
 import com.project.library.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -4,7 +4,6 @@ import com.project.library.entity.AppUser;
 import com.project.library.entity.Role;
 import com.project.library.repository.AppUserRepository;
 import com.project.library.repository.RoleRepository;
-import com.project.library.security.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

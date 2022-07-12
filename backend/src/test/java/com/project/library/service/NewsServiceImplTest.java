@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.verify;
@@ -30,7 +31,7 @@ class NewsServiceImplTest {
 
     @Test
     void shouldAddNews() {
-        AppUser appUser = new AppUser("welik2@tlen.pl","Patryk","Osak","patryk123","IV B", Arrays.asList(new Role(1L,"ROLE_USER")));
+        AppUser appUser = new AppUser("welik2@tlen.pl","Patryk","Osak","patryk123","IV B", List.of(new Role(1L, "ROLE_USER")));
 
         News news = News.builder()
                 .newsId(1L)

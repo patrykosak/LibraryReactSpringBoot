@@ -17,7 +17,7 @@ public class BorrowController {
     private BorrowService borrowService;
 
     @PostMapping("/borrows")
-    public Borrow saveBorrow(@RequestBody Borrow borrow) throws ParseException {
+    public Borrow saveBorrow(@RequestBody Borrow borrow) {
         return borrowService.saveBorrow(borrow);
     }
 

@@ -2,7 +2,6 @@ package com.project.library.service;
 
 import com.project.library.entity.AppUser;
 import com.project.library.entity.Role;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
