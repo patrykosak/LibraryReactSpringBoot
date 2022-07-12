@@ -40,4 +40,18 @@ class CategoryServiceImplTest {
 
         assertThat(capturedCategory).isEqualTo(category);
     }
+
+    @Test
+    void shouldReturnCategoryList() {
+        underTest.fetchCategoryList();
+
+        verify(categoryRepository).findAll();
+    }
+
+    @Test
+    void shouldDeleteCategoryById() {
+        underTest.deleteCategoryById(1L);
+
+        verify(categoryRepository).deleteById(1L);
+    }
 }
