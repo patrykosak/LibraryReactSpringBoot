@@ -12,7 +12,7 @@ import java.util.Objects;
 @Service
 public class NewsServiceImpl implements NewsService{
 
-    private NewsRepository newsRepository;
+    private final NewsRepository newsRepository;
 
     public NewsServiceImpl(NewsRepository newsRepository) {
         this.newsRepository = newsRepository;

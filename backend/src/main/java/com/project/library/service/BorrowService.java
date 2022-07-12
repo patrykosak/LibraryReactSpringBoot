@@ -6,17 +6,17 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface BorrowService {
-    public Borrow saveBorrow(Borrow borrow);
+    Borrow saveBorrow(Borrow borrow);
 
-    public List<Borrow> fetchBorrowList();
+    List<Borrow> fetchBorrowList();
 
-    public List<Borrow> fetchAppUserBorrowList(String email);
+    List<Borrow> fetchAppUserBorrowList(String email);
 
-    public Borrow fetchBorrowById(Long borrowId);
+    Borrow fetchBorrowById(Long borrowId);
 
-    public void deleteBorrowById(Long borrowId);
+    void deleteBorrowById(Long borrowId);
 
-    public Borrow updateBorrow(Long borrowId, Borrow borrow);
+    Borrow updateBorrow(Long borrowId, Borrow borrow);
 
     Page<Borrow> fetchPaginatedBorrowList(int pageSize, int pageNumber, String status, String searchQuery);
 }
