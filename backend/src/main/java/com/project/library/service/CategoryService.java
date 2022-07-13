@@ -9,7 +9,7 @@ public interface CategoryService {
 
     List<Category> fetchCategoryList();
 
-    void deleteCategoryById(Long categoryId);
+    String deleteCategoryById(Long categoryId);
 
     Category updateCategory(Long categoryId, Category category);
 }

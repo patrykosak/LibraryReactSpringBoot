@@ -27,7 +27,7 @@ public class CategoryController {
     @DeleteMapping("/categories/{id}")
     public String deleteCategoryById(@PathVariable("id") Long categoryId){
         categoryService.deleteCategoryById(categoryId);
-        return "Category deleted succesfully!!";
+        return "Category deleted successfully!!";
     }
 
     @PutMapping("/categories/{id}")
