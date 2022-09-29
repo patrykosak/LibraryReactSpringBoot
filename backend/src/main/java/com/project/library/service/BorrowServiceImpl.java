@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +26,7 @@ public class BorrowServiceImpl implements BorrowService {
     private BookService bookService;
 
     @Override
+    @Transactional
     public Borrow saveBorrow(Borrow borrow) {
         borrow.setBorrowDate(LocalDate.now());
         Book book = bookService.fetchBookByISBN(borrow.getBook().getISBN());

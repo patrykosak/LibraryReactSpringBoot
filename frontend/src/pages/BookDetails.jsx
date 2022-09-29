@@ -87,7 +87,7 @@ const BookDetails = () => {
             <p>{book.description}</p>
             </div>
             <div className='d-flex justify-content-end mt-3'>
-            <Button onClick={()=>{handleShow()}} className='w-25' disabled={disabledButton}>Wypożycz</Button>
+            <Button onClick={()=>{handleShow()}} className='w-25' disabled={disabledButton}>Zarezerwuj</Button>
             </div>
         </Col>
         </Row>
@@ -102,7 +102,7 @@ const BookDetails = () => {
             Zamknij
           </Button>
           <Button variant="primary" onClick={handleBorrow}>
-            Wypożycz
+            Zarezerwuj
           </Button>
         </Modal.Footer>
       </Modal>
