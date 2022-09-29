@@ -28,7 +28,7 @@ class SeleniumTest {
     @DisplayName("Login happy path")
     void Login() {
         loginPage = homePage.clickBtnLogin();
-        loginPage.login("ss@ss.pl","patryk123");
+        loginPage.login("john@pros.com","JohnDoe123");
     }
 
 

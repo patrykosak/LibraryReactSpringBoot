@@ -32,7 +32,7 @@ abstract class BasePage {
     }
 
     protected void waitUntil(By locator) {
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.of(20, ChronoUnit.SECONDS))
                 .pollingEvery(Duration.of(3, ChronoUnit.SECONDS))
                 .ignoring(NoSuchElementException.class);

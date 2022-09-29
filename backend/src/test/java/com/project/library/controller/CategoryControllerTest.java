@@ -1,6 +1,5 @@
 package com.project.library.controller;
 
-import com.jayway.jsonpath.JsonPath;
 import com.project.library.entity.Category;
 import com.project.library.service.CategoryService;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import java.util.List;
@@ -79,12 +77,12 @@ class CategoryControllerTest {
 
     @Test
     void updateCategory() throws Exception {
-        when(categoryService.updateCategory(1L,new Category(1L,"History")))
-                .thenReturn(new Category(1L,"History"));
+        when(categoryService.updateCategory(1L, new Category(1L, "History")))
+                .thenReturn(new Category(1L, "History"));
 
         MockHttpServletRequestBuilder request = put("/categories/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{}");;
+                .content("{}");
 
         MvcResult mvcResult = mvc.perform(request)
                 .andExpect(status().isOk())
