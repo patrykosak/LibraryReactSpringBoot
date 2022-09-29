@@ -75,7 +75,7 @@ const Login = () => {
                   </svg>
               </div>
           </div>
-          <button className={styles.action} type="submit">Zaloguj się</button>
+          <button id="kc-login" className={styles.action} type="submit">Zaloguj się</button>
           <span onClick={() => { setIsShowForgot((prevState) => !prevState) }} className={styles.discrete}>Zapomniałeś hasła?</span>
       </>
   );

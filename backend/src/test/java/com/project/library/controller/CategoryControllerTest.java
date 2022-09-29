@@ -1,5 +1,6 @@
 package com.project.library.controller;
 
+import com.jayway.jsonpath.JsonPath;
 import com.project.library.entity.Category;
 import com.project.library.service.CategoryService;
 import org.junit.jupiter.api.Test;
@@ -77,7 +78,19 @@ class CategoryControllerTest {
     }
 
     @Test
-    void updateCategory() {
+    void updateCategory() throws Exception {
+        when(categoryService.updateCategory(1L,new Category(1L,"History")))
+                .thenReturn(new Category(1L,"History"));
+
+        MockHttpServletRequestBuilder request = put("/categories/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}");;
+
+        MvcResult mvcResult = mvc.perform(request)
+                .andExpect(status().isOk())
+                //.andExpect(jsonPath("$.categoryId", equalTo(1)))
+                //.andExpect(jsonPath("$.name", equalTo("History")))
+                .andReturn();
     }
 
 }

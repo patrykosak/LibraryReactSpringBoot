@@ -25,7 +25,7 @@ const AppNavbar = () => {
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">
-      <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/books">Książki</NavLink></Nav.Link>
+      <Nav.Link><NavLink id="booksLink" style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/books">Książki</NavLink></Nav.Link>
       {roles?.includes("ADMIN")||roles?.includes("WORKER")?
       <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/borrows">Wypożyczenia</NavLink></Nav.Link>
       : null
@@ -47,7 +47,7 @@ const AppNavbar = () => {
       {roles ? 
             <Nav.Link onClick={logoutUser} >Wyloguj się</Nav.Link>
       :
-      <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/login">Zaloguj się</NavLink></Nav.Link>
+      <Nav.Link><NavLink id="loginButton" style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/login">Zaloguj się</NavLink></Nav.Link>
     }
       </Nav>
   </Navbar.Collapse>
