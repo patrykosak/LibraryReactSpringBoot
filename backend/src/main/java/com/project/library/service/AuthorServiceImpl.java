@@ -1,6 +1,8 @@
 package com.project.library.service;
 
 import com.project.library.entity.Author;
+import com.project.library.exception.ControllerException;
+import com.project.library.exception.ExceptionMessages;
 import com.project.library.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +38,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author updateAuthor(Long authorId, Author author) {
-        Author authorDB = authorRepository.findById(authorId).get();
+        Author authorDB = authorRepository.findById(authorId).orElseThrow(()->new ControllerException(ExceptionMessages.AUTHOR_WITH_THAT_ID_DOESNT_EXIST.getMessage()));
 
         if(Objects.nonNull(author.getName())&& !"".equalsIgnoreCase(author.getName())){
             authorDB.setName(author.getName());
