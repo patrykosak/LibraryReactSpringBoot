@@ -104,63 +104,63 @@ const AddBook = () => {
         <Row className="mb-3">
         {feedback}
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                <FloatingLabel controlId="floatingPassword" label="ISBN">
+                <FloatingLabel controlId="inputISBN" label="ISBN">
                     <Form.Control onChange={(e) => setISBN(e.target.value)} minLength={13} maxLength={13} type="text" placeholder="ISBN" required/>
                 </FloatingLabel>
             </Form.Group>
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                <FloatingLabel controlId="floatingPassword" label="Tytuł">
+                <FloatingLabel controlId="inputTitle" label="Tytuł">
                     <Form.Control onChange={(e) => setTitle(e.target.value)} type="text" maxLength={50} placeholder="Tytuł" required/>
                 </FloatingLabel>
             </Form.Group>
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                <FloatingLabel controlId="floatingPassword" label="Liczba książek">
+                <FloatingLabel controlId="inputAmount" label="Liczba książek">
                     <Form.Control onChange={(e) => setAmount(e.target.value)} min={0} type="number" placeholder="Rok Liczba książek" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                <FloatingLabel controlId="floatingPassword" label="link do zdjęcia okładki">
+                <FloatingLabel controlId="inputUrl" label="link do zdjęcia okładki">
                     <Form.Control onChange={(e) => setUrl(e.target.value)}  type="url" placeholder="link do zdjęcia okładki" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                <FloatingLabel controlId="floatingPassword" label="Rok wydania">
+                <FloatingLabel controlId="relYear" label="Rok wydania">
                     <Form.Control onChange={(e) => setRelaseYear(e.target.value)} min={1800} max={2022} type="number" placeholder="Rok wydania" required/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                <FloatingLabel controlId="floatingPassword" label="Opis książki">
+                <FloatingLabel controlId="inputDescription" label="Opis książki">
                     <Form.Control style={{height: "250px"}} as="textarea" rows={6} onChange={(e) => setDescription(e.target.value)}  type="text" placeholder="Opis książki"/>
                 </FloatingLabel>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedAuthor(e)}} options={authors} placeholder="Autor"/>
+                    <Select id="selectAuthor" onChange={(e)=>{setSelectedAuthor(e)}} options={authors} placeholder="Autor"/>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedCategory(e)}} options={categories} placeholder="Kategoria"/>
+                    <Select id="selectCategory" onChange={(e)=>{setSelectedCategory(e)}} options={categories} placeholder="Kategoria"/>
             </Form.Group>
         </Row>
         <Row className="mb-3">
             <Form.Group as={Col} xs={12} md={6} controlId="formGridName">
-                    <Select onChange={(e)=>{setSelectedPublishingHouse(e)}} options={publishingHouses} placeholder="Wydawnictwo"/>
+                    <Select id="selectHouse" onChange={(e)=>{setSelectedPublishingHouse(e)}} options={publishingHouses} placeholder="Wydawnictwo"/>
             </Form.Group>
         </Row>
         <div className="d-flex justify-content-end">
-            <Button className="ps-4 pe-4" variant="outline-primary" type="submit">
+            <Button id="addBook" className="ps-4 pe-4" variant="outline-primary" type="submit">
                 Dodaj Książkę
             </Button> 
         </div>

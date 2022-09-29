@@ -31,7 +31,7 @@ const AppNavbar = () => {
       : null
   }
       {roles?.includes("ADMIN")||roles?.includes("WORKER")?
-      <Nav.Link><NavLink style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/adminpanel">Panel admina</NavLink></Nav.Link>
+      <Nav.Link><NavLink id="adminPanel" style={{textDecoration:"none",color:"rgb(49, 49, 49)"}} to="/adminpanel">Panel admina</NavLink></Nav.Link>
     : null
     }
       <NavDropdown title="Informacje" id="collasible-nav-dropdown">

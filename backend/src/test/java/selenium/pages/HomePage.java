@@ -18,6 +18,10 @@ public class HomePage extends BasePage {
 
     private final String BOOKS_BUTTON_ID = "booksLink";
     private final String LOGIN_BUTTON_ID = "loginButton";
+    private final String BTN_ADMIN_PANEL = "adminPanel";
+
+    @FindBy(how = How.ID, using = BTN_ADMIN_PANEL)
+    private WebElement btnAdminPanel;
 
     @FindBy(how = How.ID, using = BOOKS_BUTTON_ID)
     private WebElement btnBooks;
@@ -28,6 +32,12 @@ public class HomePage extends BasePage {
         waitUntil(By.id(BOOKS_BUTTON_ID));
         btnBooks.click();
         return new BookPage(driver);
+    }
+
+    public AdminPanelPage clickBtnAdminPanel() {
+        waitUntil(By.id(BTN_ADMIN_PANEL));
+        btnAdminPanel.click();
+        return new AdminPanelPage(driver);
     }
 
     public LoginPage clickBtnLogin() {

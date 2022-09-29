@@ -43,7 +43,7 @@ const AdminPanel = () => {
                 <Nav.Link eventKey="authors">Autorzy</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="books">Książki</Nav.Link>
+                <Nav.Link id="booksItem" eventKey="books">Książki</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="students">Uczniowie</Nav.Link>
